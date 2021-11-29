@@ -1,0 +1,82 @@
+{% extends "layout/layout.html" %}
+{% block title %}ລະບົບ ຮ້ານແລກປ່ຽນເງິນຕາ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="card">
+    <h5 class="card-header">
+        <center>ການແລກປ່ຽນເງິນຕາ</center>
+    </h5>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header text-primary">
+                            <center>ການແລກປ່ຽນເງິນຕາ</center>
+                            <a href="/listeexch" class="btn btn-sucess"> ເລືອກລາຍການ</a>
+                        </div>
+                        <div class="card-body bg-secondary">
+                            <form action="" id="form">
+                                <select class="form-control" id="rate_code" name="rate_code" OnChange="fnshowrate();"">
+                                    <option value="" selected>ເລືອກ</option>
+                                    <!-- {% for item in rate_by %} -->
+                                    <!-- <option value=" {{item[1]}}">{{item[0]}}</option> -->
+                                    <!-- {% endfor %} -->
+                                </select>
+                                <br>
+                                <label for="">ອັດຕາແລກປ່ຽນ</label>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="rate_show"
+                                    value="0" readonly>
+                                <br>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
+                                    OnChange="fncSum();" value="0">
+                                <br>
+                                <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
+                                    name="tt_amount" id="myText" value="0">
+                                <!-- <button type="button" onclick="fncSum()">Try it</button> -->
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
+                                <!-- <a class="btn btn-primary btn-sm btn-block" href="/homeex" role="button">ຊື້</a> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function fncSum() {
+        x = parseFloat(document.getElementById("rate_code").value) * parseFloat(document.getElementById("vale_tt").value)
+        document.getElementById("myText").value = x
+    }
+    function fnshowrate() {
+        x = document.getElementById("rate_code").value
+        document.getElementById("rate_show").value = parseFloat(x)
+        console.log("dsfds")
+    }
+</script>
+{% endblock %}
