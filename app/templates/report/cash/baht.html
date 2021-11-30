@@ -1,0 +1,38 @@
+{% extends "layout/layout.html" %}
+{% block title %}ລາຍງານການເຄື່ອນໃຫວ-ເງິນສົດບາດ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ວັນ/ເວລາ</th>
+            <th scope="col">ຮັບເງິນ</th>
+            <th scope="col">ຈ່າຍເງິນ</th>
+            <th scope="col">ຄົງເຫຼືອ</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in baht %}
+          <tr>
+            <td style="text-align: left;">{{item[0]}}</td>
+            <td style="text-align: right;">{{item[1]}}</td>
+            <td style="text-align: right;">{{item[2]}}</td>
+            <td style="text-align: right;">{{item[3]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

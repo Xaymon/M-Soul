@@ -1,5 +1,5 @@
-
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, json
+from werkzeug import datastructures
 from kk_con import *
 from app import app
 
@@ -8,30 +8,61 @@ from app import app
 def homeex():
     with gobal.con:
         cur = gobal.con.cursor()
-        # sql = """
-        #         select name_1,rate,cur_1,cur2 from (
-        #         select rate_name||'-'||rate_name_2 as name_1,rate_va_sale as rate,'K' as cur_1,'B' as cur2 from exchange_rate where rate_code='01'
-        #         union all
-        #         select rate_name_2||'-'||rate_name as name_1,rate_va_buy as rate,'B' as cur_1,'K' as cur2 from exchange_rate  where rate_code='01'
-        #         union all
-        #         select rate_name||'-'||rate_name_2 as name_1,rate_va_sale as rate,'K' as cur_1,'D' as cur2 from exchange_rate where rate_code='02'
-        #         union all
-        #         select rate_name_2||'-'||rate_name as name_1,rate_va_buy as rate,'D' as cur_1,'K' as cur2 from exchange_rate  where rate_code='02'
-        #         union all
-        #         select rate_name||'-'||rate_name_2 as name_1,rate_va_sale as rate,'B' as cur_1,'D' as cur2 from exchange_rate where rate_code='03'
-        #         union all
-        #         select rate_name_2||'-'||rate_name as name_1,rate_va_buy as rate,'D' as cur_1,'B' as cur2 from exchange_rate  where rate_code='03'
-        #         ) as a
-        #     """
-        # cur.execute(sql)
-        # rate_by = cur.fetchall()
-    return render_template('exchange/index.html',)
-@app.route('/listeexch')
-def listeexch():
-    # with gobal.con:
-        # cur = gobal.con.cursor()
-        # sql = """SELECT rate_va_sale,case when rate_code='01' then 'ບາດ' else 'ໂດລາ' end as name_show
-        # FROM public.exchange_rate;"""
-        # cur.execute(sql)
-        # rate_by = cur.fetchall()
-    return render_template('exchange/listexchh.html')
+        sql = """
+                SELECT roworder,to_char(ex_date,'DD-MM-YYY HH24:MI:SS'), to_char(amount_1,'999G999G999G999D99')||'-'|| case when ex_1='K' then 'ກີບ' when ex_1='B' then 'ບາດ' else 'ໂດລາ' end, exchange_rate, 
+                to_char(amount_2,'999G999G999G999D99')||'-'|| case when ex_2='K' then 'ກີບ' when ex_2='B' then 'ບາດ' else 'ໂດລາ' end FROM public.ic_trans order by roworder DESC"""
+        cur.execute(sql)
+        rate_trans = cur.fetchall()
+    return render_template('exchange/index.html', rate_trans=rate_trans)
+
+
+@app.route("/product/<id>")
+def product(id):
+    sql = """SELECT exchange_rate,ex_1,ex_2,key_value,date_end FROM (
+            select sale::text as exchange_rate,'K' as ex_1,'B' as ex_2,'01' as key_value,date_end  from public.exchange_rate where curency_code='01'
+            union all
+            select buy::text as exchange_rate,'B' as ex_1,'K' as ex_2,'02' as key_value,date_end from public.exchange_rate where curency_code='01'
+            union all
+            select sale::text as exchange_rate,'K' as ex_1,'D' as ex_2,'03' as key_value,date_end from public.exchange_rate where curency_code='02'
+            union all
+            select buy::text as exchange_rate,'D' as ex_1,'K' as ex_2,'04' as key_value,date_end from public.exchange_rate where curency_code='02'
+            union all
+            select sale::text as exchange_rate,'B' as ex_1,'D' as ex_2,'05' as key_value,date_end from public.exchange_rate where curency_code='03'
+            union all
+            select buy::text as exchange_rate,'D' as ex_1,'B' as ex_2,'06' as key_value,date_end from public.exchange_rate where curency_code='03') as a
+            where date_end isnull and key_value=%s"""
+    cur = gobal.con.cursor()
+    cur.execute(sql, (id, ))
+    product = cur.fetchone()
+    return jsonify({'product': product})
+
+
+@app.route('/save_ex', methods=['POST'])
+def save_ex():
+    with gobal.con:
+        cur = gobal.con.cursor()
+        sql = """INSERT INTO public.ic_trans(
+                    ex_date, ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type)
+                    values(LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s)
+             """
+        ex_1 = request.form['ex_1']
+        ex_2 = request.form['ex_2']
+        amount_1 = request.form['vale_tt']
+        exchange_rate = request.form['rate_show']
+        amount_2 = request.form['tt_amount']
+        tran_type = request.form['rate_code']
+        data = (ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type)
+        if amount_1 != 0:
+            cur.execute(sql, (data))
+            gobal.con.commit()
+            return redirect(url_for('homeex'))
+        else:     
+            return redirect(url_for('homeex'))
+@app.route('/ex_delete/<string:id>')
+def ex_delete(id):
+    with gobal.con:
+        cur = gobal.con.cursor()
+        sql = """delete from ic_trans where roworder=%s"""
+        cur.execute(sql, (id,))
+        gobal.con.commit()
+        return redirect(url_for('homeex'))

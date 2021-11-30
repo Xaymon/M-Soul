@@ -5,68 +5,69 @@
 {% endblock %}
 {% block content %}
 <br>
-<div class="card">
-    <div class="card-body">
-        <div class="container">
-            <center>
-                <div class="row">
-                    <div class="col-sm">
-                        <!-- <button type="button" class="btn btn-primary btn-lg btn-block"></button> -->
-                        <a class="btn btn-primary btn-lg btn-block" href="/homeex" role="button">ຊື້-ຂາຍເງິນຕາ</a>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <center>
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- <button type="button" class="btn btn-primary btn-lg btn-block"></button> -->
+                            <a class="btn btn-primary btn-lg btn-block" href="/homeex" role="button">ຊື້-ຂາຍເງິນຕາ</a>
+                        </div>
+                        <div class="col-sm">
+                            <a class="btn btn-primary btn-lg btn-block" href="#" role="button">ໂອນເງິນ</a>
+                        </div>
+                        <div class="col-sm">
+                            <a class="btn btn-primary btn-lg btn-block" href="#" role="button">ຄັງເງິນ</a>
+                            <!-- <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button> -->
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <a class="btn btn-primary btn-lg btn-block" href="#" role="button">ໂອນເງິນ</a>
-                    </div>
-                    <div class="col-sm">
-                        <a class="btn btn-primary btn-lg btn-block" href="#" role="button">ຄັງເງິນ</a>
-                        <!-- <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button> -->
-                    </div>
-                </div>
-            </center>
+                </center>
+            </div>
         </div>
     </div>
-</div>
-<div class="card">
-    <div class="card-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <table style="width:100%">
-                        <tr>
-                            <th>
-                                <center>
-                                    <h5>ອັດຕາແລກປ່ຽນປະຈຳວັນ</h5>
-                                </center>
-                                <table class="table table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">ສະກຸນເງິນ</th>
-                                            <th scope="col">ອັດຕາແລກປ່ຽນ</th>
-                                            <th scope="col">ລະຫັດສະກຸນເງິນ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-sm">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <table style="width:100%">
+                            <tr>
+                                <th>
+                                    <center>
+                                        <h5>ອັດຕາແລກປ່ຽນປະຈຳວັນ</h5>
+                                    </center>
+                                    <table class="table table-sm table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ລະຫັດ</th>
+                                                <th scope="col">ສະກຸນເງິນ</th>
+                                                <th scope="col">ຊື້</th>
+                                                <th scope="col">ຂາຍ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in rate_ %}
+                                            <tr>
+                                                <td style="text-align: right;">{{item[0]}}</td>
+                                                <td style="text-align: left;">{{item[1]}}</td>
+                                                <td style="text-align: right;">{{item[2]}}</td>
+                                                <td style="text-align: right;">{{item[2]}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm">
 
-                </div>
-                <div class="col-sm">
+                    </div>
+                    <div class="col-sm">
 
+                    </div>
                 </div>
             </div>
         </div>
