@@ -40,7 +40,7 @@
                                     <br>
                                     <label for="">ຈຳນວນເງິນທີ່ຮັບ</label>
                                     <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
-                                        OnChange="fncSum();" value="0" name="vale_tt" required minlength="1">
+                                        OnChange="fncSum();" name="vale_tt" required>
                                     <br>
                                     <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
                                     <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
@@ -109,7 +109,8 @@
                 document.getElementById("rate_show").value = data.product[0]
                 document.getElementById("ex_1").value = data.product[1]
                 document.getElementById("ex_2").value = data.product[2]
-                document.getElementById("vale_tt").value = 0
+                document.getElementById("vale_tt").value = ''
+                // document.getElementById("vale_tt").readonly = false
             });
         });
         console.log(x)
