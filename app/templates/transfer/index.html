@@ -26,6 +26,11 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label for="exampleFormControlSelect1">ທະນາຄານຕົ້ນທາງ</label>
+                  <select class="form-control" id="bank_from" name="bank_from" required>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="exampleFormControlSelect1">ເລືອກທະນາຄານປາຍທາງ</label>
                   <select class="form-control" id="city" name="bank_to" required>
                   </select>
@@ -53,7 +58,7 @@
                 <!-- <div class="form-group">
                   <input class="form-control" type="date" required name="date">
                 </div> -->
-                <input type="hidden" name="bank_from" id="bank_from">
+                <!-- <input type="hidden" name="bank_from" id="bank_from"> -->
                 <button type="submit" class="btn btn-primary form-control">ບັນທຶກ</button>
               </form>
             </div>
@@ -114,12 +119,15 @@
     var x = document.getElementById("code").value;
     if (x == '01') {
       document.getElementById("bank_from").value = 'BCEL'
+      bank_from.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
       city.innerHTML = "<option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
     } else if (x == '02') {
       document.getElementById("bank_from").value = 'THAI'
+      bank_from.innerHTML = "<option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
       city.innerHTML = "<option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB'>JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB' >LDB ພັດທະນາລາວ</option>"
     } else {
       document.getElementById("bank_from").value = 'BCEL'
+      bank_from.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
       city.innerHTML = "<option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB' >JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB'>LDB ພັດທະນາລາວ</option>"
     }
   }

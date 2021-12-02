@@ -42,16 +42,18 @@ def save_ex():
     with gobal.con:
         cur = gobal.con.cursor()
         sql = """INSERT INTO public.ic_trans(
-                    ex_date, ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type)
-                    values(LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s)
+                    ex_date, ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type,customer)
+                    values(LOCALTIMESTAMP(0), %s, %s, %s, %s, %s,%s,%s)
              """
+             
+        customer_ = request.form['customer_']
         ex_1 = request.form['ex_1']
         ex_2 = request.form['ex_2']
         amount_1 = request.form['vale_tt']
         exchange_rate = request.form['rate_show']
         amount_2 = request.form['tt_amount']
         tran_type = request.form['rate_code']
-        data = (ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type)
+        data = (ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type,customer_)
         if amount_1 != 0:
             cur.execute(sql, (data))
             gobal.con.commit()

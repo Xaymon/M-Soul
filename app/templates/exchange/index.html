@@ -19,32 +19,53 @@
                             <center>ການແລກປ່ຽນເງິນຕາ</center>
                             <a href="/listeexch" class="btn btn-sucess"> ເລືອກລາຍການ</a>
                         </div> -->
-                        <div class="card-body bg-secondary">
+                        <div class="card-body" style="background-color: #598C60;">
                             <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
-                                <select class="form-control" id="rate_code" name="rate_code" OnChange="fnshowrate();">
-                                    <option value="" selected>ເລືອກ</option>
-                                    <option value="01">ກິບ-ບາດ</option>
-                                    <option value="02">ບາດ-ກີບ</option>
-                                    <option value="03">ກີບ-ໂດລາ</option>
-                                    <option value="04">ໂດລາ-ກິບ</option>
-                                    <option value="05">ບາດ-ໂດລາ</option>
-                                    <option value="06">ໂດລາ-ບາດ</option>
-                                </select>
-                                <br>
-                                <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
-                                <input type="hidden" class="form-control" id="ex_2" value="0" readonly name="ex_2">
-                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນຮັບ" id="rate_show"
-                                    value="0" readonly name="rate_show">
-                                <br>
-                                <label for="">ຈຳນວນເງິນທີ່ຮັບ</label>
-                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
-                                    OnChange="fncSum();" name="vale_tt" required>
-                                <br>
-                                <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
-                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
-                                    name="tt_amount" id="myText" value="0">
-                                <br>
-                                <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
+                                <div class="form-group">
+                                    <label for="">ຊື່ລູກຄ້າ/ເບີໂທ<span style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" placeholder="ຊື່ລູກຄ້າ/ເບີໂທ"
+                                        name="customer_" id="customer_" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
+                                    <select class="form-control" id="rate_code" name="rate_code"
+                                        OnChange="fnshowrate();">
+                                        <option value="" selected>ເລືອກ</option>
+                                        <option value="01">ກິບ-ບາດ</option>
+                                        <option value="02">ບາດ-ກີບ</option>
+                                        <option value="03">ກີບ-ໂດລາ</option>
+                                        <option value="04">ໂດລາ-ກິບ</option>
+                                        <option value="05">ບາດ-ໂດລາ</option>
+                                        <option value="06">ໂດລາ-ບາດ</option>
+                                    </select>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="">ລະຫັດລູກຄ້າ</label>
+                                    <select class="form-control" id="customer" name="customer">
+                                        <option value="" selected>ເລືອກ</option>
+
+                                    </select>
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="">ອັດຕາແລກປ່ຽນ</label>
+                                    <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
+                                    <input type="hidden" class="form-control" id="ex_2" value="0" readonly name="ex_2">
+                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນຮັບ" id="rate_show"
+                                        value="0" readonly name="rate_show">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">ຈຳນວນເງິນທີ່ຮັບ<span style="color: red;">*</span></label>
+                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
+                                        OnChange="fncSum();" name="vale_tt" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
+                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
+                                        name="tt_amount" id="myText" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -96,12 +117,14 @@
         if (vieng == 'K' && keo == 'B' || vieng == 'K' && keo == 'D' || vieng == 'B' && keo == 'D') {
             x = Math.round(parseFloat(document.getElementById("vale_tt").value) / parseFloat(document.getElementById("rate_show").value))
             document.getElementById("myText").value = x
+            // customer.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
             // } else if () {
             //     x = Math.round(parseFloat(document.getElementById("vale_tt").value)) / parseFloat(document.getElementById("rate_show").value)
             //     document.getElementById("myText").value = x
         } else {
             x = Math.round(parseFloat(document.getElementById("vale_tt").value) * parseFloat(document.getElementById("rate_show").value))
             document.getElementById("myText").value = x
+
         }
 
     }
@@ -116,6 +139,7 @@
                 document.getElementById("ex_1").value = data.product[1]
                 document.getElementById("ex_2").value = data.product[2]
                 document.getElementById("vale_tt").value = ''
+                // customer.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
                 // document.getElementById("vale_tt").readonly = false
             });
         });
