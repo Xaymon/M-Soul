@@ -20,7 +20,8 @@
     <title>{% block title %}{% endblock %} -ລະບົບຮ້ານແລກປ່ຽນເງິນຕາ</title>
     <style>
         body {
-            background-color: #018CD9;
+            background-color: #212121;
+            /* background-color:#bf9400 #EFEFEF; */
             font-family: "phetsarath ot";
         }
 
@@ -32,12 +33,14 @@
 
         td,
         th {
-            border: 0.5px solid #5DADE2;
+            border: 0.5px solid darkcyan;
             text-align: center;
             padding: 5px;
             height: 2%;
             font-size: 12px;
         }
+
+
 
         /* tr:nth-child(even) {
             background-color: #dddddd;
@@ -52,14 +55,14 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">KK EXCHANGE</a>
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkslategray; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+        <a class="navbar-brand" style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;"  href="/">KK EXCHANGE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" id="menubar">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -67,15 +70,15 @@
                         <i class="fab fa-accessible-icon"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/homeex">ແລກປ່ຽນເງິນຕາ</a>
+                        <a class="dropdown-item"  href="/homeex">ແລກປ່ຽນເງິນຕາ</a>
                         <a class="dropdown-item" href="/hometf">ໂອນເງິນ</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-person-plus-fill"></i> ການຈັດການ
-                        <i class="fab fa-accessible-icon"></i>
+                        aria-haspopup="true" aria-expanded="false" >
+                        <i class="bi bi-tools"></i> ການຈັດການ
+                        <!-- <i class="fab fa-accessible-icon">aaa</i> -->
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/manageexrate">ອັດຕາແລກປ່ຽນ</a>
@@ -89,7 +92,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                        aria-haspopup="true" aria-expanded="false" >
                         <i class="bi bi-bar-chart"></i> ລາຍງານ
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -104,7 +107,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link"  href="/logout">ອອກ​ຈາກ​ລະ​ບົບ</a>
                 </li>
             </ul>
         </div>

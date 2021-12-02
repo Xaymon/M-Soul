@@ -9,7 +9,7 @@ def homeex():
     with gobal.con:
         cur = gobal.con.cursor()
         sql = """
-                SELECT roworder,to_char(ex_date,'DD-MM-YYY HH24:MI:SS'), to_char(amount_1,'999G999G999G999D99')||'-'|| case when ex_1='K' then 'ກີບ' when ex_1='B' then 'ບາດ' else 'ໂດລາ' end, exchange_rate, 
+                SELECT roworder,to_char(ex_date,'DD-MM-YYYY HH24:MI:SS'), to_char(amount_1,'999G999G999G999D99')||'-'|| case when ex_1='K' then 'ກີບ' when ex_1='B' then 'ບາດ' else 'ໂດລາ' end, exchange_rate, 
                 to_char(amount_2,'999G999G999G999D99')||'-'|| case when ex_2='K' then 'ກີບ' when ex_2='B' then 'ບາດ' else 'ໂດລາ' end FROM public.ic_trans order by roworder DESC"""
         cur.execute(sql)
         rate_trans = cur.fetchall()
