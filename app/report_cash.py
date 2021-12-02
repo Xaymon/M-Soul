@@ -8,7 +8,7 @@ from kk_con import *
 @app.route('/cashkip')
 def cashkip():
     cur = gobal.con.cursor()
-    sql = """SELECT  ex_date,
+    sql = """SELECT  to_char(ex_date,'DD-MM-YYY HH24:MI:SS'),
         to_char(case when ex_1='K' then amount_1 else 0 end, '999G999G999G999D99'), 
         to_char(case when ex_2='K' then amount_2 else 0 end, '999G999G999G999D99'), 
         to_char(SUM((case when ex_1='K' then amount_1 else 0 end) - (case when ex_2='K' then amount_2 else 0 end))
@@ -19,10 +19,12 @@ def cashkip():
     kip = cur.fetchall()
 
     return render_template('/report/cash/kip.html', kip=kip)
+
+
 @app.route('/cashbaht')
 def cashbaht():
     cur = gobal.con.cursor()
-    sql = """SELECT  ex_date,
+    sql = """SELECT  to_char(ex_date,'DD-MM-YYY HH24:MI:SS'),
         to_char(case when ex_1='B' then amount_1 else 0 end, '999G999G999G999D99'), 
         to_char(case when ex_2='B' then amount_2 else 0 end, '999G999G999G999D99'), 
         to_char(SUM((case when ex_1='B' then amount_1 else 0 end) - (case when ex_2='B' then amount_2 else 0 end))
@@ -32,10 +34,12 @@ def cashbaht():
     cur.execute(sql)
     baht = cur.fetchall()
     return render_template('/report/cash/baht.html', baht=baht)
+
+
 @app.route('/cashdollar')
 def cashdollar():
     cur = gobal.con.cursor()
-    sql = """SELECT  ex_date,
+    sql = """SELECT  to_char(ex_date,'DD-MM-YYY HH24:MI:SS'),
         to_char(case when ex_1='D' then amount_1 else 0 end, '999G999G999G999D99'), 
         to_char(case when ex_2='D' then amount_2 else 0 end, '999G999G999G999D99'), 
         to_char(SUM((case when ex_1='D' then amount_1 else 0 end) - (case when ex_2='D' then amount_2 else 0 end))
