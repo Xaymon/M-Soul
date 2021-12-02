@@ -11,73 +11,77 @@
         <h5 class="card-header">
             <center>ການແລກປ່ຽນເງິນຕາ</center>
         </h5>
-        <div class="card-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <!-- <div class="card-header text-primary">
+        <div class="card-body" style="background-color:#066AA0;">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <!-- <div class="card-header text-primary">
                             <center>ການແລກປ່ຽນເງິນຕາ</center>
                             <a href="/listeexch" class="btn btn-sucess"> ເລືອກລາຍການ</a>
                         </div> -->
-                            <div class="card-body bg-secondary">
-                                <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
-                                    <select class="form-control" id="rate_code" name="rate_code"
-                                        OnChange="fnshowrate();">
-                                        <option value="" selected>ເລືອກ</option>
-                                        <option value="01">ກິບ-ບາດ</option>
-                                        <option value="02">ບາດ-ກີບ</option>
-                                        <option value="03">ກີບ-ໂດລາ</option>
-                                        <option value="04">ໂດລາ-ກິບ</option>
-                                        <option value="05">ບາດ-ໂດລາ</option>
-                                        <option value="06">ໂດລາ-ບາດ</option>
-                                    </select>
-                                    <br>
-                                    <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
-                                    <input type="hidden" class="form-control" id="ex_2" value="0" readonly name="ex_2">
-                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນຮັບ" id="rate_show"
-                                        value="0" readonly name="rate_show">
-                                    <br>
-                                    <label for="">ຈຳນວນເງິນທີ່ຮັບ</label>
-                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
-                                        OnChange="fncSum();" name="vale_tt" required>
-                                    <br>
-                                    <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
-                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
-                                        name="tt_amount" id="myText" value="0">
-                                    <br>
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
-                                </form>
-                            </div>
+                        <div class="card-body bg-secondary">
+                            <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
+                                <select class="form-control" id="rate_code" name="rate_code" OnChange="fnshowrate();">
+                                    <option value="" selected>ເລືອກ</option>
+                                    <option value="01">ກິບ-ບາດ</option>
+                                    <option value="02">ບາດ-ກີບ</option>
+                                    <option value="03">ກີບ-ໂດລາ</option>
+                                    <option value="04">ໂດລາ-ກິບ</option>
+                                    <option value="05">ບາດ-ໂດລາ</option>
+                                    <option value="06">ໂດລາ-ບາດ</option>
+                                </select>
+                                <br>
+                                <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
+                                <input type="hidden" class="form-control" id="ex_2" value="0" readonly name="ex_2">
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນຮັບ" id="rate_show"
+                                    value="0" readonly name="rate_show">
+                                <br>
+                                <label for="">ຈຳນວນເງິນທີ່ຮັບ</label>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
+                                    OnChange="fncSum();" name="vale_tt" required>
+                                <br>
+                                <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
+                                    name="tt_amount" id="myText" value="0">
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-sm-8">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ວັນ/ເວລາ</th>
-                                    <th scope="col">ຈຳນວນເງິນຮັບ</th>
-                                    <th scope="col">ອັດຕາແລກປ່ຽນ</th>
-                                    <th scope="col">ຈຳນວນເງິນຈ່າຍ</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in rate_trans %}
-                                <tr>
-                                    <td style="text-align: left;">{{item[1]}}</td>
-                                    <td style="text-align: right;">{{item[2]}}</td>
-                                    <td style="text-align: right;">{{item[3]}}</td>
-                                    <td style="text-align: right;">{{item[4]}}</td>
-                                    <td style="text-align: center;"><a href="/ex_update/{{item[0]}}"> <span
-                                                style="color: cornflowerblue;"><i
-                                                    class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a
-                                            href="/ex_delete/{{item[0]}}"><i class="bi bi-trash-fill"></i></a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                </div>
+                <div class="col-sm-8">
+                    <div class="card">
+                        <div class="card-header">
+                            ລາຍການເຄື່ອນໃຫວ
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ວັນ/ເວລາ</th>
+                                        <th scope="col">ຈຳນວນເງິນຮັບ</th>
+                                        <th scope="col">ອັດຕາແລກປ່ຽນ</th>
+                                        <th scope="col">ຈຳນວນເງິນຈ່າຍ</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in rate_trans %}
+                                    <tr>
+                                        <td style="text-align: left;">{{item[1]}}</td>
+                                        <td style="text-align: right;">{{item[2]}}</td>
+                                        <td style="text-align: right;">{{item[3]}}</td>
+                                        <td style="text-align: right;">{{item[4]}}</td>
+                                        <td style="text-align: center;"><a href="/ex_update/{{item[0]}}"> <span
+                                                    style="color: cornflowerblue;"><i
+                                                        class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a
+                                                href="/ex_delete/{{item[0]}}"><i class="bi bi-trash-fill"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,7 +92,7 @@
     function fncSum() {
         vieng = document.getElementById("ex_1").value
         keo = document.getElementById("ex_2").value
-        console.log(vieng)
+        // console.log(vieng)
         if (vieng == 'K' && keo == 'B' || vieng == 'K' && keo == 'D' || vieng == 'B' && keo == 'D') {
             x = Math.round(parseFloat(document.getElementById("vale_tt").value) / parseFloat(document.getElementById("rate_show").value))
             document.getElementById("myText").value = x
@@ -103,9 +107,11 @@
     }
     function fnshowrate() {
         x = document.getElementById("rate_code").value
+
+        console.log(x)
         fetch('/product/' + x).then(function (response) {
             response.json().then(function (data) {
-                console.log(data.product[0])
+                // console.log(data.product[0])
                 document.getElementById("rate_show").value = data.product[0]
                 document.getElementById("ex_1").value = data.product[1]
                 document.getElementById("ex_2").value = data.product[2]
@@ -113,7 +119,7 @@
                 // document.getElementById("vale_tt").readonly = false
             });
         });
-        console.log(x)
+        // console.log(x)
 
     }
 </script>
