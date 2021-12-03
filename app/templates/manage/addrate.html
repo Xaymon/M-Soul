@@ -60,9 +60,8 @@
                 <td>{{item[2]}}</td>
                 <td style="text-align: right;">{{item[3]}}</td>
                 <td style="text-align: right;">{{item[4]}}</td>
-                <td><a href="/rate_edit/{{item[5]}}"><i class="bi bi-pencil-square"></i></a><a
-                    href="/rate_delete/{{item[5]}}" onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ ?');"><i
-                      class="bi bi-trash-fill" id="bitrash"></i></a></td>
+                <td><a href="/rate_edit/{{item[5]}}"><i class="bi bi-pencil-square"></i></a><a href="#"
+                    onclick="deleteitem({{item[5]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -72,4 +71,20 @@
     </div>
   </div>
 </div>
+<script>
+  function deleteitem(id) {
+    swal({
+      title: 'ທ່າຍຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
+      text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
+      cancelButtonText: 'ບໍ່,ກັບຄືນ!',
+    }).then(function () {
+      location.href = "/rate_delete/" + id;
+    })
+  }
+</script>
 {% endblock %}

@@ -6,7 +6,7 @@ from app import app
 
 @app.route('/hometf')
 def hometf():
-    sql = "SELECT to_char(created_on,'DD-MM-YYY HH24:MI:SS'),transfer_type, bank_to, account_name, account_code, amount, service_charge, system_charge, total_amount,roworder FROM tb_transfer"
+    sql = "SELECT to_char(created_on,'DD-MM-YYY HH24:MI:SS'),transfer_type,bank_from, bank_to, account_name, account_code, amount, service_charge, system_charge, total_amount,roworder FROM tb_transfer"
     cur = gobal.con.cursor()
     cur.execute(sql)
     all_rate = cur.fetchall()

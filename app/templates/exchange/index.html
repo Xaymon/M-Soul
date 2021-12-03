@@ -7,76 +7,77 @@
 <br>
 
 <div class="container-md">
-    <div class="card" style="border-top-left-radius: 12px;border-top-right-radius: 12px; border: 2px solid black;background-color: darkslategrey;">
+    <div class="card"
+        style="border-top-left-radius: 12px;border-top-right-radius: 12px; border: 2px solid black;background-color: darkslategrey;">
         <h5 class="card-header" style="font-weight: bold; color: white;">
             <center>ການແລກປ່ຽນເງິນຕາ</center>
         </h5>
         <div class="card-body" style="background-color:darkcyan;border-top: 2px solid black;">
             <div class="row">
-                <div class="col-sm-4">
-                        <!-- <div class="card-header text-primary">
+                <div class="col-sm-3">
+                    <!-- <div class="card-header text-primary">
                             <center>ການແລກປ່ຽນເງິນຕາ</center>
                             <a href="/listeexch" class="btn btn-sucess"> ເລືອກລາຍການ</a>
                         </div> -->
-                        <div class="card-body" style="background-color: darkslategrey;border-radius: 12px;color: white;">
-                            <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
-                                <div class="form-group";>
-                                    <label for="" >ຊື່ລູກຄ້າ/ເບີໂທ<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" placeholder="ຊື່ລູກຄ້າ/ເບີໂທ"
-                                        name="customer_" id="customer_" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
-                                    <select class="form-control" id="rate_code" name="rate_code"
-                                        OnChange="fnshowrate();">
-                                        <option value="" selected>ເລືອກ</option>
-                                        <option value="01">ກິບ-ບາດ</option>
-                                        <option value="02">ບາດ-ກີບ</option>
-                                        <option value="03">ກີບ-ໂດລາ</option>
-                                        <option value="04">ໂດລາ-ກິບ</option>
-                                        <option value="05">ບາດ-ໂດລາ</option>
-                                        <option value="06">ໂດລາ-ບາດ</option>
-                                    </select>
-                                </div>
-                                <!-- <div class="form-group">
+                    <div class="card-body" style="background-color: darkslategrey;border-radius: 12px;color: white;">
+                        <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
+                            <div class="form-group" ;>
+                                <label for="">ຊື່ລູກຄ້າ/ເບີໂທ<span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" placeholder="ຊື່ລູກຄ້າ/ເບີໂທ" name="customer_"
+                                    id="customer_" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
+                                <select class="form-control" id="rate_code" name="rate_code" OnChange="fnshowrate();">
+                                    <option value="" selected>ເລືອກ</option>
+                                    <option value="01">ກິບ-ບາດ</option>
+                                    <option value="02">ບາດ-ກີບ</option>
+                                    <option value="03">ກີບ-ໂດລາ</option>
+                                    <option value="04">ໂດລາ-ກິບ</option>
+                                    <option value="05">ບາດ-ໂດລາ</option>
+                                    <option value="06">ໂດລາ-ບາດ</option>
+                                </select>
+                            </div>
+                            <!-- <div class="form-group">
                                     <label for="">ລະຫັດລູກຄ້າ</label>
                                     <select class="form-control" id="customer" name="customer">
                                         <option value="" selected>ເລືອກ</option>
 
                                     </select>
                                 </div> -->
-                                <div class="form-group">
-                                    <label for="">ອັດຕາແລກປ່ຽນ</label>
-                                    <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
-                                    <input type="hidden" class="form-control" id="ex_2" value="0" readonly name="ex_2">
-                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນຮັບ" id="rate_show"
-                                        value="0" readonly name="rate_show">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">ຈຳນວນເງິນທີ່ຮັບ<span style="color: red;">*</span></label>
-                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
-                                        OnChange="fncSum();" name="vale_tt" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
-                                    <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
-                                        name="tt_amount" id="myText" value="0">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="form-group">
+                                <label for="">ອັດຕາແລກປ່ຽນ</label>
+                                <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
+                                <input type="hidden" class="form-control" id="ex_2" value="0" readonly name="ex_2">
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນຮັບ" id="rate_show"
+                                    value="0" readonly name="rate_show">
+                            </div>
+                            <div class="form-group">
+                                <label for="">ຈຳນວນເງິນທີ່ຮັບ<span style="color: red;">*</span></label>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
+                                    OnChange="fncSum();" name="vale_tt" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
+                                    name="tt_amount" id="myText" value="0">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     <div class="card">
-                        <div class="card-header" style="text-align: center;font-weight: bold;background-color: darkslategrey; color: white;">
+                        <div class="card-header"
+                            style="text-align: center;font-weight: bold;background-color: darkslategrey; color: white;">
                             ລາຍການເຄື່ອນໃຫວ
                         </div>
                         <div class="card-body">
                             <table class="table table-hover" id="myTable">
                                 <thead>
-                                    <tr >
+                                    <tr>
                                         <th scope="col">ລູກຄ້າ</th>
                                         <th scope="col">ວັນ/ເວລາ</th>
                                         <th scope="col">ຈຳນວນເງິນຮັບ</th>
@@ -85,19 +86,20 @@
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
-                            
+
                                 <tbody>
                                     {% for item in rate_trans %}
                                     <tr>
-                                        <td style="text-align: left; font-weight: bold;"></td>
+                                        <td style="text-align: left; font-weight: bold;">{{item[5]}}</td>
                                         <td style="text-align: left; font-weight: bold;">{{item[1]}}</td>
                                         <td style="text-align: right;">{{item[2]}}</td>
                                         <td style="text-align: right;">{{item[3]}}</td>
                                         <td style="text-align: right;">{{item[4]}}</td>
                                         <td style="text-align: center;"><a href="/ex_update/{{item[0]}}"> <span
                                                     style="color: #004071;"><i
-                                                        class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a
-                                                href="/ex_delete/{{item[0]}}"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                                                        class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a href="#"
+                                                onclick="deleteitem({{item[0]}})"><i class="bi bi-trash-fill"
+                                                    id="bitrash"></i></a>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -147,6 +149,22 @@
         });
         // console.log(x)
 
+    }
+
+    // sweet 
+    function deleteitem(id) {
+        swal({
+            title: 'ທ່າຍຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
+            text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
+            cancelButtonText: 'ບໍ່,ກັບຄືນ!',
+        }).then(function () {
+            location.href = "/ex_delete/" + id;
+        })
     }
 </script>
 

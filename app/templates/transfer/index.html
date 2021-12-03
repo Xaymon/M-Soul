@@ -14,7 +14,7 @@
             <div class="card-header">
               ການເຄື່ອນໃຫວການການໂອນ
             </div>
-            <div class="card-body"  style="background-color:darkslategrey; color: white;">
+            <div class="card-body" style="background-color:darkslategrey; color: white;">
               <form action="/save_rate" method="post">
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">ປະເພດການໂອນ</label>
@@ -76,7 +76,8 @@
                     <tr>
                       <th scope="col">ວັນທີ</th>
                       <th scope="col">ປະເພດການໂອນ</th>
-                      <th scope="col">ທະນາຄານປາຍທາງ</th>
+                      <th scope="col">ຈາກ</th>
+                      <th scope="col">ຫາ</th>
                       <th scope="col">ຊື່ບັນຊີ</th>
                       <th scope="col">ເລກບັນຊີ</th>
                       <th scope="col">ຍອດເງິນ</th>
@@ -98,8 +99,10 @@
                       <td style="text-align: right;">{{item[6]}}</td>
                       <td style="text-align: right;">{{item[7]}}</td>
                       <td style="text-align: right;">{{item[8]}}</td>
-                      <td><a href="/transfer_delete/{{item[9]}}"
-                          onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ ?');"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                      <td style="text-align: right;">{{item[9]}}</td>
+                      <td><a href="#"
+                          onclick="deleteitem({{item[10]}})"><i class="bi bi-trash-fill"
+                            id="bitrash"></i></a>
                       </td>
                     </tr>
                     {% endfor %}
@@ -130,6 +133,21 @@
       bank_from.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
       city.innerHTML = "<option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB' >JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB'>LDB ພັດທະນາລາວ</option>"
     }
+  }
+  // sweet 
+  function deleteitem(id) {
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
+      cancelButtonText: 'ບໍ່,ກັບຄືນ!',
+    }).then(function () {
+      location.href = "/transfer_delete/" + id;
+    })
   }
 </script>
 {% endblock %}
