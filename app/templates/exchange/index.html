@@ -18,7 +18,7 @@
                             <center>ການແລກປ່ຽນເງິນຕາ</center>
                             <a href="/listeexch" class="btn btn-sucess"> ເລືອກລາຍການ</a>
                         </div> -->
-                        <div class="card-body" style="background-color: darkslategrey;border-radius: 12px;">
+                        <div class="card-body" style="background-color: darkslategrey;border-radius: 12px;color: white;">
                             <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
                                 <div class="form-group";>
                                     <label for="" >ຊື່ລູກຄ້າ/ເບີໂທ<span style="color: red;">*</span></label>
@@ -96,8 +96,8 @@
                                         <td style="text-align: right;">{{item[4]}}</td>
                                         <td style="text-align: center;"><a href="/ex_update/{{item[0]}}"> <span
                                                     style="color: #004071;"><i
-                                                        class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a style="color: red;"
-                                                href="/ex_delete/{{item[0]}}"><i class="bi bi-trash-fill"></i></a>
+                                                        class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a
+                                                href="/ex_delete/{{item[0]}}"><i class="bi bi-trash-fill" id="bitrash"></i></a>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -111,14 +111,6 @@
     </div>
 </div>
 
-<style>
-    card-body,
-    label{
-        color:white;
-    }
-
-
-</style>
 <script>
     function fncSum() {
         vieng = document.getElementById("ex_1").value

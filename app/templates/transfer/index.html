@@ -7,14 +7,14 @@
 <br>
 <div class="container-fluid">
   <div class="card">
-    <div class="card-body" style="background-color:#066AA0;">
+    <div class="card-body" style="background-color:darkcyan;">
       <div class="row">
         <div class="col-sm-3">
           <div class="card">
             <div class="card-header">
               ການເຄື່ອນໃຫວການການໂອນ
             </div>
-            <div class="card-body" style="background-color:#7DB7D5;">
+            <div class="card-body"  style="background-color:darkslategrey; color: white;">
               <form action="/save_rate" method="post">
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">ປະເພດການໂອນ</label>
@@ -99,7 +99,7 @@
                       <td style="text-align: right;">{{item[7]}}</td>
                       <td style="text-align: right;">{{item[8]}}</td>
                       <td><a href="/transfer_delete/{{item[9]}}"
-                          onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ ?');"><i class="bi bi-trash-fill"></i></a>
+                          onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ ?');"><i class="bi bi-trash-fill" id="bitrash"></i></a>
                       </td>
                     </tr>
                     {% endfor %}
