@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, json
+from flask.helpers import flash
 from werkzeug import datastructures
 from kk_con import *
 from app import app
@@ -57,6 +58,7 @@ def save_ex():
         if amount_1 != 0:
             cur.execute(sql, (data))
             gobal.con.commit()
+            flash('ບັນທຶກສຳເລັດ')
             return redirect(url_for('homeex'))
         else:     
             return redirect(url_for('homeex'))
@@ -67,4 +69,5 @@ def ex_delete(id):
         sql = """delete from ic_trans where roworder=%s"""
         cur.execute(sql, (id,))
         gobal.con.commit()
+        flash('ລົບສຳເລັດ ແລ້ວ')
         return redirect(url_for('homeex'))

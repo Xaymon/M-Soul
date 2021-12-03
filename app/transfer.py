@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, json
 from werkzeug import datastructures
+from flask.helpers import flash
 from kk_con import *
 from app import app
 
@@ -35,6 +36,7 @@ def save_rate():
     cur = gobal.con.cursor()
     cur.execute(sql, (data))
     gobal.con.commit()
+    flash('ບັນທຶກສຳເລັດ')
     return redirect(url_for('hometf'))
 
 
@@ -45,4 +47,5 @@ def transfer_delete(id):
         sql = "delete from tb_transfer where roworder=%s"
         cur.execute(sql, (id,))
         gobal.con.commit()
+        flash('ລົບສຳເລັດ')
         return redirect(url_for('hometf'))
