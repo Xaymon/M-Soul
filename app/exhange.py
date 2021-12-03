@@ -8,14 +8,16 @@ from app import app
 @app.route('/homeex')
 def homeex():
     with gobal.con:
-        cur = gobal.con.cursor()
-        sql = """
-                SELECT roworder,to_char(ex_date,'DD-MM-YYYY HH24:MI:SS'), to_char(amount_1,'999G999G999G999D99')||'-'|| case when ex_1='K' then 'ກີບ' when ex_1='B' then 'ບາດ' else 'ໂດລາ' end, exchange_rate, 
-                to_char(amount_2,'999G999G999G999D99')||'-'|| case when ex_2='K' then 'ກີບ' when ex_2='B' then 'ບາດ' else 'ໂດລາ' end,customer FROM public.ic_trans order by roworder DESC"""
-        cur.execute(sql)
-        rate_trans = cur.fetchall()
-    return render_template('exchange/index.html', rate_trans=rate_trans)
-
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            cur = gobal.con.cursor()
+            sql = """
+                    SELECT roworder,to_char(ex_date,'DD-MM-YYYY HH24:MI:SS'), to_char(amount_1,'999G999G999G999D99')||'-'|| case when ex_1='K' then 'ກີບ' when ex_1='B' then 'ບາດ' else 'ໂດລາ' end, exchange_rate, 
+                    to_char(amount_2,'999G999G999G999D99')||'-'|| case when ex_2='K' then 'ກີບ' when ex_2='B' then 'ບາດ' else 'ໂດລາ' end,customer FROM public.ic_trans order by roworder DESC"""
+            cur.execute(sql)
+            rate_trans = cur.fetchall()
+            return render_template('exchange/index.html', rate_trans=rate_trans)
 
 @app.route("/product/<id>")
 def product(id):
@@ -37,37 +39,41 @@ def product(id):
     product = cur.fetchone()
     return jsonify({'product': product})
 
-
 @app.route('/save_ex', methods=['POST'])
 def save_ex():
     with gobal.con:
-        cur = gobal.con.cursor()
-        sql = """INSERT INTO public.ic_trans(
-                    ex_date, ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type,customer)
-                    values(LOCALTIMESTAMP(0), %s, %s, %s, %s, %s,%s,%s)
-             """
-             
-        customer_ = request.form['customer_']
-        ex_1 = request.form['ex_1']
-        ex_2 = request.form['ex_2']
-        amount_1 = request.form['vale_tt']
-        exchange_rate = request.form['rate_show']
-        amount_2 = request.form['tt_amount']
-        tran_type = request.form['rate_code']
-        data = (ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type,customer_)
-        if amount_1 != 0:
-            cur.execute(sql, (data))
-            gobal.con.commit()
-            flash('ບັນທຶກສຳເລັດ')
-            return redirect(url_for('homeex'))
-        else:     
-            return redirect(url_for('homeex'))
+        cur = gobal.conn.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            sql = """INSERT INTO public.ic_trans(
+                        ex_date, ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type,customer)
+                        values(LOCALTIMESTAMP(0), %s, %s, %s, %s, %s,%s,%s)
+                """   
+            customer_ = request.form['customer_']
+            ex_1 = request.form['ex_1']
+            ex_2 = request.form['ex_2']
+            amount_1 = request.form['vale_tt']
+            exchange_rate = request.form['rate_show']
+            amount_2 = request.form['tt_amount']
+            tran_type = request.form['rate_code']
+            data = (ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type,customer_)
+            if amount_1 != 0:
+                cur.execute(sql, (data))
+                gobal.con.commit()
+                flash('ບັນທຶກສຳເລັດ')
+                return redirect(url_for('homeex'))
+            else:     
+                return redirect(url_for('homeex'))
 @app.route('/ex_delete/<string:id>')
 def ex_delete(id):
     with gobal.con:
-        cur = gobal.con.cursor()
-        sql = """delete from ic_trans where roworder=%s"""
-        cur.execute(sql, (id,))
-        gobal.con.commit()
-        flash('ລົບສຳເລັດ ແລ້ວ')
-        return redirect(url_for('homeex'))
+        cur = gobal.conn.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            sql = """delete from ic_trans where roworder=%s"""
+            cur.execute(sql, (id,))
+            gobal.con.commit()
+            flash('ລົບສຳເລັດ ແລ້ວ')
+            return redirect(url_for('homeex'))

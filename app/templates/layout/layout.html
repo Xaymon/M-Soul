@@ -187,6 +187,25 @@
                 }
             });
         });
+        $(document).ready(function () {
+            $('#Ratetable').DataTable({
+                "oLanguage": {
+                    "sSearch": "ຄົ້ນຫາ:"
+                },
+                'iDisplayLength': 100,
+                "language": {
+                    "lengthMenu": "ສະແດງ _MENU_ ລາຍການ",
+                    "zeroRecords": "ບໍພົບລາຍການ - sorry",
+                    "info": "ໜ້າທີ _PAGE_ ຂອງ _PAGES_",
+                    "infoEmpty": "ບໍມີລາຍການ",
+                    "infoFiltered": "(ຄົ້ນຫາຈາກ _MAX_ ລາຍການ)",
+                    "paginate": {
+                        "previous": "ກັບຄືນ",
+                        "next": "ຕໍ່ໄປ"
+                    }
+                }
+            });
+        });
         var loadFile = function (event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);

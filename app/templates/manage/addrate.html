@@ -15,6 +15,23 @@
               <center>
                 ບັນທຶກອັດຕາແລກປ່ຽນ
               </center>
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <script>
+                $(".alert-dismissible").fadeTo(2000, 500).fadeOut(500, function () {
+                  $(".alert-dismissible").alert('close');
+                });
+              </script>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
             </div>
             <div class="card-body">
               <form action="/saverate" method="post">
@@ -41,7 +58,7 @@
           </div>
         </div>
         <div class="col-sm-8">
-          <table class="table table-dark table-sm table-hover">
+          <table class="table table-sm table-hover" id="Ratetable">
             <thead>
               <tr>
                 <th scope="col">ວັນທີ</th>
