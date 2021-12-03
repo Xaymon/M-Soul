@@ -6,23 +6,22 @@
 {% block content %}
 <br>
 
-<div class="container">
-    <div class="card">
-        <h5 class="card-header">
+<div class="container-md">
+    <div class="card" style="border-top-left-radius: 12px;border-top-right-radius: 12px; border: 2px solid black;background-color: darkslategrey;">
+        <h5 class="card-header" style="font-weight: bold; color: white;">
             <center>ການແລກປ່ຽນເງິນຕາ</center>
         </h5>
-        <div class="card-body" style="background-color:#066AA0;">
+        <div class="card-body" style="background-color:darkcyan;border-top: 2px solid black;">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="card">
                         <!-- <div class="card-header text-primary">
                             <center>ການແລກປ່ຽນເງິນຕາ</center>
                             <a href="/listeexch" class="btn btn-sucess"> ເລືອກລາຍການ</a>
                         </div> -->
-                        <div class="card-body" style="background-color: #598C60;">
+                        <div class="card-body" style="background-color: darkslategrey;border-radius: 12px;">
                             <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="">ຊື່ລູກຄ້າ/ເບີໂທ<span style="color: red;">*</span></label>
+                                <div class="form-group";>
+                                    <label for="" >ຊື່ລູກຄ້າ/ເບີໂທ<span style="color: red;">*</span></label>
                                     <input type="text" class="form-control" placeholder="ຊື່ລູກຄ້າ/ເບີໂທ"
                                         name="customer_" id="customer_" required>
                                 </div>
@@ -68,17 +67,17 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header" style="text-align: center;font-weight: bold;background-color: darkslategrey; color: white;">
                             ລາຍການເຄື່ອນໃຫວ
                         </div>
                         <div class="card-body">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="myTable">
                                 <thead>
-                                    <tr>
+                                    <tr >
+                                        <th scope="col">ລູກຄ້າ</th>
                                         <th scope="col">ວັນ/ເວລາ</th>
                                         <th scope="col">ຈຳນວນເງິນຮັບ</th>
                                         <th scope="col">ອັດຕາແລກປ່ຽນ</th>
@@ -86,16 +85,18 @@
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
+                            
                                 <tbody>
                                     {% for item in rate_trans %}
                                     <tr>
-                                        <td style="text-align: left;">{{item[1]}}</td>
+                                        <td style="text-align: left; font-weight: bold;"></td>
+                                        <td style="text-align: left; font-weight: bold;">{{item[1]}}</td>
                                         <td style="text-align: right;">{{item[2]}}</td>
                                         <td style="text-align: right;">{{item[3]}}</td>
                                         <td style="text-align: right;">{{item[4]}}</td>
                                         <td style="text-align: center;"><a href="/ex_update/{{item[0]}}"> <span
-                                                    style="color: cornflowerblue;"><i
-                                                        class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a
+                                                    style="color: #004071;"><i
+                                                        class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a style="color: red;"
                                                 href="/ex_delete/{{item[0]}}"><i class="bi bi-trash-fill"></i></a>
                                         </td>
                                     </tr>
@@ -109,6 +110,15 @@
         </div>
     </div>
 </div>
+
+<style>
+    card-body,
+    label{
+        color:white;
+    }
+
+
+</style>
 <script>
     function fncSum() {
         vieng = document.getElementById("ex_1").value
