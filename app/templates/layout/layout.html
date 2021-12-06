@@ -40,15 +40,16 @@
             font-size: 12px;
         }
 
-        .card-header{
+        .card-header {
             background-color: darkslategrey;
             color: white;
             border-bottom: 1px solid whitesmoke;
         }
-        #bitrash{
-        font-size: 18px;
-        margin-left: 10px;
-        color: red;
+
+        #bitrash {
+            font-size: 18px;
+            margin-left: 10px;
+            color: red;
         }
 
         /* .card-body{
@@ -74,8 +75,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkslategray; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
-        <a class="navbar-brand" style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;"  href="/">KK EXCHANGE</a>
+    <nav class="navbar navbar-expand-sm navbar-dark"
+        style="background-color: darkslategray; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+        <a class="navbar-brand" style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;" href="/">KK
+            EXCHANGE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -85,47 +88,55 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-person-plus-fill"></i> ການບໍລິການ
-                        <i class="fab fa-accessible-icon"></i>
+                        <i class="bi bi-wallet2"></i>&nbsp;ການບໍລິການ
+                        <!-- <i class="fab fa-accessible-icon"></i> -->
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item"  href="/homeex">ແລກປ່ຽນເງິນຕາ</a>
-                        <a class="dropdown-item" href="/hometf">ໂອນເງິນ</a>
+                        <a class="dropdown-item" href="/homeex"><i class="bi bi-cash"></i> &nbsp; ແລກປ່ຽນເງິນຕາ</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/hometf"><i class="bi bi-wallet"></i> &nbsp; ໂອນເງິນ</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-person-plus-fill"></i> ລາຍຮັບ-ລາຍຈ່າຍ
-                        <i class="fab fa-accessible-icon"></i>
+                        <i class="bi bi-collection"></i>&nbsp; ລາຍຮັບ-ລາຍຈ່າຍ
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">ລາຍຮັບ</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">ລາຍຈ່າຍ</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-person-plus-fill"></i> ການຈັດການ
-                        <i class="fab fa-accessible-icon"></i>
+                        <i class="bi bi-list-task"></i> ການຈັດການ
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/manageexrate">ອັດຕາແລກປ່ຽນ</a>
                         <a class="dropdown-item" href="#">ກຳນົດປະເພດການແລກປ່ຽນ</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">ກຳນົດລູກຄ້າ</a>
+                        <!-- <a class="dropdown-item" href="#">ກຳນົດລູກຄ້າ</a> -->
+                        <a class="dropdown-item" href="#">ກຳນົດທະນາຄານ</a>
+                        <a class="dropdown-item" href="#">ກຳນົດປະເພດການໂອນ</a>
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">ເພີມຜູ້ໃຊ້</a>
-                        <a class="dropdown-item" href="#">ຕັ້ງຄ່າລະບົບ</a>
+                        <!-- <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">ຕັ້ງຄ່າລະບົບ</a> -->
                     </div>
-                </li>
+                </li>  
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" >
+                        aria-haspopup="true" aria-expanded="false">
                         <i class="bi bi-bar-chart"></i> ລາຍງານ
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/cashkip">ການເຄື່ອນໃຫວເງິນສົດກີບ</a>
+                        <a class="dropdown-item" href="/cashbaht">ການເຄື່ອນໃຫວເງິນສົດບາດ</a>
+                        <a class="dropdown-item" href="/cashdollar">ການເຄື່ອນໃຫວເງິນສົດໂດລາ</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/cashkip">ການເຄື່ອນໃຫວເງິນສົດກີບ</a>
                         <a class="dropdown-item" href="/cashbaht">ການເຄື່ອນໃຫວເງິນສົດບາດ</a>
                         <a class="dropdown-item" href="/cashdollar">ການເຄື່ອນໃຫວເງິນສົດໂດລາ</a>
@@ -137,7 +148,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link"  href="/logout">ອອກ​ຈາກ​ລະ​ບົບ</a>
+                    <a class="nav-link" href="/logout">ອອກ​ຈາກ​ລະ​ບົບ</a>
                 </li>
             </ul>
         </div>
@@ -195,7 +206,7 @@
                 'iDisplayLength': 100,
                 "language": {
                     "lengthMenu": "ສະແດງ _MENU_ ລາຍການ",
-                    "zeroRecords": "ບໍພົບລາຍການ - sorry",
+                    "zeroRecords": "ບໍ່ພົບລາຍການ - sorry",
                     "info": "ໜ້າທີ _PAGE_ ຂອງ _PAGES_",
                     "infoEmpty": "ບໍມີລາຍການ",
                     "infoFiltered": "(ຄົ້ນຫາຈາກ _MAX_ ລາຍການ)",

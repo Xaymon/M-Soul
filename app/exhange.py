@@ -42,7 +42,7 @@ def product(id):
 @app.route('/save_ex', methods=['POST'])
 def save_ex():
     with gobal.con:
-        cur = gobal.conn.cursor()
+        cur = gobal.con.cursor()
         if not session.get("name"):
             return redirect("/login")
         else:
@@ -68,7 +68,7 @@ def save_ex():
 @app.route('/ex_delete/<string:id>')
 def ex_delete(id):
     with gobal.con:
-        cur = gobal.conn.cursor()
+        cur = gobal.con.cursor()
         if not session.get("name"):
             return redirect("/login")
         else:

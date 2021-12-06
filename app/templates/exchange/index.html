@@ -11,26 +11,26 @@
         style="border-top-left-radius: 12px;border-top-right-radius: 12px; border: 2px solid black;background-color: darkslategrey;">
         <h5 class="card-header" style="font-weight: bold; color: white;">
             <center>ການແລກປ່ຽນເງິນຕາ</center>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <center>
-                    <strong>{{ message }}</strong>
-                </center>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <script>
-                $(".alert-dismissible").fadeTo(2000, 500).fadeOut(500, function () {
-                    $(".alert-dismissible").alert('close');
-                });
-            </script>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
         </h5>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <center>
+                <strong>{{ message }}</strong>
+            </center>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <script>
+            $(".alert-dismissible").fadeTo(2000, 500).fadeOut(500, function () {
+                $(".alert-dismissible").alert('close');
+            });
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
         <div class="card-body" style="background-color:darkcyan;border-top: 2px solid black;">
             <div class="row">
                 <div class="col-sm-3">
@@ -46,7 +46,7 @@
                                     id="customer_" required>
                             </div>
                             <div class="form-group">
-                                <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
+                                <label for="">ປະເພດການແລກປ່ຽນ</label>
                                 <select class="form-control" id="rate_code" name="rate_code" OnChange="fnshowrate();">
                                     <option value="" selected>ເລືອກ</option>
                                     <option value="01">ກິບ-ບາດ</option>
@@ -57,13 +57,23 @@
                                     <option value="06">ໂດລາ-ບາດ</option>
                                 </select>
                             </div>
-                            <!-- <div class="form-group">
-                                    <label for="">ລະຫັດລູກຄ້າ</label>
-                                    <select class="form-control" id="customer" name="customer">
-                                        <option value="" selected>ເລືອກ</option>
-
-                                    </select>
-                                </div> -->
+                            <div class="form-group">
+                                <label for="">ປະເພດການຮັບເງິນ</label>
+                                <select class="form-control" id="recive_type" name="recive_type"
+                                    onchange="recivetype_();">
+                                    <option value="" selected>ເລືອກ</option>
+                                    <option value="01">ສົດ</option>
+                                    <option value="02">ໂອນ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ເຂົ້າບັນຊີ</label>
+                                <select class="form-control" id="rc_bank_trans" name="rc_bank_trans">
+                                    <!-- <option value="" selected>ເລືອກ</option>
+                                    <option value="01">ສົດ</option>
+                                    <option value="01">ໂອນ</option> -->
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="">ອັດຕາແລກປ່ຽນ</label>
                                 <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
@@ -77,9 +87,25 @@
                                     OnChange="fncSum();" name="vale_tt" required>
                             </div>
                             <div class="form-group">
-                                <label for="">ລາຍລະອຽດການຈ່າຍເງິນ</label>
-                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" readonly
-                                    name="tt_amount" id="myText" value="0">
+                                <label for="">ປະເພດການຈ່າຍ</label>
+                                <select class="form-control" id="paytype" name="paytype" onchange="paytype_();">
+                                    <option value="" selected>ເລືອກ</option>
+                                    <option value="01">ສົດ</option>
+                                    <option value="02">ໂອນ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ເລືອກບັນຊີ</label>
+                                <select class="form-control" id="bank_pay" name="bank_pay">
+                                    <!-- <option value="" selected>ເລືອກ</option>
+                                    <option value="01">ສົດ</option>
+                                    <option value="01">ໂອນ</option> -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ຈຳນວນເງິນ</label>
+                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" onchange="sum_b()"
+                                    name="tt_amount" id="total_pay" value="0">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
@@ -136,17 +162,25 @@
     function fncSum() {
         vieng = document.getElementById("ex_1").value
         keo = document.getElementById("ex_2").value
-        // console.log(vieng)
         if (vieng == 'K' && keo == 'B' || vieng == 'K' && keo == 'D' || vieng == 'B' && keo == 'D') {
             x = Math.round(parseFloat(document.getElementById("vale_tt").value) / parseFloat(document.getElementById("rate_show").value))
-            document.getElementById("myText").value = x
-            // customer.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
-            // } else if () {
-            //     x = Math.round(parseFloat(document.getElementById("vale_tt").value)) / parseFloat(document.getElementById("rate_show").value)
-            //     document.getElementById("myText").value = x
+            document.getElementById("total_pay").value = x
         } else {
             x = Math.round(parseFloat(document.getElementById("vale_tt").value) * parseFloat(document.getElementById("rate_show").value))
-            document.getElementById("myText").value = x
+            document.getElementById("total_pay").value = x
+
+        }
+
+    }
+    function sum_b() {
+        k1 = document.getElementById("ex_1").value
+        keo = document.getElementById("ex_2").value
+        if (k1 == 'K' && k2 == 'B' || k1 == 'K' && k2 == 'D' || k1 == 'B' && k2 == 'D') {
+            x = Math.round(parseFloat(document.getElementById("total_pay").value) / parseFloat(document.getElementById("rate_show").value))
+            document.getElementById("vale_tt").value = x
+        } else {
+            x = Math.round(parseFloat(document.getElementById("total_pay").value) * parseFloat(document.getElementById("rate_show").value))
+            document.getElementById("vale_tt").value = x
 
         }
 
@@ -157,19 +191,35 @@
         console.log(x)
         fetch('/product/' + x).then(function (response) {
             response.json().then(function (data) {
-                // console.log(data.product[0])
                 document.getElementById("rate_show").value = data.product[0]
                 document.getElementById("ex_1").value = data.product[1]
                 document.getElementById("ex_2").value = data.product[2]
                 document.getElementById("vale_tt").value = ''
-                // customer.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
-                // document.getElementById("vale_tt").readonly = false
             });
         });
-        // console.log(x)
+
 
     }
+    function recivetype_() {
+        x = document.getElementById("recive_type").value
+        console.log(x)
+        if (x == '02') {
+            rc_bank_trans.innerHTML = "<option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB'>JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB' >LDB ພັດທະນາລາວ</option>"
+        } else if (x == '01') {
+            rc_bank_trans.innerHTML = "<option value='' ></option>"
 
+        }
+
+    }
+    function paytype_() {
+        x = document.getElementById("paytype").value
+        if (x == '02') {
+            bank_pay.innerHTML = "<option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB'>JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB' >LDB ພັດທະນາລາວ</option>"
+        } else if (x == '01') {
+            bank_pay.innerHTML = "<option value='' ></option>"
+        }
+
+    }
     // sweet 
     function deleteitem(id) {
         swal({

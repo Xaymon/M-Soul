@@ -25,6 +25,7 @@ def login():
         if logii:
             print(logii[0])
             session["name"] = request.form.get("username")
+            session["roles"] = logii[0]
             return redirect(url_for('home'))
         else:
             return redirect(url_for('logout'))

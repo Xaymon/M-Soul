@@ -17,7 +17,7 @@ def cashkip():
                 to_char(case when ex_2='K' then amount_2 else 0 end, '999G999G999G999D99'), 
                 to_char(SUM((case when ex_1='K' then amount_1 else 0 end) - (case when ex_2='K' then amount_2 else 0 end))
                 OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                FROM ic_trans
+                FROM ic_trans where ex_1='K' or ex_2='K'
                 order by ex_date"""
             cur.execute(sql)
             kip = cur.fetchall()
@@ -32,12 +32,11 @@ def cashbaht():
         else:
             cur = gobal.con.cursor()
             sql = """SELECT  to_char(ex_date,'DD-MM-YYY HH24:MI:SS'),
-                to_char(case when ex_1='B' then amount_1 else 0 end, '999G999G999G999D99'), 
-                to_char(case when ex_2='B' then amount_2 else 0 end, '999G999G999G999D99'), 
-                to_char(SUM((case when ex_1='B' then amount_1 else 0 end) - (case when ex_2='B' then amount_2 else 0 end))
-                OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                FROM ic_trans
-                order by ex_date"""
+                    to_char(case when ex_1='B' then amount_1 else 0 end, '999G999G999G999D99'), 
+                    to_char(case when ex_2='B' then amount_2 else 0 end, '999G999G999G999D99'), 
+                    to_char(SUM((case when ex_1='B' then amount_1 else 0 end) - (case when ex_2='B' then amount_2 else 0 end))
+                    OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
+                    FROM ic_trans where ex_1='B' or ex_2='B' order by ex_date"""
             cur.execute(sql)
             baht = cur.fetchall()
             return render_template('/report/cash/baht.html', baht=baht)
@@ -51,12 +50,11 @@ def cashdollar():
         else:
             cur = gobal.con.cursor()
             sql = """SELECT  to_char(ex_date,'DD-MM-YYY HH24:MI:SS'),
-                to_char(case when ex_1='D' then amount_1 else 0 end, '999G999G999G999D99'), 
-                to_char(case when ex_2='D' then amount_2 else 0 end, '999G999G999G999D99'), 
-                to_char(SUM((case when ex_1='D' then amount_1 else 0 end) - (case when ex_2='D' then amount_2 else 0 end))
-                OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                FROM ic_trans
-                order by ex_date"""
+                    to_char(case when ex_1='D' then amount_1 else 0 end, '999G999G999G999D99'), 
+                    to_char(case when ex_2='D' then amount_2 else 0 end, '999G999G999G999D99'), 
+                    to_char(SUM((case when ex_1='D' then amount_1 else 0 end) - (case when ex_2='D' then amount_2 else 0 end))
+                    OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
+                    FROM ic_trans where ex_1='D' or ex_2='D' order by ex_date"""
             cur.execute(sql)
-            baht = cur.fetchall()
-            return render_template('/report/cash/dolla.html', baht=baht)
+            dollar = cur.fetchall()
+            return render_template('/report/cash/dolla.html', dollar=dollar)
