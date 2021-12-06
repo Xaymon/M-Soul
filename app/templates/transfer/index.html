@@ -1,6 +1,30 @@
 {% extends "layout/layout.html" %}
 {% block title %}ບໍລິສັດຂ້າມຂອງ{% endblock %}
 {% block head %}
+<style>
+  /* .modal-dialog {
+
+ width:1080px;
+
+  } */
+
+  .modal-header {
+
+    background-color: #337AB7;
+
+    padding: 16px 16px;
+
+    color: #FFF;
+
+    border-bottom: 2px dashed #337AB7;
+
+  }
+
+  /* 
+  .bigModal {
+    width: 1080px;
+  } */
+</style>
 {{ super() }}
 {% endblock %}
 {% block content %}
@@ -17,7 +41,9 @@
       {% if messages %}
       {% for message in messages %}
       <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>{{ message }}</strong>
+        <center>
+          <strong>{{ message }}</strong>
+        </center>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -40,8 +66,178 @@
                 ການເຄື່ອນໃຫວການການໂອນ
               </center>
             </div>
-            <div class="card-body" style="background-color:darkslategrey; color: white;">
-              <form action="/save_rate" method="post">
+            <div class="card-body" style="background-color:darkslategrey;">
+              <button type="button" class="btn btn-primary form-control" data-toggle="modal"
+                data-target="#exampleModalCenter">
+                ໂອນເງິນ
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content" style="width: 1000px;">
+                    <form action="/save_trans" method="post">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                          <b>
+                            ໂອນເງິນ
+                          </b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container">
+                          <center>
+                            <h6>
+                              <b>
+                                ເງື່ອນໃຂການໂອນຕົ້ນທາງ
+                              </b>
+                            </h6>
+                          </center>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ປະເພດການໂອນ</label>
+                                <select class="form-control form-control-sm" id="code" name="trans_type"
+                                  onchange="myFunction()">
+                                  <option value="00"> ເລືອກ....</option>
+                                  <option value="01">ລາວ-ໄທ</option>
+                                  <option value="02">ໄທ-ລາວ</option>
+                                  <option value="03">ລາວ-ລາວ</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
+                                <select class="form-control form-control-sm" id="code" name="trans_type">
+                                  <option value="00">ເລືອກ....</option>
+                                  <option value="01">ກີບ</option>
+                                  <option value="02">ບາດ</option>
+                                  <option value="03">ໂດລາ</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
+                                <select class="form-control form-control-sm" id="code" name="trans_type">
+                                  <option value="00">ເລືອກ....</option>
+                                  <option value="01">ກີບ</option>
+                                  <option value="02">ບາດ</option>
+                                  <option value="03">ໂດລາ</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ເງິນສົດ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0" required
+                                  name="account_code" style="text-align: right;">
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ທະນາຄານຕົ້ນທາງ</label>
+                                <select class="form-control form-control-sm" id="bank_from" name="bank_from" required>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0"
+                                  name="account_code" required style="text-align: right;">
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                            </div>
+                          </div>
+                          <hr>
+                          <center>
+                            <h6>
+                              <b>
+                                ເງື່ອນໃຂການໂອນປາຍທາງ
+                              </b>
+                            </h6>
+                          </center>
+                          <hr>
+                          <div class="row">
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
+                                <select class="form-control form-control-sm" id="code" name="trans_type">
+                                  <option value="00">ເລືອກ....</option>
+                                  <option value="01">ກີບ</option>
+                                  <option value="02">ບາດ</option>
+                                  <option value="03">ໂດລາ</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ເງິນສົດ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0" required
+                                  name="account_code" style="text-align: right;">
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ເລືອກທະນາຄານປາຍທາງ</label>
+                                <select class="form-control form-control-sm" id="city" name="bank_to" required>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-sm-3">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0" required
+                                  name="account_code" style="text-align: right;">
+                              </div>
+                            </div>
+                            <div class="col-sm-2">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ຄ່າທຳນຽມ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0" required
+                                  name="account_code" style="text-align: right;">
+                              </div>
+                            </div>
+                            <div class="col-sm-3">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າ</label>
+                                <input class="form-control form-control-sm " type="number" placeholder="0" required
+                                  readonly name="account_code" style="text-align: right;">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ອອກ</button>
+                        <button type="submit" class="btn btn-primary">ບັນທຶກ</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- <form action="/save_rate" method="post">
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">ປະເພດການໂອນ</label>
                   <select class="form-control" id="code" name="trans_type" onchange="myFunction()">
@@ -81,12 +277,9 @@
                   <label for="exampleFormControlSelect1">ຄ່າທຳນຽມ</label>
                   <input class="form-control" type="number" value="0" required name="system_charge">
                 </div>
-                <!-- <div class="form-group">
-                  <input class="form-control" type="date" required name="date">
-                </div> -->
-                <!-- <input type="hidden" name="bank_from" id="bank_from"> -->
                 <button type="submit" class="btn btn-primary form-control">ບັນທຶກ</button>
-              </form>
+              </form> -->
+
             </div>
           </div>
         </div>
@@ -149,16 +342,20 @@
     var x = document.getElementById("code").value;
     if (x == '01') {
       document.getElementById("bank_from").value = 'BCEL'
-      bank_from.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
-      city.innerHTML = "<option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
+      bank_from.innerHTML = "<option selected> ເລືອກ....</option><option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
+      city.innerHTML = "<option selected> ເລືອກ....</option><option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
     } else if (x == '02') {
       document.getElementById("bank_from").value = 'THAI'
-      bank_from.innerHTML = "<option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
-      city.innerHTML = "<option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB'>JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB' >LDB ພັດທະນາລາວ</option>"
-    } else {
+      bank_from.innerHTML = "<option selected> ເລືອກ....</option><option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
+      city.innerHTML = "<option selected> ເລືອກ....</option><option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB'>JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB' >LDB ພັດທະນາລາວ</option>"
+    } else if (x == '03') {
       document.getElementById("bank_from").value = 'BCEL'
-      bank_from.innerHTML = "<option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
-      city.innerHTML = "<option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB' >JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB'>LDB ພັດທະນາລາວ</option>"
+      bank_from.innerHTML = "<option selected> ເລືອກ....</option><option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
+      city.innerHTML = "<option selected> ເລືອກ....</option><option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB' >JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB'>LDB ພັດທະນາລາວ</option>"
+    } else {
+      bank_from.innerHTML = "<option selected> ເລືອກ....</option>"
+      city.innerHTML = "<option selected> ເລືອກ....</option>"
+
     }
   }
   // sweet 

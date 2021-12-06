@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
     <title>{% block title %}{% endblock %} -ລະບົບຮ້ານແລກປ່ຽນເງິນຕາ</title>
     <style>
-        nav,a{
+        nav,
+        a {
             font-family: "phetsarath ot";
         }
 
@@ -60,55 +61,22 @@
         .swal2-content,
         .swal2-confirm,
         .swal2-cancel {
-        font-family: phetsarath ot;
+            font-family: phetsarath ot;
         }
-
-        /* .logo-image{
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-top: -6px;
-} */    
-/* .logo-image img{
-width: 46px;
-height: 46px;
-border-radius: 50%;
-overflow: hidden;
-margin-top: -6px;
-} */
-        
-        
-        /* .card-body{
-            background-color: red;
-        } */
-
-        /* .card-body{
-            background-color: darkcyan;
-        } */
-
-
-
-        /* tr:nth-child(even) {
-            background-color: #dddddd;
-        } */
-
-        /* .row>div {
-        background: lightgrey;
-        border: 1px solid grey;
-    } */
     </style>
     {% endblock %}
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkslategray; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+    <nav class="navbar navbar-expand-sm navbar-dark"
+        style="background-color: darkslategray; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
         <a class="navbar-brand" style="font-family: 'Times New Roman', Times, serif;padding-left: 10px;" href="/">
-            <img src="https://crocodilecookware.com/wp-content/uploads/2021/03/SKY_VISION-EXPORT-IMPORT-SOLE-CO-300x264.jpg" width="40" height="40" style="border-radius: 100%;"/>
+            <img src="https://crocodilecookware.com/wp-content/uploads/2021/03/SKY_VISION-EXPORT-IMPORT-SOLE-CO-300x264.jpg"
+                width="40" height="40" style="border-radius: 100%;" />
             &nbsp;&nbsp;Exchange
         </a>
         <div class="logo-image">
-      </div>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -119,7 +87,6 @@ margin-top: -6px;
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <i class="bi bi-wallet2"></i>&nbsp;ການບໍລິການ
-                        <!-- <i class="fab fa-accessible-icon"></i> -->
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/homeex"><i class="bi bi-cash"></i> &nbsp; ແລກປ່ຽນເງິນຕາ</a>
@@ -147,7 +114,6 @@ margin-top: -6px;
                         <a class="dropdown-item" href="/manageexrate">ອັດຕາແລກປ່ຽນ</a>
                         <a class="dropdown-item" href="#">ກຳນົດປະເພດການແລກປ່ຽນ</a>
                         <div class="dropdown-divider"></div>
-                        <!-- <a class="dropdown-item" href="#">ກຳນົດລູກຄ້າ</a> -->
                         <a class="dropdown-item" href="#">ກຳນົດທະນາຄານ</a>
                         <a class="dropdown-item" href="#">ກຳນົດປະເພດການໂອນ</a>
 
@@ -155,7 +121,7 @@ margin-top: -6px;
                         <a class="dropdown-item" href="/manageadduser">ເພີມຜູ້ໃຊ້</a>
                         <a class="dropdown-item" href="#">ຕັ້ງຄ່າລະບົບ</a>
                     </div>
-                </li>  
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -175,7 +141,6 @@ margin-top: -6px;
                         <a class="dropdown-item" href="#">ການເຄື່ອນໃຫວບັນຊີເງິນໂດລາ</a>
                     </div>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">ອອກ​ຈາກ​ລະ​ບົບ</a>
                 </li>
@@ -232,7 +197,7 @@ margin-top: -6px;
                 "oLanguage": {
                     "sSearch": "ຄົ້ນຫາ:"
                 },
-                'iDisplayLength': 100,
+                'iDisplayLength': 10,
                 "language": {
                     "lengthMenu": "ສະແດງ _MENU_ ລາຍການ",
                     "zeroRecords": "ບໍ່ພົບລາຍການ - sorry",

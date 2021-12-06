@@ -24,16 +24,16 @@ def save_user():
         if not session.get("name"):
             return redirect("/login")
         else:
-        #    sql = """INSERT INTO tb_user(
-        #                 username, password, roles)
-        #                 values(%s,%s,%s)
-        #         """
-        # username = request.form['username']
-        # password = request.form['​password']
+            sql = """INSERT INTO tb_user(
+                        username, password, roles)
+                        values(%s,%s,%s)
+                """
+            username = request.form['username']
+            password = request.form['​password']
             roles = request.form['roles']
-        # data = (username, password, roles)
-        # cur.execute(sql, (data))
-        # gobal.con.commit()
+            data = (username, password, roles)
+            cur.execute(sql, (data))
+            gobal.con.commit()
             print(roles)
             return redirect(url_for('manageadduser'))
 
