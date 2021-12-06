@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
     <title>{% block title %}{% endblock %} -ລະບົບຮ້ານແລກປ່ຽນເງິນຕາ</title>
     <style>
+        nav,a{
+            font-family: "phetsarath ot";
+        }
+
         body {
             background-color: #212121;
             /* background-color:#bf9400 #EFEFEF; */
@@ -52,6 +56,29 @@
             color: red;
         }
 
+        .swal2-title,
+        .swal2-content,
+        .swal2-confirm,
+        .swal2-cancel {
+        font-family: phetsarath ot;
+        }
+
+        /* .logo-image{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+} */    
+/* .logo-image img{
+width: 46px;
+height: 46px;
+border-radius: 50%;
+overflow: hidden;
+margin-top: -6px;
+} */
+        
+        
         /* .card-body{
             background-color: red;
         } */
@@ -75,10 +102,13 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark"
-        style="background-color: darkslategray; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
-        <a class="navbar-brand" style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;" href="/">KK
-            EXCHANGE</a>
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkslategray; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+        <a class="navbar-brand" style="font-family: 'Times New Roman', Times, serif;padding-left: 10px;" href="/">
+            <img src="https://crocodilecookware.com/wp-content/uploads/2021/03/SKY_VISION-EXPORT-IMPORT-SOLE-CO-300x264.jpg" width="40" height="40" style="border-radius: 100%;"/>
+            &nbsp;&nbsp;Exchange
+        </a>
+        <div class="logo-image">
+      </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -122,9 +152,8 @@
                         <a class="dropdown-item" href="#">ກຳນົດປະເພດການໂອນ</a>
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">ເພີມຜູ້ໃຊ້</a>
-                        <!-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">ຕັ້ງຄ່າລະບົບ</a> -->
+                        <a class="dropdown-item" href="/manageadduser">ເພີມຜູ້ໃຊ້</a>
+                        <a class="dropdown-item" href="#">ຕັ້ງຄ່າລະບົບ</a>
                     </div>
                 </li>  
                 <li class="nav-item dropdown">
