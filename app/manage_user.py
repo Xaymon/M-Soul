@@ -11,7 +11,7 @@ def manageadduser():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT username, password,roles FROM public.tb_user order by roworder "
+            sql = "SELECT username, password,roles,roworder FROM public.tb_user order by roworder "
             cur.execute(sql)
             rate_ = cur.fetchall()
 
@@ -24,44 +24,18 @@ def save_user():
         if not session.get("name"):
             return redirect("/login")
         else:
-            sql = """INSERT INTO public.tb_user(
-                        username, password, roles)
-                        values(%s,%s,%s)
-                """
-        username = request.form['username']
-        password = request.form['password']
-        roles = request.form['roles']
-        data = (username, password, roles)
-        cur.execute(sql, (data))
-        gobal.con.commit()
-        return redirect(url_for('manageadduser'))
-
-# @app.route('/saverate', methods=['POST'])
-# def saverate():
-#     with gobal.con:
-#         if not session.get("name"):
-#             return redirect("/login")
-#         else:
-#             currency_code = request.form['currency_code']
-#             buy = request.form['buy']
-#             sale = request.form['sale']
-#             curen_ = ""
-#             if currency_code == '01':
-#                 curen_ = 'THB'
-#             elif currency_code == '02':
-#                 curen_ = 'USD'
-#             else:
-#                 curen_ = 'THB-USD'
-#             data = (currency_code, curen_, buy, sale)
-#             cur = gobal.con.cursor()
-#             sql = "update exchange_rate set date_end=LOCALTIMESTAMP(0) where date_end isnull and curency_code=%s"
-#             cur.execute(sql, (currency_code,))
-#             curs = gobal.con.cursor()
-#             sqls = "INSERT INTO exchange_rate( curency_code, curency_name, buy, sale, date_start) VALUES (%s,%s,%s,%s,LOCALTIMESTAMP(0));"
-#             curs.execute(sqls, (data))
-#             gobal.con.commit()
-#             return redirect(url_for('manageexrate'))
-
+        #    sql = """INSERT INTO tb_user(
+        #                 username, password, roles)
+        #                 values(%s,%s,%s)
+        #         """
+        # username = request.form['username']
+        # password = request.form['​password']
+            roles = request.form['roles']
+        # data = (username, password, roles)
+        # cur.execute(sql, (data))
+        # gobal.con.commit()
+            print(roles)
+            return redirect(url_for('manageadduser'))
 
 @app.route('/user_delete/<string:id>')
 def user_delete(id):
