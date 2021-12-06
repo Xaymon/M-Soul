@@ -34,23 +34,14 @@
               {% endwith %}
             </div>
             <div class="card-body">
-              <form action="/saverate" method="post">
+              <form action="/save_ratee" method="post">
                 <div class="form-group">
-                  <label for="exampleFormControlSelect1">ເລືອກສະກຸນເງິນ</label>
-                  <select class="form-control" id="code" name="currency_code">
-                    <option selected> ເລືອກ....</option>
-                    <option value="01">ບາດ</option>
-                    <option value="02">ໂດລາ</option>
-                    <option value="03">ບາດ-ໂດລາ</option>
-                  </select>
+                  <label for="exampleFormControlSelect1">ລະ​ຫັດສະກຸນເງິນ</label>
+                  <input class="form-control" type="text" value="" required name="curency_code">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlSelect1">ອັດຕາແລກປ່ຽນຊື້</label>
-                  <input class="form-control" type="number" value="0" required name="buy">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ອັດຕາແລກປ່ຽນຂາຍ</label>
-                  <input class="form-control" type="number" value="0" required name="sale">
+                  <label for="exampleFormControlSelect1">ຊື່ສະກຸນເງິນ</label>
+                  <input class="form-control" type="text" value="" required name="curency_name">
                 </div>
                 <button type="submit" class="btn btn-primary form-control">ບັນທຶກ</button>
               </form>
@@ -61,11 +52,8 @@
           <table class="table table-sm table-hover" id="Ratetable">
             <thead>
               <tr style="background-color: white;">
-                <th scope="col">ວັນທີ</th>
-                <th scope="col">ລະຫັດສະກຸນເງິນ</th>
-                <th scope="col">ຊື່ສະກຸນເງີນ</th>
-                <th scope="col">ອັດຕາແລກປ່ຽນຊື້</th>
-                <th scope="col">ອັດຕາແລກປ່ຽນຂາຍ</th>
+                <th scope="col">ລະ​ຫັດສະກຸນເງິນ</th>
+                <th scope="col">ຊື່ສະກຸນເງິນ</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -74,11 +62,8 @@
               <tr>
                 <td>{{item[0]}}</td>
                 <td>{{item[1]}}</td>
-                <td>{{item[2]}}</td>
-                <td style="text-align: right;">{{item[3]}}</td>
-                <td style="text-align: right;">{{item[4]}}</td>
-                <td><a href="/rate_edit/{{item[3]}}"><i class="bi bi-pencil-square"></i></a><a href="#"
-                    onclick="deleteitem({{item[3]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a></td>
+                <td><a href="/rate_edit/{{item[2]}}"><i class="bi bi-pencil-square"></i></a><a href="#"
+                    onclick="deleteitem({{item[2]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -100,7 +85,7 @@
       confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
       cancelButtonText: 'ບໍ່,ກັບຄືນ!',
     }).then(function () {
-      location.href = "/rate_delete/" + id;
+      location.href = "/ratee_delete/" + id;
     })
   }
 </script>

@@ -12,6 +12,7 @@
     body {
         font-family: "Poppins", sans-serif;
         height: 100vh;
+        background-color: darkslategrey;;
     }
 
     a {
@@ -42,21 +43,20 @@
         justify-content: center;
         width: 100%;
         min-height: 100%;
-        padding: 20px;
     }
 
     #formContent {
         -webkit-border-radius: 10px 10px 10px 10px;
-        border-radius: 10px 10px 10px 10px;
+        border-radius: 50px;
         background: #fff;
-        padding: 30px;
         width: 90%;
         max-width: 450px;
+        padding-top: 50px;
         position: relative;
-        padding: 0px;
         -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
         box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
         text-align: center;
+        background-color: darkcyan;
     }
 
     #formFooter {
@@ -66,6 +66,16 @@
         text-align: center;
         -webkit-border-radius: 0 0 10px 10px;
         border-radius: 0 0 10px 10px;
+    }
+
+    #log_in{
+        background-color:darkslategrey;
+        border-radius: 25px;
+    }
+
+
+    #log_in:hover{
+        background-color: darkslateblue
     }
 
 
@@ -338,10 +348,14 @@
         </div>
 
         <!-- Login Form -->
-        <form action="/login" method="post">
-            <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+        <form action="/login" method="post" style="color: #FBF8C4;">
+            <label><b>Name</b></label><br>
+            <input type="text" id="login" class="fadeIn second" name="username" placeholder="Enter Name">
+            <hr>
+            <label><b>Password</b></label>
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Enter Password">
+            <br><br>
+            <input type="submit" class="fadeIn fourth" id="log_in" value="Log In">
         </form>
 
         <!-- Remind Passowrd -->
