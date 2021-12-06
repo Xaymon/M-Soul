@@ -12,3 +12,13 @@ def exchangerate(id):
     cur.execute(sql, (id, ))
     rate = cur.fetchone()
     return jsonify({'rate': rate})
+
+
+
+@app.route("/neVal/<id>")
+def neVal(id):
+    sql = """SELECT curency_code,curency_name FROM public.tb_addcurrency where curency_code !=%s"""
+    cur = gobal.con.cursor()
+    cur.execute(sql, (id, ))
+    curency = cur.fetchall()
+    return jsonify({'curency': curency})
