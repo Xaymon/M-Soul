@@ -76,7 +76,7 @@
               <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content" style="width: 1000px;">
+                  <div class="modal-content" style="width: 1500px;">
                     <form action="/save_trans" method="post">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">
@@ -104,7 +104,7 @@
                                 <label for="exampleFormControlSelect1">ປະເພດການໂອນ</label>
                                 <select class="form-control form-control-sm" id="code" name="trans_type"
                                   onchange="myFunction()">
-                                  <option value="00"> ເລືອກ....</option>
+                                  <option value="00" selected> ເລືອກ....</option>
                                   <option value="01">ລາວ-ໄທ</option>
                                   <option value="02">ໄທ-ລາວ</option>
                                   <option value="03">ລາວ-ລາວ</option>
@@ -112,15 +112,7 @@
                               </div>
                             </div>
                             <div class="col-sm">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
-                                <select class="form-control form-control-sm" id="code" name="trans_type">
-                                  <option value="00">ເລືອກ....</option>
-                                  <option value="01">ກີບ</option>
-                                  <option value="02">ບາດ</option>
-                                  <option value="03">ໂດລາ</option>
-                                </select>
-                              </div>
+
                             </div>
                             <div class="col-sm">
                             </div>
@@ -130,11 +122,9 @@
                             <div class="col-sm">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
-                                <select class="form-control form-control-sm" id="code" name="trans_type">
-                                  <option value="00">ເລືອກ....</option>
-                                  <option value="01">ກີບ</option>
-                                  <option value="02">ບາດ</option>
-                                  <option value="03">ໂດລາ</option>
+                                <select class="form-control form-control-sm" id="currency_code" name="currency_code"
+                                  onchange="show_rate()">
+                                  <option selected> ເລືອກ....</option>
                                 </select>
                               </div>
                             </div>
@@ -142,28 +132,65 @@
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ເງິນສົດ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0" required
-                                  name="account_code" style="text-align: right;">
+                                  name="account_code" style="text-align: right;" onchange="sum_paybycash();"
+                                  id="cash_value">
                               </div>
                             </div>
                             <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">Rate</label>
+                                <input class="form-control form-control-sm" type="number" name="rate_con"
+                                  style="text-align: right;" id="rate_con" readonly value="1">
+                              </div>
+                            </div>
+                            <div class="col-sm">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
+                                <input class="form-control form-control-sm" type="number" name="total_baht"
+                                  style="text-align: right;" id="total_baht" value="0" onchange="sum_back()">
+                              </div>
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col-sm">
+                            <div class="col-sm-3">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ທະນາຄານຕົ້ນທາງ</label>
-                                <select class="form-control form-control-sm" id="bank_from" name="bank_from" required>
+                                <select class="form-control form-control-sm" id="bank_from" name="bank_from" required
+                                  onchange="bank_ft()">
+                                  <option value="kv" selected> ເລືອກ....</option>
                                 </select>
+                              </div>
+                            </div>
+                            <div class="col-sm-2">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0"
+                                  name="account_code" required style="text-align: right;" id="bank_amount" value="0"
+                                  onchange="sum_paybycash();">
+                              </div>
+                            </div>
+                            <div class="col-sm-2">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
+                                  name="account_code" required style="text-align: right;" id="service_charge"
+                                  onchange="sum_paybycash();">
+                              </div>
+                            </div>
+                            <div class="col-sm-2">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">ຄ່າທຳນຽມ</label>
+                                <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
+                                  onchange="sum_paybycash();" name="account_code" required style="text-align: right;"
+                                  id="fee">
                               </div>
                             </div>
                             <div class="col-sm">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0"
-                                  name="account_code" required style="text-align: right;">
+                                  name="account_code" required style="text-align: right;" readonly id="total_amount">
                               </div>
-                            </div>
-                            <div class="col-sm">
                             </div>
                           </div>
                           <hr>
@@ -176,54 +203,20 @@
                           </center>
                           <hr>
                           <div class="row">
-                            <div class="col-sm">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
-                                <select class="form-control form-control-sm" id="code" name="trans_type">
-                                  <option value="00">ເລືອກ....</option>
-                                  <option value="01">ກີບ</option>
-                                  <option value="02">ບາດ</option>
-                                  <option value="03">ໂດລາ</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-sm">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ເງິນສົດ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0" required
-                                  name="account_code" style="text-align: right;">
-                              </div>
-                            </div>
-                            <div class="col-sm">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ເລືອກທະນາຄານປາຍທາງ</label>
-                                <select class="form-control form-control-sm" id="city" name="bank_to" required>
+                                <select class="form-control form-control-sm" id="to_bank" name="bank_to" required
+                                  onchange="bank_tt()">
+                                  <option selected> ເລືອກ....</option>
                                 </select>
                               </div>
                             </div>
                             <div class="col-sm-3">
                               <div class="form-group">
-                                <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0" required
-                                  name="account_code" style="text-align: right;">
-                              </div>
-                            </div>
-                            <div class="col-sm-2">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ຄ່າທຳນຽມ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0" required
-                                  name="account_code" style="text-align: right;">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າ</label>
+                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ປາຍທາງໃດ້ຮັບ</label>
                                 <input class="form-control form-control-sm " type="number" placeholder="0" required
-                                  readonly name="account_code" style="text-align: right;">
+                                  readonly name="total_pays" style="text-align: right;" value="0" id="total_pays">
                               </div>
                             </div>
                           </div>
@@ -237,48 +230,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <form action="/save_rate" method="post">
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ປະເພດການໂອນ</label>
-                  <select class="form-control" id="code" name="trans_type" onchange="myFunction()">
-                    <option selected> ເລືອກ....</option>
-                    <option value="01">ລາວ-ໄທ</option>
-                    <option value="02">ໄທ-ລາວ</option>
-                    <option value="03">ລາວ-ລາວ</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ທະນາຄານຕົ້ນທາງ</label>
-                  <select class="form-control" id="bank_from" name="bank_from" required>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ເລືອກທະນາຄານປາຍທາງ</label>
-                  <select class="form-control" id="city" name="bank_to" required>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
-                  <input class="form-control" type="text" placeholder="ຊື່ບັນຊີ" required name="account_code">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ເລກບັນຊີ 10 ຫຼັກ</label>
-                  <input class="form-control" type="text" placeholder="ເລກບັນຊີ 10 ຫຼັກ" required name="account_name">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
-                  <input class="form-control" type="number" value="0" required name="amount">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
-                  <input class="form-control" type="number" value="0" required name="service_charge">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">ຄ່າທຳນຽມ</label>
-                  <input class="form-control" type="number" value="0" required name="system_charge">
-                </div>
-                <button type="submit" class="btn btn-primary form-control">ບັນທຶກ</button>
-              </form> -->
 
             </div>
           </div>
@@ -292,7 +243,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-hover table-sm table-hover">
+                <table class="table table-hover table-sm table-hover" id="myTable">
                   <thead>
                     <tr>
                       <th scope="col">ວັນທີ</th>
@@ -338,26 +289,76 @@
 </div>
 
 <script>
+  document.getElementById("cash_value").readOnly = true;
+  document.getElementById("rate_con").readOnly = true;
+  document.getElementById("total_baht").readOnly = true;
+  document.getElementById("bank_amount").readOnly = true;
+  // document.getElementById("service_charge").readOnly = true;
+  // document.getElementById("fee").readOnly = true;
   function myFunction() {
     var x = document.getElementById("code").value;
     if (x == '01') {
+      document.getElementById("cash_value").readOnly = false;
+      // document.getElementById("rate_con").readOnly = false;
+      document.getElementById("total_baht").readOnly = false;
       document.getElementById("bank_from").value = 'BCEL'
-      bank_from.innerHTML = "<option selected> ເລືອກ....</option><option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
-      city.innerHTML = "<option selected> ເລືອກ....</option><option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
+      bank_from.innerHTML = "<option  value='kv' selected> ເລືອກ....</option><option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
+      to_bank.innerHTML = "<option selected> ເລືອກ....</option><option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
+      currency_code.innerHTML = "<option value='01'>ກີບ</option><option value='00'selected >ບາດ</option> <option value='03'>ໂດລາ</option>";
     } else if (x == '02') {
-      document.getElementById("bank_from").value = 'THAI'
-      bank_from.innerHTML = "<option selected> ເລືອກ....</option><option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
-      city.innerHTML = "<option selected> ເລືອກ....</option><option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB'>JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB' >LDB ພັດທະນາລາວ</option>"
-    } else if (x == '03') {
+      document.getElementById("cash_value").readOnly = false;
+      // document.getElementById("rate_con").readOnly = false;
+      document.getElementById("total_baht").readOnly = false;
       document.getElementById("bank_from").value = 'BCEL'
-      bank_from.innerHTML = "<option selected> ເລືອກ....</option><option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
-      city.innerHTML = "<option selected> ເລືອກ....</option><option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB' >JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB'>LDB ພັດທະນາລາວ</option>"
-    } else {
-      bank_from.innerHTML = "<option selected> ເລືອກ....</option>"
-      city.innerHTML = "<option selected> ເລືອກ....</option>"
+      document.getElementById("bank_from").value = 'THAI'
+      bank_from.innerHTML = "<option value='' selected> ເລືອກ....</option><option value='SCB'>SCB ໄທພານິດ </option><option value='KB'>KB ກະສີກອນໄທ</option><option value='KTB'> KTB ກຸງເທບ</option><option value='BBL'>BBL ກຸງເທບ</option><option value='BAY'>BAY ກຸງສີ</option><option value='TMB'>TMB ທະຫານໄທ</option>"
+      to_bank.innerHTML = "<option selected> ເລືອກ....</option><option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB'>JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB' >LDB ພັດທະນາລາວ</option>"
+      currency_code.innerHTML = "<option value='01'>ກີບ</option><option value='00'selected >ບາດ</option> <option value='03'>ໂດລາ</option>";
 
+    } else if (x == '03') {
+      document.getElementById("cash_value").readOnly = false;
+      // document.getElementById("rate_con").readOnly = false;
+      document.getElementById("total_baht").readOnly = false;
+      document.getElementById("bank_from").value = 'BCEL'
+      document.getElementById("bank_from").value = 'BCEL'
+      bank_from.innerHTML = "<option   value='kv' selected> ເລືອກ....</option><option value='TMB'>BCEL ກີບ</option><option value='TMB'>BCEL ບາດ</option><option value='TMB'>BCEL ໂດລາ</option>"
+      to_bank.innerHTML = "<option selected> ເລືອກ....</option><option value='BCEL' >BCEL ທະນາຄານການຄ້າ</option><option value='JDB' >JDB ທະນາຄານ ຮ່ວມພັດທະນາ</option><option value='LDB'>LDB ພັດທະນາລາວ</option>"
+      currency_code.innerHTML = "<option value='01' selected>ກີບ</option><option value='00' >ບາດ</option> <option value='03'>ໂດລາ</option>";
+    } else {
+      document.getElementById("cash_value").readOnly = true;
+      document.getElementById("rate_con").readOnly = true;
+      document.getElementById("total_baht").readOnly = true;
+
+      bank_from.innerHTML = "<option   value='kv' selected> ເລືອກ....</option>"
+      to_bank.innerHTML = "<option selected> ເລືອກ....</option>"
+      currency_code.innerHTML = "<option selected> ເລືອກ....</option>";
     }
   }
+  function bank_ft() {
+    var x = document.getElementById("bank_from").value;
+    console.log(x)
+    if (x !== 'kv') {
+      document.getElementById("bank_amount").readOnly = false;
+      document.getElementById("service_charge").readOnly = false;
+      document.getElementById("fee").readOnly = false;
+    } else {
+      // document.getElementById("cash_value").style.display = "none"
+      document.getElementById("bank_amount").readOnly = true;
+      document.getElementById("service_charge").readOnly = true;
+      document.getElementById("fee").readOnly = true;
+      document.getElementById("cash_value").readOnly = true;
+      // document.getElementById("rate_con").readOnly = true;
+      document.getElementById("total_baht").readOnly = true;
+    }
+  }
+  function bank_tt() {
+    var x = document.getElementById("total_amount").value;
+    document.getElementById("total_pays").value = x
+
+  }
+
+
+
   // sweet 
   function deleteitem(id) {
     swal({
@@ -372,6 +373,68 @@
     }).then(function () {
       location.href = "/transfer_delete/" + id;
     })
+  } ss
+  function sum_paybycash() {
+    kk = document.getElementById("currency_code").value
+    if (kk == '01') {
+      k1 = document.getElementById("cash_value").value
+      k2 = document.getElementById("rate_con").value
+      kx = Math.round(k1 / k2)
+      document.getElementById("total_baht").value = kx
+    } else {
+      k1 = document.getElementById("cash_value").value
+      k2 = document.getElementById("rate_con").value
+      kx = Math.round(k1 * k2)
+      document.getElementById("total_baht").value = kx
+    }
+
+    v1 = document.getElementById("bank_amount").value
+    v2 = document.getElementById("service_charge").value
+    v3 = document.getElementById("fee").value
+    vx = parseFloat(kx) + parseFloat(v1) + parseFloat(v2) + parseFloat(v3)
+    document.getElementById("total_amount").value = vx
   }
+  function show_rate() {
+    x = document.getElementById("currency_code").value
+    console.log(x)
+    if (x == '00') {
+      document.getElementById("rate_con").value = '1'
+      document.getElementById("cash_value").value = 0
+      document.getElementById("total_baht").value = 0
+    } else {
+      fetch('/exchangerate/' + x).then(function (response) {
+        response.json().then(function (data) {
+          document.getElementById("rate_con").value = data.rate[0]
+          document.getElementById("cash_value").value = 0
+          document.getElementById("total_baht").value = 0
+        });
+      });
+    }
+
+  }
+
+  function sum_back() {
+    kk = document.getElementById("currency_code").value
+    if (kk == '01') {
+      k1 = document.getElementById("total_baht").value
+      k2 = document.getElementById("rate_con").value
+      kx = Math.round(k1 * k2)
+      document.getElementById("cash_value").value = kx
+    } else {
+      k1 = document.getElementById("total_baht").value
+      k2 = document.getElementById("rate_con").value
+      kx = Math.round(k1 / k2)
+      document.getElementById("cash_value").value = kx
+    }
+
+    v1 = document.getElementById("bank_amount").value
+    v2 = document.getElementById("service_charge").value
+    v3 = document.getElementById("fee").value
+    vx = parseFloat(k1) + parseFloat(v1) + parseFloat(v2) + parseFloat(v3)
+    document.getElementById("total_amount").value = vx
+  }
+
+
+
 </script>
 {% endblock %}
