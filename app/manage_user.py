@@ -25,17 +25,16 @@ def save_user():
             return redirect("/login")
         else:
             sql = """INSERT INTO tb_user(
-                        username, password, roles)
-                        values(%s,%s,%s)
-                """
+                         username, password, roles)
+                         values(%s,%s,%s)
+                 """
             username = request.form['username']
             password = request.form['​password']
             roles = request.form['roles']
             data = (username, password, roles)
             cur.execute(sql, (data))
-            gobal.con.commit()
-            print(roles)
-            return redirect(url_for('manageadduser'))
+        gobal.con.commit()
+        return redirect(url_for('manageadduser'))
 
 @app.route('/user_delete/<string:id>')
 def user_delete(id):
