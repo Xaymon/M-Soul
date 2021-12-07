@@ -15,7 +15,11 @@ def hometf():
         cur.execute(sql)
         all_rate = cur.fetchall()
         # print("keo")
-        return render_template('transfer/index.html', all_rate=all_rate)
+        cur = gobal.con.cursor()
+        sql = "SELECT bank_id, bank_name, currency FROM public.tb_bank order by roworder "
+        cur.execute(sql)
+        bank_from = cur.fetchall()
+        return render_template('transfer/index.html', all_rate=all_rate,bank_from=bank_from)
 
 @app.route('/save_rate', methods=['POST'])
 def save_rate():
