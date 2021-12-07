@@ -12,7 +12,10 @@ def income():
         else:
             cur = gobal.con.cursor()
             sql = """
-                    SELECT roworder,bill_no, item_name, to_char(bill_date,'DD-MM-YYYY HH24:MI:SS') as bill_date, cash_kip, cash_baht, cash_dollar FROM public.tb_income order by roworder DESC
+                    SELECT roworder,bill_no, item_name, to_char(bill_date,'DD-MM-YYYY HH24:MI:SS') as bill_date,
+                    '₭'||to_char(cash_kip,'999G999G999D99') as cash_kip,
+                    '฿'||to_char(cash_baht,'999G999G999D99') as cash_baht,
+                    '$'||to_char(cash_baht,'999G999G999D99') as cash_dollar FROM public.tb_income order by roworder DESC
                   """
 
                     # SELECT roworder,bill_no, item_name, bill_date, cash_kip, cash_baht, cash_dollar FROM public.tb_outcome order by roworder DESC
