@@ -50,9 +50,9 @@
                   <label for="exampleFormControlSelect1">​ສະ​ກຸນ​ເງິນ</label>
                   <select class="form-control" name="currency">
                     <option selected> ເລືອກສະກຸນເງິນ....</option>
-                    <option >KIP</option>
-                    <option>BATH</option>
-                    <option>DOLLAR</option>
+                    {% for item in curent %}
+                    <option value="{{item[0]}}">{{item[1]}}</option>
+                    {% endfor %}
                   </select>
                 </div>
 

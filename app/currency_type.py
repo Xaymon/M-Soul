@@ -49,6 +49,7 @@ def currency_delete(id):
     if not session.get("name"):
         return redirect("/login")
     else:
+        print(id)
         cur = gobal.con.cursor()
         sql = "delete from public.tb_currencytype where roworder=%s"
         cur.execute(sql, (id,))
