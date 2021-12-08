@@ -11,12 +11,15 @@ def outcome():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = """
-                    SELECT roworder,bill_no, item_name, to_char(bill_date,'DD-MM-YYYY HH24:MI:SS') as bill_date,
-                    '₭'||to_char(cash_kip,'999G999G999D99') as cash_kip,
-                    '฿'||to_char(cash_baht,'999G999G999D99') as cash_baht,
-                    '$'||to_char(cash_baht,'999G999G999D99') as cash_dollar FROM public.tb_outcome order by roworder DESC
+            sql= """
+                    SELECT roworder,bill_no, item_name, to_char(bill_date,'yyyy-mm-dd HH24:MI:SS') as bill_date, cash_kip as money, cash_baht, cash_dollar FROM public.tb_outcome order by roworder DESC
                   """
+            # sql = """
+            #         SELECT roworder,bill_no, item_name, to_char(bill_date,'DD-MM-YYYY HH24:MI:SS') as bill_date,
+            #         '₭'||to_char(cash_kip,'999G999G999D99') as cash_kip,
+            #         '฿'||to_char(cash_baht,'999G999G999D99') as cash_baht,
+            #         '$'||to_char(cash_baht,'999G999G999D99') as cash_dollar FROM public.tb_outcome order by roworder DESC
+            #       """
 
                     # SELECT roworder,bill_no, item_name, bill_date, cash_kip, cash_baht, cash_dollar FROM public.tb_outcome order by roworder DESC
                     # VALUES(%s,%s,%s, LOCALTIMESTAMP(0),%s,%s,%s)"""
@@ -32,13 +35,13 @@ def save_outcome():
             return redirect("/login")
         else:
             sql = """INSERT INTO public.tb_outcome (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-                     VALUES(%s,%s,%s,%s, LOCALTIMESTAMP(0))
+                     VALUES(%s,%s,%s,%s, %s)
                   """
             item_name = request.form['item_name']
             cash_kip = request.form['cash_kip']
             cash_baht = request.form['cash_baht']
             cash_dollar = request.form['cash_dollar']
-            bill_date = format(request.form['bill_date'])
+            bill_date = request.form['bill_date']
 
             data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
             print(data)
@@ -57,4 +60,22 @@ def outcome_delete(id):
         cur.execute(sql, (id,))
         gobal.con.commit()
         return redirect(url_for('outcome'))
+
+@app.route('/update_outcome/<string:id>', methods=['POST'])
+def update_outcome(id):
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            item_name = request.form['item_name']
+            cash_kip =  request.form['cash_kip']
+            cash_baht = request.form['cash_baht']
+            cash_dollar = request.form['cash_dollar']
+            up_bill_date = request.form['up_bill_date']
+
+            # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
+            cur.execute('update public.tb_outcome set item_name=%s, cash_kip=%s, cash_baht=%s, cash_dollar=%s, bill_date=%s where roworder=%s',(item_name, cash_kip, cash_baht, cash_dollar, up_bill_date,(id,)))
+            gobal.con.commit()
+            return redirect(url_for('outcome'))
 

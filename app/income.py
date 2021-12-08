@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, json
 import psycopg2
 from app import app
@@ -12,10 +13,7 @@ def income():
         else:
             cur = gobal.con.cursor()
             sql = """
-                    SELECT roworder,bill_no, item_name, to_char(bill_date,'DD-MM-YYYY HH24:MI:SS') as bill_date,
-                    '₭'||to_char(cash_kip,'999G999G999D99') as cash_kip,
-                    '฿'||to_char(cash_baht,'999G999G999D99') as cash_baht,
-                    '$'||to_char(cash_baht,'999G999G999D99') as cash_dollar FROM public.tb_income order by roworder DESC
+                    SELECT roworder,bill_no, item_name, bill_date, cash_kip, cash_baht, cash_dollar FROM public.tb_income order by roworder DESC
                   """
 
                     # SELECT roworder,bill_no, item_name, bill_date, cash_kip, cash_baht, cash_dollar FROM public.tb_outcome order by roworder DESC
@@ -32,17 +30,17 @@ def save_income():
             return redirect("/login")
         else:
             sql = """INSERT INTO public.tb_income (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-                     VALUES(%s,%s,%s,%s, LOCALTIMESTAMP(0))
+                     VALUES(%s,%s,%s,%s, %s)
                   """
             item_name = request.form['item_name']
             cash_kip = request.form['cash_kip']
             cash_baht = request.form['cash_baht']
             cash_dollar = request.form['cash_dollar']
-            bill_date = format(request.form['bill_date'])
+            bill_date = request.form['bill_date']
 
             data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
             print(data)
-            cur.execute(sql, (data))
+            cur.execute(sql, data,)
             gobal.con.commit()
             return redirect(url_for('income'))
 
@@ -58,3 +56,20 @@ def income_delete(id):
         gobal.con.commit()
         return redirect(url_for('income'))
 
+@app.route('/update_income/<string:id>', methods=['POST'])
+def update_income(id):
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            item_name = request.form['item_name']
+            cash_kip =  request.form['cash_kip']
+            cash_baht = request.form['cash_baht']
+            cash_dollar = request.form['cash_dollar']
+            up_bill_date = request.form['up_bill_date']
+
+            # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
+            cur.execute('update public.tb_income set item_name=%s, cash_kip=%s, cash_baht=%s, cash_dollar=%s, bill_date=%s where roworder=%s',(item_name, cash_kip, cash_baht, cash_dollar, up_bill_date,(id,)))
+            gobal.con.commit()
+            return redirect(url_for('income'))
