@@ -46,3 +46,18 @@ def ratee_delete(id):
         cur.execute(sql, (id,))
         gobal.con.commit()
         return redirect(url_for('manage_rate'))
+
+@app.route('/update_currency/<string:id>', methods=['POST'])
+def update_currency(id):
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            curency_code = request.form['curency_code']
+            curency_name = request.form['curency_name']
+
+            # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
+            cur.execute('update public.tb_addcurrency set curency_code=%s, curency_name=%s where roworder=%s',(curency_code, curency_name,(id,)))
+            gobal.con.commit()
+            return redirect(url_for('manage_rate'))
