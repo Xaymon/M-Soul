@@ -15,7 +15,12 @@ def managebank():
             cur.execute(sql)
             rate_ = cur.fetchall()
 
-            return render_template('manage/bank.html', rate_=rate_)
+            curs = gobal.con.cursor()
+            sql_cur = "SELECT curency_code,curency_name FROM public.tb_addcurrency"
+            curs.execute(sql_cur)
+            curent = curs.fetchall()
+
+            return render_template('manage/bank.html', rate_=rate_, curent = curent)
 
 @app.route('/save_bank', methods=['POST'])
 def save_bank():
