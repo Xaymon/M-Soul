@@ -134,8 +134,43 @@ def transfer_delete(id):
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "delete from tb_transfer where roworder=%s"
+            sql = "delete from cb_trans where doc_no=%s"
+            cur.execute(sql, (id,))
+            gobal.con.commit()
+            sql = "delete from cb_trans_detail where doc_no=%s"
             cur.execute(sql, (id,))
             gobal.con.commit()
             flash('ລົບສຳເລັດ')
             return redirect(url_for('hometf'))
+
+
+@app.route('/save_thai_lao', methods=['POST'])
+def save_thai_lao():
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        customername = request.form['customername_tl']
+        tel = request.form['tel_tl']
+
+        from_bank_tl = request.form['from_bank_tl']
+        trans_incom = request.form['trans_incom']
+
+        service_charge_tl = request.form['service_charge_tl']
+        total_befor_pay_tl = request.form['total_befor_pay_tl']
+
+        currency_code_tl = request.form['currency_code_tl']
+        total_baht_tl = request.form['total_baht_tl']
+        rate_c_tl = request.form['rate_c_tl']
+        cash_value_tl = request.form['cash_value_tl']
+
+      
+        bank_account_code = request.form['bank_account_code']
+        bank_account_name = request.form['bank_account_name']
+        total_bank_amount_tl = request.form['total_bank_amount_tl']
+        fee_tl = request.form['fee_tl']  
+
+
+        rate_bank_tl = request.form['rate_bank_tl']
+        bank_amount_tl = request.form['bank_amount_tl']
+        total_amount_tt_tl = request.form['total_amount_tt_tl']
+ 

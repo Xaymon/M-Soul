@@ -13,7 +13,13 @@ def exchangerate(id):
     rate = cur.fetchone()
     return jsonify({'rate': rate})
 
-
+@app.route("/exchangeratesale/<id>")
+def exchangeratesale(id):
+    sql = """select sale::text  from exchange_rate where curency_code=%s and date_end isnull"""
+    cur = gobal.con.cursor()
+    cur.execute(sql, (id, ))
+    rate = cur.fetchone()
+    return jsonify({'rate': rate})
 
 @app.route("/neVal/<id>")
 def neVal(id):
