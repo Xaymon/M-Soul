@@ -37,18 +37,18 @@ def save_lao_thai():
     if not session.get("name"):
         return redirect("/login")
     else:
-        sql_d = """select max(SPLIT_PART(doc_no,'-', 2))::int from cb_trans where trans_flag=4"""
+        sql_d = """select max(SPLIT_PART(doc_no,'-', 2))::int from cb_trans where trans_flag=4 and calc_flag=1"""
         cur = gobal.con.cursor()
         cur.execute(sql_d)
         bil_no = cur.fetchone()
         print(bil_no)
         if bil_no[0] == None:
-            doc_no = 'TL-100001'
+            doc_no = 'LT-100001'
         else:
             doc = bil_no[0]
             print(type(doc))
             a = doc+1
-            doc_no = "TL-"+str(a)
+            doc_no = "LT-"+str(a)
         print(doc_no)
         # ຂໍ້ມູນລູຄ້າ
         customername = request.form['customername']
@@ -75,14 +75,13 @@ def save_lao_thai():
 
         cur = gobal.con.cursor()
         sql = """
-        INSERT INTO cb_trans(doc_date, doc_no, cust_name, tel,account_book, bank_account_name, item_code,item_code_2, amount, trans_flag, calc_flag,service_charge)
-	    VALUES ( LOCALTIMESTAMP(0),%s, %s, %s, %s,%s,%s,%s,%s,%s,%s,%s)"""
+        INSERT INTO cb_trans(doc_date, doc_no, cust_name, tel,account_book, bank_account_name, item_code,item_code_2, amount, trans_flag, calc_flag,service_charge,trans_type)
+	    VALUES ( LOCALTIMESTAMP(0),%s, %s, %s, %s,%s,%s,%s,%s,%s,%s,%s,0)"""
         val1 = (doc_no, customername, tel, bankaccountname, bank_account_code,
-                'LAO', bank_to, total_pays, 4, 1,service_charge)
+                'LAO', bank_to, total_pays, 4, 1, service_charge)
         val2 = (doc_no, customername, tel, bankaccountname,
                 bank_account_code, bank_to, bank_from, total_pays, 5, -1, service_charge)
         valn = [(val1), (val2)]
-        print(valn)
         cur.executemany(sql, valn)
         gobal.con.commit()
         if cur.rowcount > 0:
@@ -104,8 +103,6 @@ def save_lao_thai():
                 flash('ບັນທຶກສຳເລັດ')
                 return redirect(url_for('hometf'))
             elif cash_currency_code == '' and bank_from != '':
-                # val1 = ('TL00001', cash_currency_code,
-                #         cash_value, rate_con, total_baht, 4, 1)
                 val2 = (doc_no, bank_from,
                         bank_amount, rate_bank, total_bank_amount, 4, 1)
                 val3 = (doc_no, bank_to, total_pays,
@@ -149,6 +146,17 @@ def save_thai_lao():
     if not session.get("name"):
         return redirect("/login")
     else:
+        sql_d = """select max(SPLIT_PART(doc_no,'-', 2))::int from cb_trans where trans_flag=4 and calc_flag=1 and trans_type=1"""
+        cur = gobal.con.cursor()
+        cur.execute(sql_d)
+        bil_no = cur.fetchone()
+        print(bil_no)
+        if bil_no[0] == None:
+            doc_no = 'TL-100001'
+        else:
+            doc = bil_no[0]
+            a = doc+1
+            doc_no = "TL-"+str(a)
         customername = request.form['customername_tl']
         tel = request.form['tel_tl']
 
@@ -163,14 +171,62 @@ def save_thai_lao():
         rate_c_tl = request.form['rate_c_tl']
         cash_value_tl = request.form['cash_value_tl']
 
-      
+        from_bank_pay = request.form['from_bank_pay']
         bank_account_code = request.form['bank_account_code']
         bank_account_name = request.form['bank_account_name']
         total_bank_amount_tl = request.form['total_bank_amount_tl']
-        fee_tl = request.form['fee_tl']  
-
+        fee_tl = request.form['fee_tl']
 
         rate_bank_tl = request.form['rate_bank_tl']
         bank_amount_tl = request.form['bank_amount_tl']
         total_amount_tt_tl = request.form['total_amount_tt_tl']
- 
+        cur = gobal.con.cursor()
+        sql = """
+        INSERT INTO cb_trans(doc_date, doc_no, cust_name, tel, item_code,item_code_2, amount, trans_flag, calc_flag,service_charge,trans_type)
+	    VALUES ( LOCALTIMESTAMP(0),%s, %s, %s, %s,%s,%s,%s,%s,%s,1)"""
+        val1 = (doc_no, customername, tel, 'Thai', '',
+                trans_incom, 4, 1, service_charge_tl)
+        val2 = (doc_no, customername, tel, 'Lao', '',
+                trans_incom, 5, -1, service_charge_tl)
+        valn = [(val1), (val2)]
+        cur.executemany(sql, valn)
+        gobal.con.commit()
+        if cur.rowcount > 0:
+            sqldetail = """
+            INSERT INTO public.cb_trans_detail(
+            doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2, trans_flag, calc_flag,account_code, account_name, fee)
+            VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s, %s,%s, %s, %s);
+            """
+            if currency_code_tl != '' and from_bank_pay != '':
+                val1 = (doc_no, currency_code_tl,cash_value_tl, rate_c_tl, total_baht_tl, 5, -1, '', '', 0,)
+                val2 = (doc_no, from_bank_pay,bank_amount_tl, rate_bank_tl, total_bank_amount_tl, 5, -1, bank_account_code, bank_account_name, fee_tl,)
+                val3 = (doc_no, from_bank_tl, trans_incom,'1', trans_incom, 4, 1, '', '', 0)
+                valct = [(val1), (val2), (val3)]
+                cur.executemany(sqldetail, valct)
+                gobal.con.commit()
+                flash('ບັນທຶກສຳເລັດ')
+                return redirect(url_for('hometf'))
+            elif currency_code_tl == '' and from_bank_pay != '':
+                # val1 = (doc_no, currency_code_tl,
+                #         cash_value_tl, rate_c_tl, total_baht_tl, 5, -1)
+                val2 = (doc_no, from_bank_pay, bank_amount_tl, rate_bank_tl,
+                        total_bank_amount_tl, 5, -1, bank_account_code, bank_account_name, fee_tl,)
+                val3 = (doc_no, from_bank_tl, trans_incom,
+                        '1', trans_incom, 4, 1, '', '', 0,)
+                valct = [(val2), (val3)]
+                cur.executemany(sqldetail, valct)
+                gobal.con.commit()
+                flash('ບັນທຶກສຳເລັດ')
+                return redirect(url_for('hometf'))
+            else:
+                val1 = (doc_no, currency_code_tl, cash_value_tl,
+                        rate_c_tl, total_baht_tl, 5, -1, '', '', 0,)
+                # val2 = (doc_no, from_bank_pay,
+                #         bank_amount_tl, rate_bank_tl, total_bank_amount_tl, 5, -1)
+                val3 = (doc_no, from_bank_tl, trans_incom,
+                        '1', trans_incom, 4, 1, '', '', 0,)
+                valct = [(val1), (val3)]
+                cur.executemany(sqldetail, valct)
+                gobal.con.commit()
+                flash('ບັນທຶກສຳເລັດ')
+        return redirect(url_for('hometf'))

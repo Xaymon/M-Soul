@@ -377,7 +377,7 @@
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ຍອດທີ່ໂອນມາ</label>
                                 <input class="form-control form-control-sm " type="number" placeholder="0"
-                                  name="total_pays" style="text-align: right;" value="0" id="trans_incom"
+                                  name="trans_incom" style="text-align: right;" value="0" id="trans_incom"
                                   onchange="trans_in_total()">
                               </div>
                             </div>
@@ -403,7 +403,7 @@
                               <div class="form-group">
                                 <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
                                 <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
-                                  name="service_charge" required style="text-align: right;" id="service_charge_tl"
+                                  name="service_charge_tl" required style="text-align: right;" id="service_charge_tl"
                                   onchange="trans_pass_service_tl();">
                               </div>
                             </div>
@@ -416,7 +416,7 @@
                               <div class="form-group">
                                 <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
                                 <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
-                                  name="total_befor_pay" required style="text-align: right;" id="total_befor_pay_tl"
+                                  name="total_befor_pay_tl" required style="text-align: right;" id="total_befor_pay_tl"
                                   readonly>
                               </div>
                             </div>
@@ -427,7 +427,7 @@
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
                                 <select class="form-control form-control-sm" id="currency_code_tl"
-                                  name="cash_currency_code" onchange="show_rate_tl()">
+                                  name="currency_code_tl" onchange="show_rate_tl()">
                                   <option selected value="">ເລືອກ...</option>
                                   <option value="01">ກີບ</option>
                                   <option value="00">ບາດ</option>
@@ -462,7 +462,7 @@
                             <div class="col-sm-4">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ຈາກບັນຊີ</label>
-                                <select class="form-control form-control-sm" id="bank_from_tl" name="from_bank_pay"
+                                <select class="form-control form-control-sm" id="from_bank_pay" name="from_bank_pay"
                                   onchange="bank_TL()">
                                   <option value="" selected> ເລືອກ....</option>
                                   {% for item in bank_from %}
@@ -474,15 +474,15 @@
                             <div class="col-sm-4">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ຫາເລກບັນຊີ</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="ເລກບັນຊີ" name="bank_account_code"
-                                  required style="text-align:left;" id="">
+                                <input class="form-control form-control-sm" type="text" placeholder="ເລກບັນຊີ"
+                                  name="bank_account_code" style="text-align:left;" id="bank_account_code">
                               </div>
                             </div>
                             <div class="col-sm-4">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="ຊື່ບັນຊີ" name="bank_account_name"
-                                  required style="text-align: left;" id="">
+                                <input class="form-control form-control-sm" type="text" placeholder="ຊື່ບັນຊີ"
+                                  name="bank_account_name" style="text-align: left;" id="bank_account_name">
                               </div>
                             </div>
                           </div>
@@ -513,7 +513,7 @@
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າທີ່ຕ້ອງໂອນ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0"
-                                  name="bank_amount" required style="text-align: right;" id="bank_amount_tl" value="0"
+                                  name="bank_amount_tl" required style="text-align: right;" id="bank_amount_tl" value="0"
                                   onchange="">
                               </div>
                             </div>
@@ -599,7 +599,6 @@
     </div>
   </div>
 </div>
-
 <script>
   document.getElementById("total_bank_amount").readOnly = true;
   document.getElementById("rate_bank").readOnly = true;
@@ -608,7 +607,6 @@
   document.getElementById("total_baht").readOnly = true;
   document.getElementById("bank_amount").readOnly = true;
   document.getElementById("total_amount").readOnly = true;
-
   function bank_ft() {
     var x = document.getElementById("bank_from").value;
     if (x == 'BCEL_BAHT') {
@@ -638,7 +636,6 @@
           document.getElementById("bank_amount").value = '0'
           document.getElementById("total_bank_amount").readOnly = false;
           document.getElementById("total_bank_amount").value = '0'
-
         });
       });
     } else {
@@ -649,7 +646,6 @@
   function bank_tt() {
     var x = document.getElementById("total_amount").value;
     document.getElementById("total_pays").value = x
-
   }
   // sweet 
   function deleteitem(id) {
@@ -702,7 +698,6 @@
       k1 = document.getElementById("total_bank_amount").value
       k2 = document.getElementById("rate_bank").value
       kx = Math.round(k1 / k2)
-      alert("I am an alert box!");
       document.getElementById("bank_amount").value = kx
     } else {
       k1 = document.getElementById("total_bank_amount").value
@@ -799,8 +794,9 @@
         });
       });
     }
-
   }
+  
+  // Cash
   function sum_cash_tl() {
     kk = document.getElementById("currency_code_tl").value
     if (kk == '01') {
@@ -822,15 +818,22 @@
   document.getElementById("bank_amount_tl").readOnly = true;
   document.getElementById("total_bank_amount_tl").readOnly = true;
   document.getElementById("rate_bank_tl").readOnly = true;
+  document.getElementById("bank_account_code").readOnly = true;
+  document.getElementById("bank_account_name").readOnly = true;
+  document.getElementById("fee_tl").readOnly = true;
+  // BANK
   function bank_TL() {
-    var x = document.getElementById("bank_from_tl").value;
+    var x = document.getElementById("from_bank_pay").value;
+    console.log(x)
     if (x == 'BCEL_BAHT') {
       document.getElementById("rate_bank_tl").value = 1
       document.getElementById("bank_amount_tl").readOnly = false;
       document.getElementById("bank_amount_tl").value = '0'
       document.getElementById("total_bank_amount_tl").readOnly = false;
       document.getElementById("total_bank_amount_tl").value = '0'
-
+      document.getElementById("bank_account_code").readOnly = false;
+      document.getElementById("bank_account_name").readOnly = false;
+      document.getElementById("fee_tl").readOnly = false;
     } else if (x == 'BCEL_LAK') {
 
       fetch('/exchangerate/01').then(function (response) {
@@ -840,7 +843,9 @@
           document.getElementById("bank_amount_tl").value = '0'
           document.getElementById("total_bank_amount_tl").readOnly = false;
           document.getElementById("total_bank_amount_tl").value = '0'
-
+          document.getElementById("bank_account_code").readOnly = false;
+          document.getElementById("bank_account_name").readOnly = false;
+          document.getElementById("fee_tl").readOnly = false;
         });
       });
     } else if (x == 'BCEL_DOLLAR') {
@@ -851,16 +856,21 @@
           document.getElementById("bank_amount_tl").value = '0'
           document.getElementById("total_bank_amount_tl").readOnly = false;
           document.getElementById("total_bank_amount_tl").value = '0'
-
+          document.getElementById("bank_account_code").readOnly = false;
+          document.getElementById("bank_account_name").readOnly = false;
+          document.getElementById("fee_tl").readOnly = false;
         });
       });
     } else {
       document.getElementById("bank_amount").readOnly = true;
       document.getElementById("total_bank_amount").readOnly = true;
+      document.getElementById("bank_account_code").readOnly = true;
+      document.getElementById("bank_account_name").readOnly = true;
+      document.getElementById("fee_tl").readOnly = false;    
     }
   }
   function sum_paybybank_tl() {
-    kk = document.getElementById("bank_from_tl").value
+    kk = document.getElementById("from_bank_pay").value
     console.log(kk)
     if (kk == 'BCEL_BAHT') {
       k1 = parseFloat(document.getElementById("total_bank_amount_tl").value)
@@ -870,7 +880,7 @@
       if (k3 == 0) {
         kx = k1 / k2
       } else {
-        kv = k1 + k3
+        kv = k1 - k3
         kx = kv / k2
       }
       document.getElementById("bank_amount_tl").value = kx
@@ -881,7 +891,7 @@
       if (k3 == 0) {
         kx = Math.round(k1 * k2)
       } else {
-        kv = k1 + k3
+        kv = k1 - k3
         kx = kv * k2
       }
       document.getElementById("bank_amount_tl").value = kx
@@ -892,7 +902,7 @@
       if (k3 == 0) {
         kx = Math.round(k1 / k2)
       } else {
-        kv = k1 + k3
+        kv = k1 - k3
         keo = kv / k2
         kx = keo
       }
@@ -904,5 +914,7 @@
     vx = parseFloat(v2) + parseFloat(v1) + parseFloat(v3)
     document.getElementById("total_amount_tt_tl").value = vx
   }
+
+
 </script>
 {% endblock %}
