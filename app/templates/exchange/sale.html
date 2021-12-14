@@ -1,0 +1,309 @@
+{% extends "layout/layout.html" %}
+{% block title %}ຂາຍເງິນຕາ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
+                            <select class="form-control form-control-sm" id="main_cur" name="currency_code_tl"
+                                onchange="main_currency()">
+                                <option selected value="">ເລືອກ...</option>
+                                <option value="01">ກີບ</option>
+                                <option value="00">ບາດ</option>
+                                <option value="03">ໂດລາ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Rate</label>
+                            <input class="form-control form-control-sm" type="number" name="rate"
+                                style="text-align: right;" id="rate" readonly value="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ເງິນສົດ</label>
+                            <input class="form-control form-control-sm" type="number" name="cash_recipt"
+                                style="text-align: right;" id="cash_recipt" value="0" onchange="cash_in_sum()">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ໂອນເຂົ້າບັນຊີ</label>
+                            <select class="form-control form-control-sm" id="trans_in" name="trans_in" onchange="">
+                                <option value="" selected> ເລືອກ....</option>
+                                {% for item in bank_from %}
+                                <option value="{{item[0]}}">{{item[1]}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
+                            <input class="form-control form-control-sm" type="number" value="0" name="bank_amount"
+                                required style="text-align: right;" id="bank_amount" onchange="cash_in_sum()">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ຍອດລວມ</label>
+                            <input class="form-control form-control-sm" type="number" value="0" name="total_amount1"
+                                required style="text-align: right;" id="total_amount1" onchange="">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
+                            <select class="form-control form-control-sm" id="second_cur" name="second_cur"
+                                onchange="showrate()">
+                                <option selected value="">ເລືອກ...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ເງິນສົດ</label>
+                            <input class="form-control form-control-sm" type="number" name="cash_pay"
+                                style="text-align: right;" id="total_baht_tl" value="0" onchange="">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ຈາກບັນຊີ</label>
+                            <select class="form-control form-control-sm" id="bank_pay" name="bank_pay"
+                                onchange="bank_TL()">
+                                <option value="" selected> ເລືອກ....</option>
+                                {% for item in bank_from %}
+                                <option value="{{item[0]}}">{{item[1]}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ຫາເລກບັນຊີ</label>
+                            <input class="form-control form-control-sm" type="text" placeholder="ເລກບັນຊີ"
+                                name="bank_account_code" style="text-align:left;" id="bank_account_code">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
+                            <input class="form-control form-control-sm" type="text" placeholder="ຊື່ບັນຊີ"
+                                name="bank_account_name" style="text-align: left;" id="bank_account_name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ມູນຄ່າ</label>
+                            <input class="form-control form-control-sm" type="number" value="0" name="bank_pay_amount"
+                                required style="text-align: right;" id="total_bank_amount_tl"
+                                onchange="sum_paybybank_tl()">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ຄ່າທຳນຽນ</label>
+                            <input class="form-control form-control-sm" type="number" value="0" name="fee" required
+                                style="text-align: right;" id="fee_tl" onchange="sum_paybybank_tl()">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ລວມທັງໝົດ</label>
+                            <input class="form-control form-control-sm" type="number" placeholder="0"
+                                name="total_amount2" required style="text-align: right;" id="total_amount2" value="0"
+                                onchange="total_back()">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                    </div>
+                    <div class="col-sm-4">
+
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/homeex" class="btn btn-warning form-control form-control-sm">ອອກ</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-success form-control form-control-sm" type="submit">ບັນທຶກ</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function main_currency() {
+        kk = document.getElementById("main_cur").value
+        if (kk == '00') {
+            second_cur.innerHTML = "<option value='' selected> ເລືອກ....</option><option value='01' >ກີບ</option><option value='03'>ໂດລາ</option>"
+        } else if (kk == '01') {
+            second_cur.innerHTML = "<option value='' selected> ເລືອກ....</option><option value='00' >ບາດ</option><option value='03'>ໂດລາ</option>"
+        } else {
+            second_cur.innerHTML = "<option value='' selected> ເລືອກ....</option><option value='00' >ບາດ</option><option value='01'>ກີບ</option>"
+        }
+    }
+    function showrate() {
+        kk = document.getElementById("main_cur").value
+        vv = document.getElementById("second_cur").value
+        kv = kk + '/' + vv;
+        let a = '';
+        fetch('/product/' + kv).then(function (response) {
+            response.json().then(function (data) {
+                document.getElementById("rate").value = data.product[0]
+                a = data.product[0]
+                console.log(a)
+                if (kk == '00' && vv == '01') {
+                    kv = parseFloat(document.getElementById("total_amount1").value)
+                    document.getElementById("total_amount2").value = Math.floor(kv * a)
+                } else if (kk == '01' && vv == '00') {
+                    kv = parseFloat(document.getElementById("total_amount1").value)
+                    document.getElementById("total_amount2").value = Math.floor(kv / a)
+                } else if (kk == '01' && vv == '03') {
+                    kv = parseFloat(document.getElementById("total_amount1").value)
+                    document.getElementById("total_amount2").value = Math.floor(kv / a)
+                } else if (kk == '03' && vv == '01') {
+                    kv = parseFloat(document.getElementById("total_amount1").value)
+                    document.getElementById("total_amount2").value = Math.floor(kv * a)
+                } else if (kk == '00' && vv == '03') {
+                    kv = parseFloat(document.getElementById("total_amount1").value)
+                    document.getElementById("total_amount2").value = Math.floor(kv / a)
+                } else {
+                    kv = parseFloat(document.getElementById("total_amount1").value)
+                    document.getElementById("total_amount2").value = kv * a
+                }
+            });
+        });
+    }
+    function cash_in_sum() {
+        kk = document.getElementById("main_cur").value
+        vv = document.getElementById("second_cur").value
+        if (kk == '00' && vv == '01') {
+            k = parseFloat(document.getElementById("cash_recipt").value)
+            v = parseFloat(document.getElementById("bank_amount").value)
+            kv = k + v
+            document.getElementById("total_amount1").value = kv
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount2").value = Math.floor(kv * kx)
+        } else if (kk == '01' && vv == '00') {
+            k = parseFloat(document.getElementById("cash_recipt").value)
+            v = parseFloat(document.getElementById("bank_amount").value)
+            kv = k + v
+            document.getElementById("total_amount1").value = kv
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount2").value = Math.floor(kv / kx)
+        } else if (kk == '01' && vv == '03') {
+            k = parseFloat(document.getElementById("cash_recipt").value)
+            v = parseFloat(document.getElementById("bank_amount").value)
+            kv = k + v
+            document.getElementById("total_amount1").value = kv
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount2").value = Math.floor(kv / kx)
+        } else if (kk == '03' && vv == '01') {
+            k = parseFloat(document.getElementById("cash_recipt").value)
+            v = parseFloat(document.getElementById("bank_amount").value)
+            kv = k + v
+            document.getElementById("total_amount1").value = kv
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount2").value = Math.floor(kv * kx)
+        } else if (kk == '00' && vv == '03') {
+            k = parseFloat(document.getElementById("cash_recipt").value)
+            v = parseFloat(document.getElementById("bank_amount").value)
+            kv = k + v
+            document.getElementById("total_amount1").value = kv
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount2").value = Math.floor(kv / kx)
+        } else {
+            k = parseFloat(document.getElementById("cash_recipt").value)
+            v = parseFloat(document.getElementById("bank_amount").value)
+            kv = k + v
+            document.getElementById("total_amount1").value = kv
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount2").value = Math.floor(kv * kx)
+        }
+    }
+    function total_back() {
+
+        kk = document.getElementById("main_cur").value
+        vv = document.getElementById("second_cur").value
+        if (kk == '00' && vv == '01') {
+            kv = parseFloat(document.getElementById("total_amount2").value)
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount1").value = Math.floor(kv / kx)
+        } else if (kk == '01' && vv == '00') {
+            kv = parseFloat(document.getElementById("total_amount2").value)
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount1").value = Math.floor(kv * kx)
+        } else if (kk == '01' && vv == '03') {
+            kv = parseFloat(document.getElementById("total_amount2").value)
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount1").value = Math.floor(kv * kx)
+        } else if (kk == '03' && vv == '01') {
+            kv = parseFloat(document.getElementById("total_amount2").value)
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount1").value = Math.floor(kv / kx)
+        } else if (kk == '00' && vv == '03') {
+            kv = parseFloat(document.getElementById("total_amount2").value)
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount1").value = Math.floor(kv * kx)
+        } else {
+            kv = parseFloat(document.getElementById("total_amount2").value)
+            kx = parseFloat(document.getElementById("rate").value)
+            document.getElementById("total_amount1").value = Math.floor(kv / kx)
+        }
+    }
+</script>
+{% endblock %}
