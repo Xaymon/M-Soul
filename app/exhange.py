@@ -46,34 +46,6 @@ def product(id, v):
     return jsonify({'product': product})
 
 
-# @app.route('/save_ex', methods=['POST'])
-# def save_ex():
-#     with gobal.con:
-#         cur = gobal.con.cursor()
-#         if not session.get("name"):
-#             return redirect("/login")
-#         else:
-#             sql = """INSERT INTO public.ic_trans(
-#                         ex_date, ex_1, ex_2, amount_1, exchange_rate, amount_2, tran_type,customer)
-#                         values(LOCALTIMESTAMP(0), %s, %s, %s, %s, %s,%s,%s)
-#                 """
-#             customer_ = request.form['customer_']
-#             ex_1 = request.form['ex_1']
-#             ex_2 = request.form['ex_2']
-#             amount_1 = request.form['vale_tt']
-#             exchange_rate = request.form['rate_show']
-#             amount_2 = request.form['tt_amount']
-#             tran_type = request.form['rate_code']
-#             data = (ex_1, ex_2, amount_1, exchange_rate,
-#                     amount_2, tran_type, customer_)
-#             if amount_1 != 0:
-#                 cur.execute(sql, (data))
-#                 gobal.con.commit()
-#                 flash('ບັນທຶກສຳເລັດ')
-#                 return redirect(url_for('homeex'))
-#             else:
-#                 return redirect(url_for('homeex'))
-
 
 @app.route('/ex_delete/<string:id>')
 def ex_delete(id):
@@ -148,8 +120,8 @@ def xchange_trans():
             gobal.con.commit()
             print(type(cash_recipt))
             if curh.rowcount > 0:
-                sql_dt = """INSERT INTO cb_trans_detail(doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2,calc_flag, account_code, account_name,fee)
-                            VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s,%s,%s, %s, %s, %s);
+                sql_dt = """INSERT INTO cb_trans_detail(doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2,calc_flag, account_code, account_name,fee,trans_type)
+                            VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s,%s,%s, %s, %s, %s,2);
                 """
                 if cash_recipt != 0 and trans_in != '' and cash_pay != 0 and bank_pay != '':
                     val1 = (doc_no, main_cur, cash_recipt,

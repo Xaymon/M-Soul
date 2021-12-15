@@ -12,7 +12,23 @@
       ການເຄື່ອນໃຫວເງິນສົດບາດ
     </div>
     <div class="card-body">
-      <table class="table table-hover table-hover">
+      <form action="/bahtbydate" method="post">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+              <input type="date" class="form-control form-control-sm" name="from_date" id="from_date" value="{{from_date}}">
+            </div>
+            <div class="col-sm-2">
+              <input type="date" class="form-control form-control-sm" name="to_date" id="" value="{{to_date}}">
+            </div>
+            <div class="col-sm-2">
+              <button type="submit" class="btn btn-primary btn-sm btn-block">ຄົ້ນຫາ</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr>
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">ວັນ/ເວລາ</th>

@@ -91,8 +91,8 @@ def save_lao_thai():
         if cur.rowcount > 0:
             sqldetail = """
             INSERT INTO public.cb_trans_detail(
-            doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2, trans_flag, calc_flag)
-            VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s, %s);
+            doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2, trans_flag, calc_flag,trans_type)
+            VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s, %s,0);
             """
             if cash_currency_code != '' and bank_from != '':
                 val1 = (doc_no, cash_currency_code,
@@ -198,8 +198,8 @@ def save_thai_lao():
         if cur.rowcount > 0:
             sqldetail = """
             INSERT INTO public.cb_trans_detail(
-            doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2, trans_flag, calc_flag,account_code, account_name, fee)
-            VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s, %s,%s, %s, %s);
+            doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2, trans_flag, calc_flag,account_code, account_name, fee,trans_type)
+            VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,1);
             """
             if currency_code_tl != '' and from_bank_pay != '':
                 val1 = (doc_no, currency_code_tl, cash_value_tl,
