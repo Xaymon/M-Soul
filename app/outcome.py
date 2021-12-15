@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 import psycopg2
 from app import app
 from kk_con import *
+from datetime import datetime
+from flask.helpers import flash
 
 
 @app.route('/outcome')
@@ -11,21 +13,15 @@ def outcome():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql= """
-                    SELECT roworder,bill_no, item_name, to_char(bill_date,'yyyy-mm-dd HH24:MI:SS') as bill_date, cash_kip as money, cash_baht, cash_dollar FROM public.tb_outcome order by roworder DESC
+            sql = """
+                   SELECT to_char(doc_date,'DD-MM-YYYY') , doc_no, cust_name, tel, item_name, amount||'-'||(select curency_name from tb_addcurrency where curency_code=item_code) FROM public.cb_trans where trans_type=6;
                   """
-            # sql = """
-            #         SELECT roworder,bill_no, item_name, to_char(bill_date,'DD-MM-YYYY HH24:MI:SS') as bill_date,
-            #         '₭'||to_char(cash_kip,'999G999G999D99') as cash_kip,
-            #         '฿'||to_char(cash_baht,'999G999G999D99') as cash_baht,
-            #         '$'||to_char(cash_baht,'999G999G999D99') as cash_dollar FROM public.tb_outcome order by roworder DESC
-            #       """
-
-                    # SELECT roworder,bill_no, item_name, bill_date, cash_kip, cash_baht, cash_dollar FROM public.tb_outcome order by roworder DESC
-                    # VALUES(%s,%s,%s, LOCALTIMESTAMP(0),%s,%s,%s)"""
             cur.execute(sql)
             rate_trans = cur.fetchall()
-            return render_template('In-Outcome/outcome.html', rate_trans=rate_trans)
+            dateTimeObj = datetime.now()
+            doc_date = dateTimeObj.strftime("%Y-%m-%d")
+            return render_template('In-Outcome/outcome.html', rate_trans=rate_trans, doc_date=doc_date)
+
 
 @app.route('/save_outcome', methods=['POST'])
 def save_outcome():
@@ -34,19 +30,41 @@ def save_outcome():
         if not session.get("name"):
             return redirect("/login")
         else:
-            sql = """INSERT INTO public.tb_outcome (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-                     VALUES(%s,%s,%s,%s, %s)
-                  """
-            item_name = request.form['item_name']
-            cash_kip = request.form['cash_kip']
-            cash_baht = request.form['cash_baht']
-            cash_dollar = request.form['cash_dollar']
-            bill_date = request.form['bill_date']
+            sql_d = """select max(SPLIT_PART(doc_no,'-', 2))::int from cb_trans where trans_type=6"""
+            cur = gobal.con.cursor()
+            cur.execute(sql_d)
+            bil_no = cur.fetchone()
+            print(bil_no)
+            if bil_no[0] == None:
+                doc_no = 'EP-100001'
+            else:
+                doc = bil_no[0]
+                a = doc+1
+                doc_no = "EP-"+str(a)
 
-            data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-            print(data)
-            cur.execute(sql, (data))
+            sql = """INSERT INTO cb_trans (doc_date, doc_no, cust_name, tel, item_code, item_name, amount, trans_type)
+                     VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+                  """
+            cusname = request.form['cusname']
+            custel = request.form['custel']
+            item_name = request.form['item_name']
+            cur_code = request.form['cur_code']
+            amount = request.form['amount']
+            bill_date = request.form['bill_date']
+            data = (bill_date, doc_no, cusname, custel,
+                    cur_code, item_name, amount, 6)
+            curh = gobal.con.cursor()
+            curh.execute(sql, data,)
             gobal.con.commit()
+            if cur.rowcount > 0:
+                sql_dt = """INSERT INTO cb_trans_detail(doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2,trans_type,calc_flag)
+                            VALUES (%s, %s, %s, %s,%s,%s,%s,%s);
+                """
+                val1 = (bill_date, doc_no, cur_code, amount, 1, amount, 6,-1)
+                curdt = gobal.con.cursor()
+                curdt.execute(sql_dt, val1,)
+                gobal.con.commit()
+                flash('ບັນທຶກສຳເລັດ')
             return redirect(url_for('outcome'))
 
 @app.route('/outcome_delete/<string:id>')
@@ -61,6 +79,7 @@ def outcome_delete(id):
         gobal.con.commit()
         return redirect(url_for('outcome'))
 
+
 @app.route('/update_outcome/<string:id>', methods=['POST'])
 def update_outcome(id):
     with gobal.con:
@@ -69,12 +88,12 @@ def update_outcome(id):
             return redirect("/login")
         else:
             item_name = request.form['item_name']
-            cash_kip =  request.form['cash_kip']
+            cash_kip = request.form['cash_kip']
             cash_baht = request.form['cash_baht']
             cash_dollar = request.form['cash_dollar']
 
             # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-            cur.execute('update public.tb_outcome set item_name=%s, cash_kip=%s, cash_baht=%s, cash_dollar=%s where roworder=%s',(item_name, cash_kip, cash_baht, cash_dollar,(id,)))
+            cur.execute('update public.tb_outcome set item_name=%s, cash_kip=%s, cash_baht=%s, cash_dollar=%s where roworder=%s',
+                        (item_name, cash_kip, cash_baht, cash_dollar, (id,)))
             gobal.con.commit()
             return redirect(url_for('outcome'))
-

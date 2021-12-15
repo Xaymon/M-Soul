@@ -16,8 +16,6 @@ def income():
             sql = """
                    SELECT to_char(doc_date,'DD-MM-YYYY') , doc_no, cust_name, tel, item_name, amount||'-'||(select curency_name from tb_addcurrency where curency_code=item_code) FROM public.cb_trans where trans_type=5;
                   """
-            # SELECT roworder,bill_no, item_name, bill_date, cash_kip, cash_baht, cash_dollar FROM public.tb_outcome order by roworder DESC
-            # VALUES(%s,%s,%s, LOCALTIMESTAMP(0),%s,%s,%s)"""
             cur.execute(sql)
             rate_trans = cur.fetchall()
             dateTimeObj = datetime.now()

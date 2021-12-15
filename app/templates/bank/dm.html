@@ -1,0 +1,64 @@
+{% extends "layout/layout.html" %}
+{% block title %}ບັນທຶກການຝາກເງິນ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ເລືອກສະກຸນເງິນ <span
+                                    style="color: red;">*</span></label>
+                            <select class="form-control" id="" required name="cur_code">
+                                <option value="">ເລືອກ...</option>
+                                <option value="01">ກີບ</option>
+                                <option value="00">ບາດ</option>
+                                <option value="02">ໂດລາ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="pwd">ມູນຄ່າ:</label>
+                            <input type="number" class="form-control" name="amount" placeholder="0" required
+                                style="text-align: right;">
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">ທະນາຄານ <span
+                                    style="color: red;">*</span></label>
+                            <select class="form-control" id="" required name="cur_code">
+                                <option value="">ເລືອກ...</option>
+                                <option value="01">ກີບ</option>
+                                <option value="00">ບາດ</option>
+                                <option value="02">ໂດລາ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="pwd">ມູນຄ່າ:</label>
+                            <input type="number" class="form-control" name="amount" placeholder="0" required
+                                style="text-align: right;">
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="pwd"></label>
+                            <button class="btn btn-primary form-control">
+                                ບັນທຶກ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
