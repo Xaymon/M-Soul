@@ -46,12 +46,12 @@
                   <input class="form-control" type="text" value="" required name="​password">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" onSubmit="return validateThisFrom (this);">
                   <label for="exampleFormControlSelect1">​ສະ​ຖາ​ນະ</label>
-                  <select class="form-control" name="roles">
-                    <option selected> ສະ​ຖາ​ນະ....</option>
-                    <option >admin</option>
-                    <option >user</option>
+                  <select class="form-control" name="roles" required>
+                    <option selected disabled hidden value=""> ສະ​ຖາ​ນະ....</option>
+                    <option value="admin">admin</option>
+                    <option value="user">user</option>
                   </select>
                 </div>
 
@@ -76,10 +76,53 @@
                 <td>{{item[0]}}</td>
                 <td>{{item[2]}}</td>
                 <td>{{item[1]}}</td>
-                <td><a href="/rate_edit/{{item[3]}}"><i class="bi bi-pencil-square"></i></a><a href="#"
-                    onclick="deleteitem({{item[3]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a></td>
+                <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal" data-target="#update_user/{{item[3]}}"></i></a><a href="#"
+                    onclick="deleteitem({{item[3]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                  </td>
               </tr>
-              {% endfor %}
+              
+              <div class="modal fade" id="update_user/{{item[3]}}" tabindex="-1"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂຂໍ້ມູນຜູ້ໃຊ້</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="background-color: #EFEFEF;">
+
+                    <form action="/update_user/{{item[3]}}" method="post">
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">ຊື່</label>
+                        <input class="form-control" type="text" required name="username" value="{{item[0]}}">
+                      </div>
+      
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">ລະ​ຫັດ​ຜ່ານ</label>
+                        <input class="form-control" type="text" required name="​password" value="{{item[1]}}">
+                      </div>
+      
+                      <div class="form-group" onSubmit="return validateThisFrom (this);">
+                        <label for="exampleFormControlSelect1">​ສະ​ຖາ​ນະ</label>
+                        <select class="form-control" name="roles" value="{{item[2]}}" required>
+                          <option disabled selected hidden value="">​{{item[2]}}</option>
+                          <option value="admin">admin</option>
+                          <option value="user">user</option>
+                        </select>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" id="" class="btn btn-primary">ບັນທຶກ</button>
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
             </tbody>
           </table>
         </div>
@@ -101,6 +144,16 @@
     }).then(function () {
       location.href = "/user_delete/" + id;
     })
+  }
+</script>
+
+<script language='JavaScript' type='text/javascript'>
+  function validateThisFrom(thisForm) {
+      if (thisForm.roles.value == "") {
+          alert("Please make a selection");
+          thisForm.roles.focus();
+          return false;
+      }
   }
 </script>
 {% endblock %}

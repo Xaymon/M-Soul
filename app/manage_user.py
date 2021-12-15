@@ -46,3 +46,18 @@ def user_delete(id):
         cur.execute(sql, (id,))
         gobal.con.commit()
         return redirect(url_for('manageadduser'))
+
+@app.route('/update_user/<string:id>', methods=['POST'])
+def update_user(id):
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            username = request.form['username']
+            password = request.form['​password']
+            roles = request.form['roles']
+
+            cur.execute('update public.tb_user set username=%s, password=%s, roles=%s where roworder=%s',(username, password,roles,(id,)))
+            gobal.con.commit()
+            return redirect(url_for('manageadduser'))

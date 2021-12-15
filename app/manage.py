@@ -17,6 +17,32 @@ def manageexrate():
 
             return render_template('manage/addrate.html', rate_=rate_)
 
+@app.route('/ap')
+def ap():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            cur = gobal.con.cursor()
+            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, buy, sale,roworder FROM public.exchange_rate order by roworder "
+            cur.execute(sql)
+            rate_ = cur.fetchall()
+
+            return render_template('ap & ar/ap.html')
+
+@app.route('/ar')
+def ar():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            cur = gobal.con.cursor()
+            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, buy, sale,roworder FROM public.exchange_rate order by roworder "
+            cur.execute(sql)
+            rate_ = cur.fetchall()
+
+            return render_template('ap & ar/ar.html')
+
 
 @app.route('/saverate', methods=['POST'])
 def saverate():

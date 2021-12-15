@@ -1,0 +1,165 @@
+{% extends "layout/layout.html" %}
+{% block title %}ການຈັດການອັດຕາແລກປ່ຽນ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container col-sm-12">
+  <div class="card">
+    <div class="card-body" style="background-color:darkcyan;padding-right: 2.4%;">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card" style="background-color: darkslategrey;color: white;">
+            <div class="card-header">
+              <center>
+                ​ໜີ້ຕ້ອງຊຳ​ລະ
+              </center>
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <script>
+                $(".alert-dismissible").fadeTo(2000, 500).fadeOut(500, function () {
+                  $(".alert-dismissible").alert('close');
+                });
+              </script>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
+            </div>
+            <div class="card-body">
+
+              <form class="" action="/save_income" method="post">
+                <input type="hidden" name="" value="">
+                <div class="form-group">
+                  <label for="usr">​ປະ​ເພດ​ໜີ້:</label>
+                  <input type="text" class="form-control" name="type">
+                </div>
+                <div class="form-group">
+                  <label for="usr">​ລາຍ​ການ:</label>
+                  <input type="text" class="form-control" name="item_name">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">​ມູນ​ຄ່າ:</label>
+                  <input type="number" class="form-control" name="amount"/>
+                </div>
+                <br>
+                <center>
+                <button type="submit" class="btn btn-primary form-control" style="width: 130px;">ບັນທຶກ</button>
+                </center>
+              </form>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-8" style="background-color: whitesmoke; padding-top: 10px;padding-right: 15px;border-radius: 5px;">
+          <table class="table table-sm table-hover table-striped table-success" id="Ratetable">
+            <thead>
+              <tr>
+                <th scope="col">ລຳ​ດັບ</th>
+                <th scope="col">ລະ​ຫັດ​ໃບ​ບິນ</th>
+                <th scope="col">​ລາຍ​ການ</th>
+                <th scope="col">ວັນ/ເວ​ລາ</th>
+                <th scope="col">​ຈຳ​ນວນ​ເງີນ ກີບ</th>
+                <th scope="col">ຈຳ​ນວນ​ເງີນ ບາດ</th>
+                <th scope="col">ຈຳ​ນວນ​ເງີນ ​ໂດ​ລາ</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in rate_trans %}
+                <tr>
+                  <td>{{item[0]}}</td>
+                  <td style="text-align: left;">{{item[1]}}</td>
+                  <td style="text-align: left;">{{item[2]}}</td>
+                  <td style="text-align: left;">{{item[3]}}</td>
+                  <td style="text-align: left;">₭ {{item[4]}}</td>
+                  <td style="text-align: left;">฿ {{item[5]}}</td>
+                  <td style="text-align: left;">$ {{item[6]}}</td>
+                  <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal" data-target="#update_income/{{item[0]}}"></i></a>
+                    <a href="#" onclick="deleteitem({{item[0]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a></td>
+                </tr>
+
+                <!-- Modal -->
+              <div class="modal fade" id="update_income/{{item[0]}}" tabindex="-1"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍຮັບ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="background-color: #EFEFEF;">
+                    <form class="" action="/update_income/{{item[0]}}" method="post">
+                      <input type="hidden" name="" value="">
+                      <div class="form-group">
+                        <label for="usr">ລາຍການ:</label>
+                        <input type="text" class="form-control" name="item_name" value="{{item[2]}}">
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-4 col-sm-12">
+                          <label for="pwd">ຈຳນວນເງິນກີບ:</label>
+                          <input type="number" class="form-control" name="cash_kip" value="{{item[4]}}">
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                          <label for="pwd">ຈຳນວນເງິນບາດ:</label>
+                          <input type="number" class="form-control" name="cash_baht" value="{{item[5]}}">
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                          <label for="pwd">ຈຳນວນເງິນໂດລາ:</label>
+                          <input type="number" class="form-control" name="cash_dollar" value="{{item[6]}}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">ວັນທີຊຳລະ:</label>
+                        <input type="text" id="" class="form-control" name="up_bill_date" value="{{item[3]}}" disabled/>
+                      </div>
+                      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
+                          ບັນທຶກ</button>
+                      </div>
+                    </form>
+
+                </div>
+              </div>
+            </div>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function deleteitem(id) {
+    swal({
+      title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
+      text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
+      cancelButtonText: 'ບໍ່,ກັບຄືນ!',
+    }).then(function () {
+      location.href = "/income_delete/" + id;
+    })
+  }
+</script>
+<script>
+  document.getElementById('dt').max = new Date(
+    new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+</script>
+{% endblock %}
