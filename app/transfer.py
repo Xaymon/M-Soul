@@ -29,7 +29,11 @@ def hometf():
         sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
         cur.execute(sql)
         bank_from = cur.fetchall()
-        return render_template('transfer/index.html', all_rate=all_rate, bank_from=bank_from)
+        currate = gobal.con.cursor()
+        sql = "SELECT curency_code, curency_name, buy, sale FROM public.exchange_rate where date_end isnull order by curency_code "
+        currate.execute(sql)
+        rate_ = currate.fetchall()
+        return render_template('transfer/index.html', all_rate=all_rate, bank_from=bank_from, rate_=rate_)
 
 
 @app.route('/save_lao_thai', methods=['POST'])
@@ -198,9 +202,12 @@ def save_thai_lao():
             VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s, %s, %s, %s,%s, %s, %s);
             """
             if currency_code_tl != '' and from_bank_pay != '':
-                val1 = (doc_no, currency_code_tl,cash_value_tl, rate_c_tl, total_baht_tl, 5, -1, '', '', 0,)
-                val2 = (doc_no, from_bank_pay,bank_amount_tl, rate_bank_tl, total_bank_amount_tl, 5, -1, bank_account_code, bank_account_name, fee_tl,)
-                val3 = (doc_no, from_bank_tl, trans_incom,'1', trans_incom, 4, 1, '', '', 0)
+                val1 = (doc_no, currency_code_tl, cash_value_tl,
+                        rate_c_tl, total_baht_tl, 5, -1, '', '', 0,)
+                val2 = (doc_no, from_bank_pay, bank_amount_tl, rate_bank_tl,
+                        total_bank_amount_tl, 5, -1, bank_account_code, bank_account_name, fee_tl,)
+                val3 = (doc_no, from_bank_tl, trans_incom,
+                        '1', trans_incom, 4, 1, '', '', 0)
                 valct = [(val1), (val2), (val3)]
                 cur.executemany(sqldetail, valct)
                 gobal.con.commit()

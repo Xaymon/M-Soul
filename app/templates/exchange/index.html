@@ -36,243 +36,46 @@
         {% endwith %}
         <div class="card-body" style="background-color:darkcyan;border-top: 2px solid black;">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <!-- <div class="card-header text-primary">
                             <center>ການແລກປ່ຽນເງິນຕາ</center>
                             <a href="/listeexch" class="btn btn-sucess"> ເລືອກລາຍການ</a>
                         </div> -->
                     <div class="card-body"
                         style="background-color: darkslategrey;border-radius: 12px;color: white; width: auto;">
-                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                            style="align-self: center;">
-                        
-                        </button> -->
                         <a href="/sale" class="btn btn-primary form-control">ຊື້-ຂາຍເງິນຕາ</a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document" style="max-width: 60%;">
-                                <div class="modal-content ">
-                                    <div class="modal-header " style="background-color:#9F9F9F;">
-                                        <!-- <h5 class="modal-title text-secondary" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນ</h5> -->
-                                        <button type="button" class="close btn-danger" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body" style="background-color: #EFEFEF;">
-                                        <form>
-                                            <h4 class="text-dark col-sm-6">ປະເພດຮັບ</h4>
-                                            <br>
-                                            <div class="form-row col-sm-12" style="justify-content: space-around;">
-                                                <div class="form-group col-sm-6">
-                                                    <label for="inputName" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ຊື່ລູກຄ້າ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            id="inputName" placeholder="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-sm-6" style="justify-content: flex-end;">
-                                                    <label for="inputTel" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ເບີໂທ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="tel" class="form-control form-control-sm"
-                                                            id="inputTel" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row col-sm-12" style="justify-content: flex-start;">
-                                                <div class="form-group col-sm-6">
-                                                    <label for="inputSelect" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ປະເພດການເເລກປ່ຽນ</label>
-                                                    <div class="col-sm-10">
-                                                        <select class="form-control form-control-sm " id="inputSelect">
-                                                            <option value="">ເລືອກ</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="form-row col-sm-12" style="justify-content: space-around;">
-                                                <div class="form-group col-sm-6">
-                                                    <label for="inputCash" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ຮັບເງິນສົດ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="inputCash" placeholder="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="inputTran" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ຮັບເງິນໂອນ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="inputTran" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <hr>
-                                            <h4 class="text-dark col-sm-6">ປະເພດຈ່າຍ</h4>
-                                            <br>
-                                            <div class="form-row col-sm-12" style="justify-content: flex-start;">
-                                                <div class="form-group col-sm-6">
-                                                    <label for="inputMoney" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ຈຳນວນເງິນ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="inputMoney" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row col-sm-12" style="justify-content: flex-start;">
-                                                <div class="form-group col-sm-6">
-                                                    <label for="payCash" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ຈ່າຍສົດ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="payCash" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row col-sm-36" style="justify-content: space-around;">
-                                                <div class="form-group col-sm-3">
-                                                    <label for="inputCash" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ຈ່າຍໂອນ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="inputCash" placeholder="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-sm-3" style=" margin-left: -100px;">
-                                                    <label for="inputTran" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ເລກບັນຊີ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            id="inputTran" placeholder="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-sm-3" style=" margin-left: -100px;">
-                                                    <label for="inputPrice" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ມູນຄ່າ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="inputPrice" placeholder="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-sm-3" style=" margin-left: -100px;">
-                                                    <label for="inputFee" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ຄ່າທຳນຽມ</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="inputFee" placeholder="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-sm-3" style=" margin-left: -100px;">
-                                                    <label for="inputTotal" class="text-dark col-sm-6"
-                                                        style="font-weight: bold;">ລວມ</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="number" class="form-control form-control-sm"
-                                                            id="inputTotal" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">ຍົກເລີກ</button>
-                                        <button type="button" class="btn btn-primary">ບັນທຶກ</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <form action="/save_ex" id="form" method="post" enctype="multipart/form-data">
-                            <div class="form-group" ;>
-                                <label for="">ຊື່ລູກຄ້າ/ເບີໂທ<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" placeholder="ຊື່ລູກຄ້າ/ເບີໂທ" name="customer_"
-                                    id="customer_" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ປະເພດການແລກປ່ຽນ</label>
-                                <select class="form-control" id="rate_code" name="rate_code" OnChange="fnshowrate();">
-                                    <option value="" selected>ເລືອກ</option>
-                                    <option value="01">ກິບ-ບາດ</option>
-                                    <option value="02">ບາດ-ກີບ</option>
-                                    <option value="03">ກີບ-ໂດລາ</option>
-                                    <option value="04">ໂດລາ-ກິບ</option>
-                                    <option value="05">ບາດ-ໂດລາ</option>
-                                    <option value="06">ໂດລາ-ບາດ</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ປະເພດການຮັບເງິນ</label>
-                                <select class="form-control" id="recive_type" name="recive_type"
-                                    onchange="recivetype_();">
-                                    <option value="" selected>ເລືອກ</option>
-                                    <option value="01">ສົດ</option>
-                                    <option value="02">ໂອນ</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ເຂົ້າບັນຊີ</label>
-                                <select class="form-control" id="rc_bank_trans" name="rc_bank_trans">
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ອັດຕາແລກປ່ຽນ</label>
-                                <input type="hidden" class="form-control" id="ex_1" value="0" readonly name="ex_1">
-                                <input type="hidden" class="form-control" id="ex_2" value="0" readonly name="ex_2">
-                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນຮັບ" id="rate_show"
-                                    value="0" readonly name="rate_show">
-                            </div>
-                            <div class="form-group">
-                                <label for="">ຈຳນວນເງິນທີ່ຮັບ<span style="color: red;">*</span></label>
-                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" id="vale_tt"
-                                    OnChange="fncSum();" name="vale_tt" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ປະເພດການຈ່າຍ</label>
-                                <select class="form-control" id="paytype" name="paytype" onchange="paytype_();">
-                                    <option value="" selected>ເລືອກ</option>
-                                    <option value="01">ສົດ</option>
-                                    <option value="02">ໂອນ</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ເລືອກບັນຊີ</label>
-                                <select class="form-control" id="bank_pay" name="bank_pay">
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ຈຳນວນເງິນ</label>
-                                <input type="number" class="form-control" placeholder="ຈຳນວນເງິນ" onchange="sum_b()"
-                                    name="tt_amount" id="total_pay" value="0">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm btn-block">ບັນທຶກ</button>
-                            </div>
-                        </form> -->
                     </div>
+                    <table style="width:100%; background-color: white;border-radius: 12px;">
+                        <tr>
+                            <th>
+                                <center>
+                                    <h5>ອັດຕາແລກປ່ຽນປະຈຳວັນ</h5>
+                                </center>
+                                <table class="table table-sm table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ລະຫັດ</th>
+                                            <th scope="col">ສະກຸນເງິນ</th>
+                                            <th scope="col">ຊື້</th>
+                                            <th scope="col">ຂາຍ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in rate_ %}
+                                        <tr>
+                                            <td style="text-align: right;">{{item[0]}}</td>
+                                            <td style="text-align: left;">{{item[1]}}</td>
+                                            <td style="text-align: right;">{{item[2]}}</td>
+                                            <td style="text-align: right;">{{item[2]}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </th>
+                        </tr>
+                    </table>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-10">
                     <div class="card">
                         <div class="card-header"
                             style="text-align: center;font-weight: bold;background-color: darkslategrey; color: white;">
@@ -282,29 +85,38 @@
                             <table class="table table-hover" id="myTable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ລູກຄ້າ</th>
                                         <th scope="col">ວັນ/ເວລາ</th>
-                                        <th scope="col">ຈຳນວນເງິນຮັບ</th>
+                                        <th scope="col">ເລກທີ</th>
+                                        <th scope="col">ຊື່ລູກຄ້າ</th>
+                                        <th scope="col">ເບີໂທ</th>
+                                        <th scope="col">ສະກຸນເງິນຮັບ</th>
+                                        <th scope="col">ມູນຄ່າ</th>
                                         <th scope="col">ອັດຕາແລກປ່ຽນ</th>
-                                        <th scope="col">ຈຳນວນເງິນຈ່າຍ</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">ສະກຸນເງິນຈ່າຍ</th>
+                                        <th scope="col">ມູນຄ່າ</th>
+                                        <th scope="col">ເບີ່ງ</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {% for item in rate_trans %}
                                     <tr>
-                                        <td style="text-align: left; font-weight: bold;">{{item[5]}}</td>
-                                        <td style="text-align: left; font-weight: bold;">{{item[1]}}</td>
-                                        <td style="text-align: right;">{{item[2]}}</td>
-                                        <td style="text-align: right;">{{item[3]}}</td>
-                                        <td style="text-align: right;">{{item[4]}}</td>
-                                        <td style="text-align: center;"><a href="/ex_update/{{item[0]}}"> <span
+                                        <td style="text-align: left;">{{item[0]}}</td>
+                                        <td style="text-align: left;">{{item[1]}}</td>
+                                        <td style="text-align: left;">{{item[2]}}</td>
+                                        <td style="text-align: left;">{{item[3]}}</td>
+                                        <td style="text-align: center;">{{item[4]}}</td>
+                                        <td style="text-align: right;">{{item[5]}}</td>
+                                        <td style="text-align: right;">{{item[6]}}</td>
+                                        <td style="text-align: center;">{{item[7]}}</td>
+                                        <td style="text-align: right;">{{item[8]}}</td>
+                                        <td style="text-align: center;"></td>
+                                        <!-- <td style="text-align: center;"><a href="/ex_update/{{item[0]}}"> <span
                                                     style="color: #004071;"><i
                                                         class="bi bi-pencil-square"></i></span></a>&nbsp&nbsp<a href="#"
                                                 onclick="deleteitem({{item[0]}})"><i class="bi bi-trash-fill"
                                                     id="bitrash"></i></a>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     {% endfor %}
                                 </tbody>
