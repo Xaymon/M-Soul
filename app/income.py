@@ -67,9 +67,8 @@ def update_income(id):
             cash_kip =  request.form['cash_kip']
             cash_baht = request.form['cash_baht']
             cash_dollar = request.form['cash_dollar']
-            up_bill_date = request.form['up_bill_date']
 
             # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-            cur.execute('update public.tb_income set item_name=%s, cash_kip=%s, cash_baht=%s, cash_dollar=%s, bill_date=%s where roworder=%s',(item_name, cash_kip, cash_baht, cash_dollar, up_bill_date,(id,)))
+            cur.execute('update public.tb_income set item_name=%s, cash_kip=%s, cash_baht=%s, cash_dollar=%s where roworder=%s',(item_name, cash_kip, cash_baht, cash_dollar,(id,)))
             gobal.con.commit()
             return redirect(url_for('income'))

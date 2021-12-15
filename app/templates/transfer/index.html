@@ -1,5 +1,5 @@
 {% extends "layout/layout.html" %}
-{% block title %}ບໍລິສັດຂ້າມຂອງ{% endblock %}
+{% block title %}ໂອນ​ເງິນ{% endblock %}
 {% block head %}
 <style>
   /* .modal-dialog {
@@ -108,11 +108,11 @@
 
               <!-- Modal Lao Thai-->
               <div class="modal fade" id="laothai" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                aria-hidden="true" style="margin-top: 5px; margin-bottom: 5px;">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 70%;">
                   <div class="modal-content">
                     <form action="/save_lao_thai" method="post">
-                      <div class="modal-header">
+                      <div class="modal-header" style="background-color: #008B8B;">
                         <h5 class="modal-title" id="exampleModalLongTitle">
                           <b>
                             ໂອນເງິນ ລາວ-ໄທ
@@ -122,44 +122,58 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body">
+                      <div class="modal-body" style="background-color: #8DCBCB;">
                         <div class="container">
-                          <center>
+                          <div style="background-color: #008B8B; border-radius: 8px;">
+                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
                             <h6>
                               <b>
                                 ຂໍ້ມູນລູກຄ້າ
                               </b>
                             </h6>
-                          </center>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-7">
+                          </div>
+                          <!-- <hr> -->
+                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
+                            <div class="col-sm-1">
+                              <div class="form-group text-white" style="text-align: right;">
+                                <label for="exampleFormControlSelect1">ຊື່</label>
+                              </div>
+                            </div>
+                            <div class="col-sm-5">
                               <div class="form-group">
-                                <label for="exampleFormControlSelect1">ຊື</label>
-                                <input class="form-control form-control-sm " type="text" placeholder="ຊື"
+                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
+                                <input class="form-control form-control-sm " type="text" placeholder="ຊື່"
                                   name="customername" style="text-align: left;" id="" required>
                               </div>
                             </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
+
+                            <div class="col-sm-1">
+                              <div class="form-group text-white" style="text-align: right;">
                                 <label for="exampleFormControlSelect1">ເບີໂທ</label>
-                                <input class="form-control form-control-sm " type="text" placeholder="ເບີໂທ" name="tel"
-                                  style="text-align: left;" id="">
+                              </div>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="form-group">
+                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
+                                <input class="form-control form-control-sm " type="text" placeholder="ເບີໂທ"
+                                  name="tel" style="text-align: left;" id="" required>
                               </div>
                             </div>
                           </div>
-                          <hr>
-                          <center>
+                          </div>
+                          <br>
+
+                          <div style="background-color: #008B8B; border-radius: 8px;">
+                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
                             <h6>
                               <b>
                                 ທະນາຄານປາຍທາງ
                               </b>
                             </h6>
-                          </center>
-                          <hr>
-                          <div class="row">
+                          </div>
+                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ເລືອກທະນາຄານປາຍທາງ</label>
                                 <select class="form-control form-control-sm" id="to_bank" name="bank_to" required
                                   onchange="bank_tt()">
@@ -174,21 +188,21 @@
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
                                 <input class="form-control form-control-sm " type="text" placeholder="ຊື່ບັນຊີ"
                                   name="bankaccountname" style="text-align: left;" id="">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ເລກບັນຊີ</label>
                                 <input class="form-control form-control-sm " type="text" placeholder="ເລກບັນຊີ"
                                   name="bank_account_code" style="text-align: left;" id="">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ປາຍທາງໃດ້ຮັບ</label>
                                 <input class="form-control form-control-sm " type="number" placeholder="0"
                                   name="total_pays" style="text-align: right;" value="0" id="total_pays"
@@ -196,20 +210,21 @@
                               </div>
                             </div>
                           </div>
-                          <hr>
-                          <center>
+                          </div>
+                          <br>
+                          <div style="background-color: #008B8B; border-radius: 8px;">
+                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
                             <h6>
                               <b>
                                 ເງື່ອນໃຂການຮັບເງິນ
                               </b>
                             </h6>
-                          </center>
-                          <hr>
-                          <div class="row">
+                          </div>
+                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
                             <!-- <div class="col-sm-3">
                             </div> -->
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white" style="text-align: right;">
                                 <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
                               </div>
                             </div>
@@ -221,8 +236,9 @@
                                   onchange="add_charge();">
                               </div>
                             </div>
+                            
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white" style="text-align: right;">
                                 <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
                               </div>
                             </div>
@@ -234,11 +250,14 @@
                                   readonly>
                               </div>
                             </div>
+
                           </div>
-                          <hr>
+                          </div>
+                          <br>
+                          <div style="background-color: #008B8B; padding: 20px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
                           <div class="row">
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
                                 <select class="form-control form-control-sm" id="currency_code"
                                   name="cash_currency_code" onchange="show_rate()">
@@ -250,31 +269,31 @@
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
                                 <input class="form-control form-control-sm" type="number" name="total_baht"
                                   style="text-align: right;" id="total_baht" value="0" onchange="sum_back()">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">Rate</label>
                                 <input class="form-control form-control-sm" type="number" name="rate_con"
                                   style="text-align: right;" id="rate_con" readonly value="0">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ເງິນສົດຕາມສະກູນເງິນ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0" required
                                   name="cash_value" style="text-align: right;" onchange="sum_paybycash();"
                                   id="cash_value">
                               </div>
                             </div>
-                          </div>
+                          </div><hr style="background-color: #2F4F4F;">
                           <div class="row">
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຮັບເຂົ້າບັນຊີ</label>
                                 <select class="form-control form-control-sm" id="bank_from" name="bank_from"
                                   onchange="bank_ft()">
@@ -286,7 +305,7 @@
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
                                 <input class="form-control form-control-sm" type="number" value="0"
                                   name="total_bank_amount" required style="text-align: right;" id="total_bank_amount"
@@ -294,14 +313,14 @@
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">rate</label>
+                              <div class="form-group text-white">
+                                <label for="exampleFormControlSelect1">Rate</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0"
                                   name="rate_bank" required style="text-align: right;" id="rate_bank">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າທີ່ລູກຄ້າຕ້ອງໂອນ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0"
                                   name="bank_amount" required style="text-align: right;" id="bank_amount" value="0"
@@ -309,21 +328,24 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row">
+                        </div>
+                        <br>
+                          <div class="row" style="background-color: #008B8B; border-radius: 8px;padding-top: 8px;margin-left: 5px;margin-right: 5px;margin-top: -20px;margin-bottom: -10px;
+                          align-items: center;border: 2px solid #2F4F4F;">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-3 text-white" style="text-align: right;">
+                              <label for="exampleFormControlSelect1"><h5><b>ລວມມູນຄ່າ</b></h5></label>
+                            </div>
                             <div class="col-sm-5">
-                            </div>
-                            <div class="col-sm-4">
-                              <label for="exampleFormControlSelect1">ລວມມູນຄ່າ</label>
-                            </div>
-                            <div class="col-sm-3">
                               <div class="form-group">
                                 <!-- <label for="exampleFormControlSelect1">ລວມມູນຄ່າ</label> -->
-                                <input class="form-control form-control-sm" type="number" placeholder="0"
-                                  name="total_amount" required style="text-align: right;" id="total_amount">
+                                <input class="form-control form-control-md" type="number" placeholder="0"
+                                  name="total_amount" required style="text-align: right" id="total_amount">
                               </div>
                             </div>
                           </div>
-                          <hr>
+                          <!-- <hr> -->
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -334,13 +356,14 @@
                   </div>
                 </div>
               </div>
-              <!-- Modal  Thai Lao-->
+
+              <!-- Modal Thai Lao -->
               <div class="modal fade" id="thailao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 70%;">
                   <div class="modal-content">
                     <form action="/save_thai_lao" method="post">
-                      <div class="modal-header">
+                      <div class="modal-header" style="background-color: #008B8B;">
                         <h5 class="modal-title" id="exampleModalLongTitle">
                           <b>
                             ໂອນເງິນ ໄທ-ລາວ
@@ -350,44 +373,56 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body">
+                      <div class="modal-body" style="background-color: #8DCBCB;">
                         <div class="container">
-                          <center>
+                          <div style="background-color: #008B8B; border-radius: 8px;">
+                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
                             <h6>
                               <b>
                                 ຂໍ້ມູນລູກຄ້າ
                               </b>
                             </h6>
-                          </center>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-7">
+                          </div>
+                          <!-- <hr> -->
+                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
+                            <div class="col-sm-1">
+                              <div class="form-group text-white" style="text-align: right;">
+                                <label for="exampleFormControlSelect1">ຊື່</label>
+                              </div>
+                            </div>
+                            <div class="col-sm-5">
                               <div class="form-group">
-                                <label for="exampleFormControlSelect1">ຊື</label>
                                 <input class="form-control form-control-sm " type="text" placeholder="ຊື"
                                   name="customername_tl" style="text-align: left;" id="" required>
                               </div>
                             </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
+
+                            <div class="col-sm-1">
+                              <div class="form-group text-white" style="text-align: right;">
                                 <label for="exampleFormControlSelect1">ເບີໂທ</label>
+                              </div>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="form-group">
                                 <input class="form-control form-control-sm " type="text" placeholder="ເບີໂທ"
                                   name="tel_tl" style="text-align: left;" id="">
                               </div>
                             </div>
                           </div>
-                          <hr>
-                          <center>
+                          </div>
+                          <br>
+
+                          <div style="background-color: #008B8B; border-radius: 8px;">
+                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
                             <h6>
                               <b>
                                 ທະນາຄານທີ່ໂອນເຂົ້າ
                               </b>
                             </h6>
-                          </center>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group">
+                          </div>
+                          <div class="row" style="margin-bottom: -15px; padding-top: 5px;border-radius: 8px;margin-left: 130px;margin-right: 130px;">
+                            <div class="col-sm-4">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ເລືອກທະນາຄານ</label>
                                 <select class="form-control form-control-sm" id="to_bank" name="from_bank_tl" required
                                   onchange="bank_tt()">
@@ -401,12 +436,12 @@
                                 </select>
                               </div>
                             </div>
+
                             <div class="col-sm-3">
                             </div>
-                            <div class="col-sm-3">
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
+                        
+                            <div class="col-sm-4" style="margin-left: 15px;">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຍອດທີ່ໂອນມາ</label>
                                 <input class="form-control form-control-sm " type="number" placeholder="0"
                                   name="trans_incom" style="text-align: right;" value="0" id="trans_incom"
@@ -414,49 +449,46 @@
                               </div>
                             </div>
                           </div>
-                          <hr>
-                          <center>
+                          </div>
+                          <br>
+                          <div style="background-color: #008B8B; border-radius: 8px;">
+                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
                             <h6>
                               <b>
-                                ເງື່ອນໄຂຈ່າຍເງິນ
+                                ເງື່ອນໄຂການຈ່າຍເງິນ
                               </b>
                             </h6>
-                          </center>
-                          <hr>
-                          <div class="row">
-                            <!-- <div class="col-sm-3">
-                          </div> -->
-                            <div class="col-sm-3">
-                              <div class="form-group">
+                          </div>
+                          
+                          <div class="row" style="margin-bottom: -15px; padding-top: 5px;border-radius: 8px;margin-left: 130px;margin-right: 130px;">
+                            <div class="col-sm-4">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
-                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
                                 <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
                                   name="service_charge_tl" required style="text-align: right;" id="service_charge_tl"
                                   onchange="trans_pass_service_tl();">
                               </div>
                             </div>
+
                             <div class="col-sm-3">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
-                              </div>
                             </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
-                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
+                        
+                            <div class="col-sm-4" style="margin-left: 15px;">
+                              <div class="form-group text-white">
+                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
                                   name="total_befor_pay_tl" required style="text-align: right;" id="total_befor_pay_tl"
                                   readonly>
                               </div>
                             </div>
                           </div>
-                          <hr>
+
+                          </div>
+                          <br>
+                          <div style="background-color: #008B8B; padding: 20px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
                           <div class="row">
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
                                 <select class="form-control form-control-sm" id="currency_code_tl"
                                   name="currency_code_tl" onchange="show_rate_tl()">
@@ -468,31 +500,33 @@
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
                                 <input class="form-control form-control-sm" type="number" name="total_baht_tl"
                                   style="text-align: right;" id="total_baht_tl" value="0" onchange="sum_cash_tl()">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">Rate</label>
                                 <input class="form-control form-control-sm" type="number" name="rate_c_tl"
                                   style="text-align: right;" id="rate_c_tl" readonly value="0">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">ເງິນສົດຕາມສະກູນເງິນ</label>
+                              <div class="form-group text-white">
+                                <label for="exampleFormControlSelect1">ເງິນສົດຕາມສະກຸນເງິນ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0" required
                                   name="cash_value_tl" style="text-align: right;" id="cash_value_tl">
                               </div>
                             </div>
                           </div>
-                          <hr>
+                        </div>
+
+                        <div style="background-color: #008B8B; padding: 20px;margin-top: 5px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
                           <div class="row">
-                            <div class="col-sm-4">
-                              <div class="form-group">
+                            <div class="col-sm-3">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຈາກບັນຊີ</label>
                                 <select class="form-control form-control-sm" id="from_bank_pay" name="from_bank_pay"
                                   onchange="bank_TL()">
@@ -503,24 +537,24 @@
                                 </select>
                               </div>
                             </div>
-                            <div class="col-sm-4">
-                              <div class="form-group">
+                            <div class="col-sm-3">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຫາເລກບັນຊີ</label>
                                 <input class="form-control form-control-sm" type="text" placeholder="ເລກບັນຊີ"
                                   name="bank_account_code" style="text-align:left;" id="bank_account_code">
                               </div>
                             </div>
-                            <div class="col-sm-4">
-                              <div class="form-group">
+                            <div class="col-sm-3">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
                                 <input class="form-control form-control-sm" type="text" placeholder="ຊື່ບັນຊີ"
                                   name="bank_account_name" style="text-align: left;" id="bank_account_name">
                               </div>
                             </div>
-                          </div>
+                          </div><hr style="background-color: #2F4F4F;">
                           <div class="row">
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
                                 <input class="form-control form-control-sm" type="number" value="0"
                                   name="total_bank_amount_tl" required style="text-align: right;"
@@ -528,21 +562,21 @@
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ຄ່າທຳນຽນ</label>
                                 <input class="form-control form-control-sm" type="number" value="0" name="fee_tl"
                                   required style="text-align: right;" id="fee_tl" onchange="sum_paybybank_tl()">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect1">rate</label>
+                              <div class="form-group text-white">
+                                <label for="exampleFormControlSelect1">Rate</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0"
                                   name="rate_bank_tl" required style="text-align: right;" id="rate_bank_tl">
                               </div>
                             </div>
                             <div class="col-sm-3">
-                              <div class="form-group">
+                              <div class="form-group text-white">
                                 <label for="exampleFormControlSelect1">ມູນຄ່າທີ່ຕ້ອງໂອນ</label>
                                 <input class="form-control form-control-sm" type="number" placeholder="0"
                                   name="bank_amount_tl" required style="text-align: right;" id="bank_amount_tl"
@@ -550,23 +584,25 @@
                               </div>
                             </div>
                           </div>
-                          <hr>
-                          <div class="row">
+                        </div>
+
+                        <br>
+                          <div class="row" style="background-color: #008B8B; border-radius: 8px;padding-top: 8px;margin-left: 5px;margin-right: 5px;margin-top: -20px;margin-bottom: -10px;
+                          align-items: center;border: 2px solid #2F4F4F;">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-3 text-white" style="text-align: right;">
+                              <label for="exampleFormControlSelect1"><h5><b>ລວມມູນຄ່າ</b></h5></label>
+                            </div>
                             <div class="col-sm-5">
-                            </div>
-                            <div class="col-sm-4">
-                              <label for="exampleFormControlSelect1">ລວມມູນຄ່າ</label>
-                            </div>
-                            <div class="col-sm-3">
                               <div class="form-group">
-                                <!-- <label for="exampleFormControlSelect1">ລວມມູນຄ່າ</label> -->
                                 <input class="form-control form-control-sm" type="number" placeholder="0"
                                   name="total_amount_tt_tl" required style="text-align: right;" id="total_amount_tt_tl"
                                   readonly>
                               </div>
                             </div>
                           </div>
-                          <hr>
+                          <!-- <hr> -->
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -577,6 +613,9 @@
                   </div>
                 </div>
               </div>
+
+
+
             </div>
           </div>
         </div>
@@ -631,6 +670,7 @@
     </div>
   </div>
 </div>
+
 <script>
   document.getElementById("total_bank_amount").readOnly = true;
   document.getElementById("rate_bank").readOnly = true;
