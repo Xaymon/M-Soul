@@ -15,12 +15,13 @@ def cashkip():
             dateTimeObj = datetime.now()
             timestampStr = dateTimeObj.strftime("%Y-%m-%d")
             cur = gobal.con.cursor()
-            sql = """SELECT  to_char(doc_date,'DD-MM-YYY HH24:MI:SS'),doc_no,case when trans_type='0' or trans_type='1' then 'ໂອນ' when trans_type='2' then 'ແລກປ່ຽນ' end trans_type,
+            sql = """SELECT  to_char(doc_date,'DD-MM-YYY HH24:MI:SS'),doc_no,case when trans_type='0' or trans_type='1' then 'ໂອນ' when trans_type='2' 
+                    then 'ແລກປ່ຽນ' when trans_type='5' then 'ລາຍຮັບອື່ນໆ' end trans_type,
                     to_char(case when calc_flag='1' then amount_1 else 0 end , '999G999G999G999D99') as Amount_in, 
                     to_char(case when calc_flag='-1' then amount_1 else 0 end , '999G999G999G999D99') as Amount_out, 
                     to_char(SUM((case when calc_flag='1' then amount_1 else 0 end) - (case when calc_flag='-1' then amount_1 else 0 end))
                     OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                    FROM cb_trans_detail where trans_number='01' and doc_date::date=current_date order by doc_date"""
+                    FROM cb_trans_detail where trans_number='01' and doc_date::date=current_date order by roworder ASC"""
             cur.execute(sql)
             kip = cur.fetchall()
 
@@ -42,7 +43,7 @@ def kipbydate():
                     to_char(case when calc_flag='-1' then amount_1 else 0 end , '999G999G999G999D99') as Amount_out, 
                     to_char(SUM((case when calc_flag='1' then amount_1 else 0 end) - (case when calc_flag='-1' then amount_1 else 0 end))
                     OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                    FROM cb_trans_detail where trans_number='01' and doc_date::date between %s and %s order by doc_date"""
+                    FROM cb_trans_detail where trans_number='01' and doc_date::date between %s and %s order by roworder ASC"""
             data = (from_date, to_date,)
             cur.execute(sql, data)
             kip = cur.fetchall()
@@ -63,10 +64,12 @@ def cashbaht():
                     to_char(case when calc_flag='-1' then amount_1 else 0 end , '999G999G999G999D99') as Amount_out, 
                     to_char(SUM((case when calc_flag='1' then amount_1 else 0 end) - (case when calc_flag='-1' then amount_1 else 0 end))
                     OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                    FROM cb_trans_detail where trans_number='00' order by doc_date"""
+                    FROM cb_trans_detail where trans_number='00' order by roworder ASC"""
             cur.execute(sql)
             baht = cur.fetchall()
-            return render_template('/report/cash/baht.html', baht=baht,from_date=timestampStr, to_date=timestampStr)
+            return render_template('/report/cash/baht.html', baht=baht, from_date=timestampStr, to_date=timestampStr)
+
+
 @app.route('/bahtbydate', methods=['POST'])
 def bahtbydate():
     with gobal.con:
@@ -82,11 +85,12 @@ def bahtbydate():
                     to_char(case when calc_flag='-1' then amount_1 else 0 end , '999G999G999G999D99') as Amount_out, 
                     to_char(SUM((case when calc_flag='1' then amount_1 else 0 end) - (case when calc_flag='-1' then amount_1 else 0 end))
                     OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                    FROM cb_trans_detail where trans_number='00' and doc_date::date between %s and %s order by doc_date"""
+                    FROM cb_trans_detail where trans_number='00' and doc_date::date between %s and %s order by roworder ASC"""
             data = (from_date, to_date,)
             cur.execute(sql, data)
             kip = cur.fetchall()
             return render_template('/report/cash/kip.html', kip=kip, from_date=from_date, to_date=to_date)
+
 
 @app.route('/cashdollar')
 def cashdollar():
@@ -102,10 +106,12 @@ def cashdollar():
                     to_char(case when calc_flag='-1' then amount_1 else 0 end , '999G999G999G999D99') as Amount_out, 
                     to_char(SUM((case when calc_flag='1' then amount_1 else 0 end) - (case when calc_flag='-1' then amount_1 else 0 end))
                     OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                    FROM cb_trans_detail where trans_number='02' order by doc_date"""
+                    FROM cb_trans_detail where trans_number='02' order by roworder ASC"""
             cur.execute(sql)
             dollar = cur.fetchall()
-            return render_template('/report/cash/dolla.html', dollar=dollar,from_date=timestampStr, to_date=timestampStr)
+            return render_template('/report/cash/dolla.html', dollar=dollar, from_date=timestampStr, to_date=timestampStr)
+
+
 @app.route('/dollatbydate', methods=['POST'])
 def dollatbydate():
     with gobal.con:
@@ -121,7 +127,7 @@ def dollatbydate():
                     to_char(case when calc_flag='-1' then amount_1 else 0 end , '999G999G999G999D99') as Amount_out, 
                     to_char(SUM((case when calc_flag='1' then amount_1 else 0 end) - (case when calc_flag='-1' then amount_1 else 0 end))
                     OVER (ORDER BY roworder ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), '999G999G999G999D99')  as Balance
-                    FROM cb_trans_detail where trans_number='00' and doc_date::date between %s and %s order by doc_date"""
+                    FROM cb_trans_detail where trans_number='00' and doc_date::date between %s and %s order by roworder ASC"""
             data = (from_date, to_date,)
             cur.execute(sql, data)
             kip = cur.fetchall()

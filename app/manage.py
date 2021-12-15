@@ -11,10 +11,9 @@ def manageexrate():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, buy, sale,roworder FROM public.exchange_rate order by roworder "
+            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, buy, sale,roworder FROM public.exchange_rate order by date_start::date DESC "
             cur.execute(sql)
             rate_ = cur.fetchall()
-
             return render_template('manage/addrate.html', rate_=rate_)
 
 @app.route('/ap')
