@@ -144,3 +144,83 @@ def ar_delete(id):
         gobal.con.commit()
         return redirect(url_for('ar'))
 
+
+@app.route('/setap')
+def setap():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            cur = gobal.con.cursor()
+            sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ap_supplier "
+            cur.execute(sql)
+            rate_trans = cur.fetchall()
+            return render_template('ap & ar/set_ap.html', rate_trans = rate_trans)
+
+@app.route('/setapcopy')
+def setapcopy():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            cur = gobal.con.cursor()
+            sql = "SELECT code, name_1, tel FROM public.ap_supplier "
+            cur.execute(sql)
+            rate_trans = cur.fetchall()
+            return render_template('ap & ar/set_ap copy.html', rate_trans = rate_trans)
+
+@app.route('/saveset_ap', methods=['POST'])
+def saveset_ap():
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            cur = gobal.con.cursor()
+            sql = """INSERT INTO public.set_ap (item_name, amount, currency_name, total)
+                     VALUES(%s,%s,%s,%s);
+                  """
+            # codee = request.form['codee']
+            item_name = request.form['item_name']
+            amount = request.form['amount']
+            currency_name = request.form['currency_name']
+            total = request.form['total']
+            data = (item_name, amount, currency_name, total)
+            cur.execute(sql, data)
+            gobal.con.commit()
+
+            return redirect(url_for('setapcopy'))
+
+@app.route('/send_ap', methods=['POST'])
+def send_ap():
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            codee = request.form['codee']
+            name_1 = request.form['name_1']
+            tel = request.form['tel']
+
+            # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
+            cur.execute('update public.ap_supplier set code=%s, name_1=%s, tel=%s where code=%s',
+                        (codee, name_1, tel))
+            gobal.con.commit()
+            return redirect(url_for('setapcopy'))
+
+@app.route('/send_apid/<string:id>',methods=['GET'])
+def send_apid(id):
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            sql = "SELECT code, name_1, tel FROM public.ap_supplier where code=%s"
+            cur = gobal.con.cursor()
+            cur.execute(sql,(id,))
+            selectapid = cur.fetchone()
+            sql_b = "SELECT code, name_1, tel from public.ap_supplier"
+            curs = gobal.con.cursor()
+            curs.execute(sql_b)
+        return render_template('ap & ar/set_ap copy.html',selectapid=selectapid)
+
+
