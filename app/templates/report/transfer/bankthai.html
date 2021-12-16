@@ -1,0 +1,71 @@
+{% extends "layout/layout.html" %}
+{% block title %}ລາຍງານການເຄື່ອນໃຫວ-ບັນຊີເງິນຝາກ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            ການເຄື່ອນໃຫວບັນຊີເງິນຝາກພາຍໃນປະເທດ
+        </div>
+        <div class="card-body">
+            <form action="/bank_report_sch" method="post">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <select class="form-control" id="" name="bank_code">
+                                <option value="">ເລືອກບັນຊີເງິນຝາກທະນາຄານ</option>
+                                {% for item in bank_from %}
+                                <option value="{{item[0]}}">{{item[1]}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="date" class="form-control form-control-sm" name="from_date" id="from_date"
+                                value="{{from_date}}">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="date" class="form-control form-control-sm" name="to_date" id=""
+                                value="{{to_date}}">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-sm btn-block">ຄົ້ນຫາ</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <h5>ລາຍງານການເຄື່ອນໃຫວ:&nbsp;{{bank_code}}</h5>
+            <hr>
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th scope="col">ວັນ/ເວລາ</th>
+                        <th scope="col">ເລກທີເອກະສານ</th>
+                        <th scope="col">ປະເພດການເຄື່ອນໃຫວ</th>
+                        <th scope="col">ຮັບເງິນ</th>
+                        <th scope="col">ຈ່າຍເງິນ</th>
+                        <th scope="col">ຄົງເຫຼືອ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in kip %}
+                    <tr>
+                        <td style="text-align: left;">{{item[0]}}</td>
+                        <td style="text-align: left;">{{item[1]}}</td>
+                        <td style="text-align: center;">{{item[2]}}</td>
+                        <td style="text-align: right;">{{item[3]}}</td>
+                        <td style="text-align: right;">{{item[4]}}</td>
+                        <td style="text-align: right;">{{item[5]}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

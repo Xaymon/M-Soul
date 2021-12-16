@@ -32,13 +32,13 @@ def product(id, v):
             union all
             select buy::text as exchange_rate,'00' as ex_1,'01' as ex_2,date_end from public.exchange_rate where curency_code='01'
             union all
-            select sale::text as exchange_rate,'01' as ex_1,'03' as ex_2,date_end from public.exchange_rate where curency_code='02'
+            select sale::text as exchange_rate,'01' as ex_1,'02' as ex_2,date_end from public.exchange_rate where curency_code='02'
             union all
-            select buy::text as exchange_rate,'03' as ex_1,'01' as ex_2,date_end from public.exchange_rate where curency_code='02'
+            select buy::text as exchange_rate,'02' as ex_1,'01' as ex_2,date_end from public.exchange_rate where curency_code='02'
             union all
-            select sale::text as exchange_rate,'00' as ex_1,'03' as ex_2,date_end from public.exchange_rate where curency_code='03'
+            select sale::text as exchange_rate,'00' as ex_1,'02' as ex_2,date_end from public.exchange_rate where curency_code='03'
             union all
-            select buy::text as exchange_rate,'03' as ex_1,'00' as ex_2,date_end from public.exchange_rate where curency_code='03') as a
+            select buy::text as exchange_rate,'02' as ex_1,'00' as ex_2,date_end from public.exchange_rate where curency_code='03') as a
             where date_end isnull and ex_1=%s and ex_2=%s"""
     cur = gobal.con.cursor()
     cur.execute(sql, (id, v))
