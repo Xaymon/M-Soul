@@ -8,13 +8,13 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <div class="container">
+            <form action="/dm_save" method="post">
                 <div class="row">
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">ເລືອກສະກຸນເງິນ <span
                                     style="color: red;">*</span></label>
-                            <select class="form-control" id="" required name="cur_code">
+                            <select class="form-control form-control-sm" id="" required name="cur_code">
                                 <option value="">ເລືອກ...</option>
                                 <option value="01">ກີບ</option>
                                 <option value="00">ບາດ</option>
@@ -25,40 +25,91 @@
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="pwd">ມູນຄ່າ:</label>
-                            <input type="number" class="form-control" name="amount" placeholder="0" required
-                                style="text-align: right;">
+                            <input type="number" class="form-control form-control-sm" name="amount" placeholder="0"
+                                required id="amount" style="text-align: right;">
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">ທະນາຄານ <span
-                                    style="color: red;">*</span></label>
-                            <select class="form-control" id="" required name="cur_code">
+                            <label for="exampleFormControlSelect1">ທະນາຄານ <span style="color: red;">*</span></label>
+                            <select class="form-control form-control-sm" id="" required name="bank_in"
+                                onchange="total_amount()">
                                 <option value="">ເລືອກ...</option>
-                                <option value="01">ກີບ</option>
-                                <option value="00">ບາດ</option>
-                                <option value="02">ໂດລາ</option>
+                                {% for item in bank_from %}
+                                <option value="{{item[0]}}">{{item[1]}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="pwd">ມູນຄ່າ:</label>
-                            <input type="number" class="form-control" name="amount" placeholder="0" required
-                                style="text-align: right;">
+                            <input type="number" class="form-control form-control-sm" name="amount_2" placeholder="0"
+                                readonly id="amount_2" style="text-align: right;">
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="pwd"></label>
-                            <button class="btn btn-primary form-control">
+                            <button class="btn btn-primary btn-sm btn-block">
                                 ບັນທຶກ
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+            <hr>
+            <table class="table table-sm table-hover" id="myTable">
+                <thead>
+                    <tr>
+                        <th scope="col">ວັນທີ</th>
+                        <th scope="col">ເລກທີເອກະສານ</th>
+                        <th scope="col">ເງິນສົດທີຈ່າຍອອກ</th>
+                        <th scope="col">ເຂົ້າທະນາຄານ</th>
+                        <th scope="col">ມູນຄ່າ</th>
+                        <th scope="col">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in dm %}
+                    <tr>
+                        <th style="text-align: left;">{{item[0]}}</th>
+                        <td style="text-align: left;">{{item[1]}}</td>
+                        <td style="text-align: center;">{{item[2]}}</td>
+                        <td style="text-align: left;">{{item[3]}}</td>
+                        <td style="text-align: right;">{{item[4]}}</td>
+                        <td style="text-align: center;"><a href="#"><i class="bi bi-pencil-square"></i></a><a href="#"
+                                onclick="deleteitem('{{item[1]}}')">
+                                <i class="bi bi-trash-fill"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+
         </div>
     </div>
 </div>
+<script>
+    function total_amount() {
+        k = document.getElementById("amount").value
+        console.log(k)
+        document.getElementById("amount_2").value = document.getElementById("amount").value
+    }
+    function deleteitem(id) {
+        swal({
+            title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
+            text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
+            cancelButtonText: 'ບໍ່,ກັບຄືນ!',
+        }).then(function () {
+            location.href = "/dm_delete/" + id;
+        })
+    }
+</script>
 {% endblock %}

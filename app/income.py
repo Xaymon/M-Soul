@@ -14,7 +14,7 @@ def income():
         else:
             cur = gobal.con.cursor()
             sql = """
-                   SELECT to_char(doc_date,'DD-MM-YYYY') , doc_no, cust_name, tel, item_name, amount||'-'||(select curency_name from tb_addcurrency where curency_code=item_code) FROM public.cb_trans where trans_type=5;
+                   SELECT doc_no, to_char(doc_date,'DD-MM-YYYY') , cust_name, tel, item_name, to_char(amount,'999G999G999G999D99')||'-'||(select curency_name from tb_addcurrency where curency_code=item_code) FROM cb_trans a where trans_type=5;
                   """
             cur.execute(sql)
             rate_trans = cur.fetchall()
@@ -76,8 +76,11 @@ def income_delete(id):
     else:
         print(id)
         cur = gobal.con.cursor()
-        sql = "delete from public.tb_income where roworder=%s"
+        sql = "delete from cb_trans where doc_no=%s"
         cur.execute(sql, (id,))
+        curs = gobal.con.cursor()
+        sql = "delete from cb_trans_detail where doc_no=%s"
+        curs.execute(sql, (id,))
         gobal.con.commit()
         return redirect(url_for('income'))
 

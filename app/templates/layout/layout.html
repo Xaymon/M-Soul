@@ -104,9 +104,9 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/outcome">ລາຍຈ່າຍ</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/dm">ຝາກເງິນທະນາຄານ</a>
+                        <a class="dropdown-item" href="/dm">ຝາກເງິນ</a>
                         <a class="dropdown-item" href="/wm">ຖອນເງິນ</a>
-                        <a class="dropdown-item" href="/tm">ໂອນເງິນ</a>
+                        <!-- <a class="dropdown-item" href="/tm">ໂອນເງິນ</a> -->
                     </div>
                 </li>
                 <!-- <li class="nav-item dropdown">
@@ -180,12 +180,12 @@
                         <a class="dropdown-item" href="/cashdollar">ການເຄື່ອນໃຫວເງິນສົດໂດລາ</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/cashkip">ລາຍຮັບຈາກການໂອນ</a>
-                        <a class="dropdown-item" href="/cashbaht">ການເຄື່ອນໃຫວເງິນສົດບາດ</a>
-                        <a class="dropdown-item" href="/cashdollar">ການເຄື່ອນໃຫວເງິນສົດໂດລາ</a>
+                        <!-- <a class="dropdown-item" href="/cashbaht">ການເຄື່ອນໃຫວເງິນສົດບາດ</a>
+                        <a class="dropdown-item" href="/cashdollar">ການເຄື່ອນໃຫວເງິນສົດໂດລາ</a> -->
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">ການເຄື່ອນໃຫວບັນຊືເງິນກີບ</a>
-                        <a class="dropdown-item" href="#">ການເຄື່ອນໃຫວບັນຊີເງິນບາດ</a>
-                        <a class="dropdown-item" href="#">ການເຄື່ອນໃຫວບັນຊີເງິນໂດລາ</a>
+                        <a class="dropdown-item" href="/bank_report">ການເຄື່ອນໃຫວບັນຊີເງິນຝາກ</a>
+                        <!-- <a class="dropdown-item" href="#">ການເຄື່ອນໃຫວບັນຊີເງິນບາດ</a>
+                        <a class="dropdown-item" href="#">ການເຄື່ອນໃຫວບັນຊີເງິນໂດລາ</a> -->
                     </div>
                 </li>
                 <li class="nav-item">
@@ -241,6 +241,25 @@
         });
         $(document).ready(function () {
             $('#Ratetable').DataTable({
+                "oLanguage": {
+                    "sSearch": "ຄົ້ນຫາ:"
+                },
+                'iDisplayLength': 10,
+                "language": {
+                    "lengthMenu": "ສະແດງ _MENU_ ລາຍການ",
+                    "zeroRecords": "ບໍ່ພົບລາຍການ - sorry",
+                    "info": "ໜ້າທີ _PAGE_ ຂອງ _PAGES_",
+                    "infoEmpty": "ບໍມີລາຍການ",
+                    "infoFiltered": "(ຄົ້ນຫາຈາກ _MAX_ ລາຍການ)",
+                    "paginate": {
+                        "previous": "ກັບຄືນ",
+                        "next": "ຕໍ່ໄປ"
+                    }
+                }
+            });
+        });
+        $(document).ready(function () {
+            $('#reporttb').DataTable({
                 "oLanguage": {
                     "sSearch": "ຄົ້ນຫາ:"
                 },

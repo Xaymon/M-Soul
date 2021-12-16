@@ -103,7 +103,7 @@
                 <td style="text-align: right;"> {{item[5]}}</td>
                 <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
                       data-target="#update_income/{{item[0]}}"></i></a>
-                  <a href="#" onclick="deleteitem({{item[0]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                  <a href="#" onclick="deleteitem('{{item[1]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
                 </td>
               </tr>
 
@@ -164,6 +164,7 @@
 </div>
 <script>
   function deleteitem(id) {
+    alert(id)
     swal({
       title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
       text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
@@ -174,7 +175,7 @@
       confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
       cancelButtonText: 'ບໍ່,ກັບຄືນ!',
     }).then(function () {
-      location.href = "/income_delete/" + id;
+      location.href = "/outcome_delete/" + id;
     })
   }
 </script>

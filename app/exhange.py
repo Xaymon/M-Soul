@@ -13,8 +13,8 @@ def homeex():
         else:
             cur = gobal.con.cursor()
             sql = """
-                    select to_char(doc_date, 'DD-MM-YYY HH24:MI:SS'),doc_no,cust_name,tel,(select curency_name from tb_addcurrency where curency_code=a.item_code) as item_code,amount,exchange_rate,
-                    (select curency_name from tb_addcurrency where curency_code=a.item_code_2) as item_code_2 ,amount_2 from cb_trans a where trans_type='2'
+                    select to_char(doc_date, 'DD-MM-YYY HH24:MI:SS'),doc_no,cust_name,tel,(select curency_name from tb_addcurrency where curency_code=a.item_code) as item_code,to_char(amount,'999G999G999G999D99'),exchange_rate,
+                    (select curency_name from tb_addcurrency where curency_code=a.item_code_2) as item_code_2 ,to_char(amount_2,'999G999G999G999D99') from cb_trans a where trans_type='2'
                      """
             cur.execute(sql)
             rate_trans = cur.fetchall()
@@ -83,7 +83,7 @@ def xchange_trans():
             return redirect("/login")
         else:
             customername = request.form['customername']
-            tel = request.form['rate']
+            tel = request.form['tel']
             main_cur = request.form['main_cur']
             rate = request.form['rate']
             cash_recipt = float(request.form['cash_recipt'])

@@ -1,6 +1,7 @@
 {% extends "layout/layout.html" %}
 {% block title %}ລາຍຮັບອື່ນໆ{% endblock %}
 {% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.5/gsap.min.js"></script>
 {{ super() }}
 {% endblock %}
 {% block content %}
@@ -50,7 +51,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">ເລືອກສະກຸນເງິນ <span style="color: red;">*</span></label>
-                  <select class="form-control" id="" required name="cur_code">
+                  <select class="form-control" id="" required name="cur_code" value="01">
                     <option value="">ເລືອກ...</option>
                     <option value="01">ກີບ</option>
                     <option value="00">ບາດ</option>
@@ -95,15 +96,15 @@
             <tbody>
               {% for item in rate_trans %}
               <tr>
-                <td>{{item[0]}}</td>
-                <td style="text-align: left;">{{item[1]}}</td>
+                <td>{{item[1]}}</td>
+                <td style="text-align: left;">{{item[0]}}</td>
                 <td style="text-align: left;">{{item[2]}}</td>
                 <td style="text-align: left;">{{item[3]}}</td>
                 <td style="text-align: left;"> {{item[4]}}</td>
                 <td style="text-align: right;"> {{item[5]}}</td>
                 <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
                       data-target="#update_income/{{item[0]}}"></i></a>
-                  <a href="#" onclick="deleteitem({{item[0]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                  <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
                 </td>
               </tr>
 
@@ -162,7 +163,7 @@
     </div>
   </div>
 </div>
-<script>
+<script  type="text/javascript">
   function deleteitem(id) {
     swal({
       title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
