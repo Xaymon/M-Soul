@@ -38,9 +38,10 @@
               <form class="" action="/save_ap" method="post">
                 
                 <div class="row">
+                <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
                 <div class="col-sm-3">
-                  <div class="form-group">
-                    <label for="usr">​ລະ​ຫັດປະ​ເພດ​:</label>
+                  <div class="form-group" style="text-align: right;">
+                    <label for="usr">ລະຫັດ:</label>
                   </div>
                 </div>
                 <div class="col-sm-9">
@@ -51,9 +52,10 @@
                 </div>
 
                 <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
                   <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="usr">​ຊື່:</label>
+                    <div class="form-group" style="text-align: right;">
+                      <label for="usr">ຊື່:</label>
                     </div>
                   </div>
                   <div class="col-sm-9">
@@ -64,8 +66,9 @@
                 </div>
 
                 <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
                   <div class="col-sm-3">
-                    <div class="form-group">
+                    <div class="form-group" style="text-align: right;">
                       <label for="usr">ເບີ​ໂທ:</label>
                     </div>
                   </div>
@@ -77,42 +80,80 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-2" style="text-align: left;">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3" style="text-align: right;">
                     <div class="form-group">
                       <label for="usr">​ແຂວງ:</label>
                     </div>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-9">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="province">
+                      <!-- <input type="text" class="form-control" name="province"> -->
+                      <select class="form-control form-control-sm" id="province"
+                      name="province" onchange="show_city_by_province()">
+                        <option selected value="" hidden>ເລືອກ...</option>
+                      {% for item in prov_list %}
+	                      <option value={{item[0]}}>{{item[1]}}</option>
+                      {% endfor %}           
+                      </select>
                     </div>
                   </div>
-                  <div class="col-sm-2">
+                </div>
+
+                <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3" style="text-align: right;">
                     <div class="form-group">
                       <label for="usr">​​ເມືອງ:</label>
                     </div>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-9">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="city">
+                      <!-- <input type="text" class="form-control" name="city"> -->
+                      <select class="form-control form-control-sm" id="city"
+                      name="city">
+                        <option selected value="" hidden>ເລືອກ...</option>
+                      {% for item in city_list %}
+	                      <option value={{item[0]}}>{{item[1]}}</option>
+                      {% endfor %}           
+                      </select>
                     </div>
                   </div>
                   </div>
 
-                <div class="form-group">
-                  <label for="usr">​ທີ່​ຢູ່:</label>
-                  <input type="text" class="form-control" name="address">
-                </div>
+                  <div class="row">
+                    <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                    <div class="col-sm-3" style="text-align: right;">
+                      <div class="form-group">
+                        <label for="usr">​ທີ່​ຢູ່:</label>
+                      </div>
+                    </div>
+                    <div class="col-sm-9">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="address">
+                      </div>
+                    </div>
+                    </div>
 
                 <!-- <div class="form-group">
                   <label for="pwd">​ມູນ​ຄ່າ:</label>
                   <input type="number" class="form-control" name="amount"/>
                 </div> -->
-                <div class="form-group">
-                  <label for="usr">​ໝາຍ​ເຫດ:</label>
-                  <input type="text" class="form-control" name="remark"/>
-                  <!-- <textarea class="form-control" name="remark" rows="2" cols="49"></textarea> -->
-                </div>
+
+                <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">​ໝາຍ​ເຫດ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <!-- <input type="text" class="form-control" name="remark"/> -->
+                        <textarea type="text" class="form-control" id="textAreaExample" rows="3" name="remark"></textarea>
+                    </div>
+                  </div>
+                  </div>
                 <br>
                 <center>
                 <button type="submit" class="btn btn-primary form-control" style="width: 130px;">ບັນທຶກ</button>
@@ -127,14 +168,14 @@
           <table class="table table-sm table-hover table-striped table-success" id="Ratetable">
             <thead>
               <tr>
-                <th scope="col">ລະ​ຫັດປະ​ເພດ</th>
-                <th scope="col">​ຊື່</th>
-                <th scope="col">​ເບີ​ໂທ</th>
-                <th scope="col">ແຂວງ</th>
-                <th scope="col">ເມືອງ</th>
-                <th scope="col">ທີ່​ຢູ່</th>
-                <th scope="col">​ໝາຍ​ເຫດ</th>
-                <th scope="col">Action</th>
+                <th scope="col" style="width:15%">ລະຫັດ</th>
+                <th scope="col" style="width:25%">ຊື່</th>
+                <th scope="col" style="width:15%">​ເບີ​ໂທ</th>
+                <th scope="col" style="width:20%">ແຂວງ</th>
+                <th scope="col" style="width:20%">ເມືອງ</th>
+                <th scope="col" style="width:20%">ທີ່​ຢູ່</th>
+                <th scope="col" style="width:25%; columns: 300px;">​ໝາຍ​ເຫດ</th>
+                <th scope="col" style="width:15%">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -146,7 +187,7 @@
                   <td style="text-align: left;">{{item[3]}}</td>
                   <td style="text-align: left;">{{item[4]}}</td>
                   <td style="text-align: left;">{{item[5]}}</td>
-                  <td style="text-align: left;">{{item[6]}}</td>
+                  <td style="text-align: left;columns: 300px">{{item[6]}}</td>
                   <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal" data-target="#update_ap/{{item[0]}}"></i></a>
                     <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
                   </td>
@@ -167,11 +208,11 @@
                     <form class="" action="/update_ap/{{item[0]}}" method="post">
                       <input type="hidden" name="" value="">
                       <div class="form-group">
-                        <label for="usr">ລະ​ຫັດປະ​ເພດ​:</label>
+                        <label for="usr">ປະ​ເພດ​ຂອງ​ໜີ້:</label>
                         <input type="text" class="form-control" name="codee" value="{{item[0]}}">
                       </div>
                       <div class="form-group">
-                        <label for="usr">​ຊື່:</label>
+                        <label for="usr">ລາຍ​ການ:</label>
                         <input type="text" class="form-control" name="name_1" value="{{item[1]}}">
                       </div>
                       <div class="form-group">
@@ -183,13 +224,25 @@
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                           <label for="usr">​ແຂວງ:</label>
-                          <input type="text" class="form-control" name="province" value="{{item[3]}}">
+                          <input type="text" class="form-control" name="province" value="{{item[3]}}"/>
+                          <!-- <select class="form-control form-control-sm" id="province"
+                          name="province" value="{{item[3]}}" required onchange="show_city_by_province()">
+                          {% for item in prov_list %}
+                            <option value="{{item[0]}}">{{item[1]}}</option>
+                          {% endfor %}           
+                          </select> -->
                         </div>
                         <div class="form-group col-md-2 col-sm-12">
                         </div>
-                        <div class="form-group col-md-4 col-sm-12">
+                        <div class="form-group col-md-5 col-sm-12">
                           <label for="usr">​​ເມືອງ:</label>
                           <input type="text" class="form-control" name="city" value="{{item[4]}}"/>
+                          <!-- <select class="form-control form-control-sm" id="city"
+                          name="city"  value="{{item[4]}}">
+                          {% for item in city_list %}
+                            <option value={{item[0]}}>{{item[1]}}</option>
+                          {% endfor %}           
+                          </select> -->
                         </div>
                       </div>
                       <div class="form-group">
@@ -233,6 +286,19 @@
     }).then(function () {
       location.href = "/ap_delete/" + id;
     })
+  }
+
+  function show_city_by_province(){
+    x = document.getElementById("province").value
+    y = document.getElementById("city").value
+    if (x == '01') {
+      document.getElementById("city").value = "VTP01";
+      document.getElementById("city").value.style.display = "inline";
+    }
+    else if(x != 01){
+
+      
+    }
   }
 </script>
 {% endblock %}
