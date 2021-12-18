@@ -35,19 +35,19 @@
             </div>
             <div class="card-body">
 
-              <form class="" action="/send_ap" method="post">
+              <form class="" action="/send_apid" method="get">
                 <div class="row">
-                <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
-                <div class="col-sm-3">
-                  <div class="form-group" style="text-align: right;">
-                    <label for="usr">ລະຫັດ:</label>
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="usr">ລະຫັດ:</label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-sm-9">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="codee" value="{{selectapid[0]}}" disabled>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="{{selectapid[0]}}" disabled/>
+                    </div>
                   </div>
-                </div>
                 </div>
 
                 <div class="row">
@@ -70,7 +70,7 @@
                     <div class="form-group" style="text-align: right;">
                       <label for="usr">ເບີ​ໂທ:</label>
                     </div>
-                
+
                   </div>
                   <div class="col-sm-9">
                     <div class="form-group">
@@ -80,65 +80,72 @@
                 </div>
               </form>
               <form class="" action="/saveset_ap" method="post">
-                  <div class="row">
-                    <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
-                    <div class="col-sm-3" style="text-align: right;">
-                      <div class="form-group">
-                        <label for="usr">ລາຍ​ການ:</label>
-                      </div>
-                    </div>
-                    <div class="col-sm-9">
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="item_name">
-                      </div>
+                <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <input type="text" class="form-control" value="{{selectapid[0]}}" name="codee" readonly hidden>
+                </div>
+                <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">ລາຍ​ການ:</label>
                     </div>
                   </div>
-
-                    <div class="row">
-                      <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
-                      <div class="col-sm-3" style="text-align: right;">
-                        <div class="form-group">
-                          <label for="usr">ມູນ​ຄ່າ:</label>
-                        </div>
-                      </div>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" name="amount">
-                        </div>
-                      </div>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="item_name">
                     </div>
+                  </div>
+                </div>
 
-                    <div class="row">
-                      <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
-                      <div class="col-sm-3" style="text-align: right;">
-                        <div class="form-group">
-                          <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
-                        </div>
-                      </div>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="number" class="form-control" name="currency_name">
-                        </div>
-                      </div>
+                <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">ມູນ​ຄ່າ:</label>
                     </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="amount">
+                    </div>
+                  </div>
+                </div>
 
-                    <div class="row">
-                      <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
-                      <div class="col-sm-3" style="text-align: right;">
-                        <div class="form-group">
-                          <label for="usr">ລວມ​ທັງ​ໝົດ:</label>
-                        </div>
-                      </div>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" name="total">
-                        </div>
-                      </div>
+                <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
                     </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <input type="number" class="form-control" name="currency_name">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
+                  <div class="col-sm-3" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">ລວມ​ທັງ​ໝົດ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="total">
+                    </div>
+                  </div>
+                </div>
+
                 <br>
                 <center>
-                <button type="submit" class="btn btn-primary form-control" style="width: 130px;">ບັນທຶກ</button>
-                <button type="​reset" class="btn btn-danger form-control" style="width: 130px;">ຍົກ​ເລີກ</button>
+                  <button type="submit" class="btn btn-primary form-control" style="width: 130px;">ບັນທຶກ</button>
+                  <button type="submit" class="btn btn-link form-control" style="width: 130px;">
+                    <a href="/setap" class="btn btn-warning form-control form-control-sm">ຍົກ​ເລີກ</a>
+                  </button>
                 </center>
               </form>
 
@@ -146,7 +153,8 @@
 
           </div>
         </div>
-        <div class="col-sm-8" style="background-color: whitesmoke; padding-top: 10px;padding-right: 15px;border-radius: 5px;">
+        <div class="col-sm-8"
+          style="background-color: whitesmoke; padding-top: 10px;padding-right: 15px;border-radius: 5px;">
           <table class="table table-sm table-hover table-striped table-success" id="Ratetable">
             <thead>
               <tr>
@@ -161,87 +169,70 @@
               </tr>
             </thead>
             <tbody>
-                {% for item in rate_trans %}
-                <tr>
-                  <td style="text-align: left;"></td>
-                  <td style="text-align: left;"></td>
-                  <td style="text-align: left;"></td>
-                  <td style="text-align: left;">{{item[0]}}</td>
-                  <td style="text-align: left;">{{item[1]}}</td>
-                  <td style="text-align: left;">{{item[2]}}</td>
-                  <td style="text-align: left;">{{item[3]}}</td>
-                  <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal" data-target="#update_ap/{{item[0]}}"></i></a>
-                    <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
-                  </td>
-                </tr>
+              {% for item in rate_trans %}
+              <tr>
+                <td style="text-align: left;">{{item[0]}}</td>
+                <td style="text-align: left;">{{item[1]}}</td>
+                <td style="text-align: left;">{{item[2]}}</td>
+                <td style="text-align: left;">{{item[3]}}</td>
+                <td style="text-align: left;">{{item[4]}}</td>
+                <td style="text-align: left;">{{item[5]}}</td>
+                <td style="text-align: left;">{{item[6]}}</td>
+                <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
+                      data-target="#update_set_ap/{{item[0]}}"></i></a>
+                  <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                </td>
+              </tr>
+              <!-- Modal -->
+              <div class="modal fade" id="update_set_ap/{{item[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດການ​ຕັ້ງ​ໜີ້</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #EFEFEF;">
+                      <form class="" action="/update_set_ap/{{item[0]}}" method="post">
+                        <input type="hidden" name="" value="">
+                        <div class="form-group">
+                          <label for="usr">ລາຍ​ການ:</label>
+                          <input type="text" class="form-control" name="item_name" value="{{item[3]}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="usr">ມູນ​ຄ່າ:</label>
+                          <input type="text" class="form-control" name="amount" value="{{item[4]}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
+                          <input type="number" class="form-control" name="currency_name" value="{{item[5]}}" />
+                        </div>
+                        <div class="form-group">
+                          <label for="usr">ລວມ​ທັງ​ໝົດ:</label>
+                          <input type="text" class="form-control" name="total" value="{{item[6]}}" />
+                        </div>
 
-                <!-- Modal -->
-              <div class="modal fade" id="update_ap/{{item[0]}}" tabindex="-1"
-              aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດ​ເຈົ້າ​ໜີ້</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                          <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
+                            ບັນທຶກ</button>
+                        </div>
+                      </form>
+
+                    </div>
                   </div>
-                  <div class="modal-body" style="background-color: #EFEFEF;">
-                    <form class="" action="/setapcopy/{{item[0]}}" method="post">
-                      <input type="hidden" name="" value="">
-                      <div class="form-group">
-                        <label for="usr">ລະຫັດ:</label>
-                        <input type="text" class="form-control" name="codee" value="{{item[0]}}">
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">​ຊື່:</label>
-                        <input type="text" class="form-control" name="name_1" value="{{item[1]}}">
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">​​ເບີ​ໂທ:</label>
-                        <input type="number" class="form-control" name="tel" value="{{item[2]}}"/>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-md-1 col-sm-12">
-                        </div>
-                        <div class="form-group col-md-4 col-sm-12">
-                          <label for="usr">​ແຂວງ:</label>
-                          <input type="text" class="form-control" name="province" value="{{item[3]}}">
-                        </div>
-                        <div class="form-group col-md-2 col-sm-12">
-                        </div>
-                        <div class="form-group col-md-4 col-sm-12">
-                          <label for="usr">​​ເມືອງ:</label>
-                          <input type="text" class="form-control" name="city" value="{{item[4]}}"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">​ທີ່​ຢູ່:</label>
-                        <input type="text" class="form-control" name="address" value="{{item[5]}}" />
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">​ໝາຍ​ເຫດ:</label>
-                        <input type="text" class="form-control" name="remark" value="{{item[6]}}"/>
-                      </div>
-                      
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                        <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
-                          ບັນທຶກ</button>
-                      </div>
-                    </form>
-
                 </div>
-              </div>
-            </div>
                 {% endfor %}
-          </tbody>
+            </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <script>
   function deleteitem(id) {
     swal({
@@ -254,7 +245,7 @@
       confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
       cancelButtonText: 'ບໍ່,ກັບຄືນ!',
     }).then(function () {
-      location.href = "/ap_delete/" + id;
+      location.href = "/set_ap_delete/" + id;
     })
   }
 </script>
