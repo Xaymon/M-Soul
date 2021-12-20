@@ -20,7 +20,7 @@ def outcome():
             rate_trans = cur.fetchall()
             dateTimeObj = datetime.now()
             doc_date = dateTimeObj.strftime("%Y-%m-%d")
-            return render_template('In-Outcome/outcome.html', rate_trans=rate_trans, doc_date=doc_date)
+            return render_template('In-Outcome/outcome.html', rate_trans=rate_trans, doc_date=doc_date,user=session.get("roles"))
 
 
 @app.route('/save_outcome', methods=['POST'])

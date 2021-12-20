@@ -46,7 +46,7 @@
                   <input type="text" class="form-control" name="custel">
                 </div>
                 <div class="form-group">
-                  <label for="usr">ລາຍການ<span style="color: red;">*</span>:</label>
+                  <label for="usr">ລາຍການ:</label>
                   <input type="text" class="form-control" name="item_name">
                 </div>
                 <div class="form-group">
@@ -79,8 +79,6 @@
         </div>
         <div class="col-sm-8"
           style="background-color: whitesmoke; padding-top: 10px;padding-right: 15px;border-radius: 5px;">
-          <h5>ລາຍການເຄື່ອນໃຫວ</h5>
-          <hr>
           <table class="table table-sm table-hover table-striped table-success" id="Ratetable">
             <thead>
               <tr>
@@ -102,9 +100,12 @@
                 <td style="text-align: left;">{{item[3]}}</td>
                 <td style="text-align: left;"> {{item[4]}}</td>
                 <td style="text-align: right;"> {{item[5]}}</td>
-                <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
+                <td>
+                  {% if user == 'admin' %}
+                  <a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
                       data-target="#update_income/{{item[0]}}"></i></a>
                   <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                  {% endif %}
                 </td>
               </tr>
 
@@ -163,7 +164,7 @@
     </div>
   </div>
 </div>
-<script  type="text/javascript">
+<script type="text/javascript">
   function deleteitem(id) {
     swal({
       title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
@@ -178,5 +179,9 @@
       location.href = "/income_delete/" + id;
     })
   }
+</script>
+<script>
+  document.getElementById('dt').max = new Date(
+    new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
 </script>
 {% endblock %}

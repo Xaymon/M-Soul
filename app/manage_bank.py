@@ -30,14 +30,15 @@ def save_bank():
             return redirect("/login")
         else:
             sql = """INSERT INTO tb_bank(
-                         bank_id, bank_name, currency)
-                         values(%s,%s,%s)
+                         bank_id, bank_name, currency,bank_loca)
+                         values(%s,%s,%s,%s)
                   """
             
             bank_id = request.form['​bank_id']
             bank_name = request.form['​​bank_name']
             currency = request.form['currency']
-            data = (bank_id, bank_name, currency)
+            bank_loca = request.form['bank_loca']
+            data = (bank_id, bank_name, currency,bank_loca)
             cur.execute(sql, (data))
             gobal.con.commit()
             return redirect(url_for('managebank'))

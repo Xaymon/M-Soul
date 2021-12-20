@@ -20,20 +20,20 @@ def hometf():
     if not session.get("name"):
         return redirect("/login")
     else:
-        sql = "SELECT doc_date,doc_no,cust_name,tel,item_code,item_code_2,bank_account_name,account_book,to_char(amount,'999G999G999G999D99') FROM public.cb_trans where trans_flag='4' order by doc_date"
+        sql = "SELECT to_char(doc_date,'DD-MM-YYY HH24:MI:SS'),doc_no,cust_name,tel,item_code,item_code_2,bank_account_name,account_book,to_char(amount,'999G999G999G999D99') FROM public.cb_trans where trans_flag='4' order by doc_date"
         cur = gobal.con.cursor()
         cur.execute(sql)
         all_rate = cur.fetchall()
 
         cur = gobal.con.cursor()
-        sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+        sql = "SELECT bank_id, bank_name  FROM public.tb_bank where bank_loca='lao' order by roworder "
         cur.execute(sql)
         bank_from = cur.fetchall()
         currate = gobal.con.cursor()
         sql = "SELECT curency_code, curency_name, buy, sale FROM public.exchange_rate where date_end isnull order by curency_code "
         currate.execute(sql)
         rate_ = currate.fetchall()
-        return render_template('transfer/index.html', all_rate=all_rate, bank_from=bank_from, rate_=rate_)
+        return render_template('transfer/index.html', all_rate=all_rate, bank_from=bank_from, rate_=rate_,user = session.get("roles"))
 
 
 @app.route('/save_lao_thai', methods=['POST'])

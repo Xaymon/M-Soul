@@ -166,7 +166,7 @@ def bank_report():
             dollar = cur.fetchall()
 
             curs = gobal.con.cursor()
-            sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+            sql = "SELECT bank_id, bank_name  FROM public.tb_bank where bank_loca='lao' order by roworder "
             curs.execute(sql)
             bank_from = curs.fetchall()
             bank_code = ''
@@ -196,7 +196,7 @@ def bank_report_sch():
             cur.execute(sql, data)
             kip = cur.fetchall()
             curs = gobal.con.cursor()
-            sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+            sql = "SELECT bank_id, bank_name  FROM public.tb_bank where bank_loca='lao' order by roworder "
             curs.execute(sql)
             bank_from = curs.fetchall()
             return render_template('/report/transfer/banklao.html', kip=kip, from_date=from_date, to_date=to_date, bank_from=bank_from, bank_code=bank_code)
@@ -223,7 +223,7 @@ def bank_thai():
             dollar = cur.fetchall()
 
             curs = gobal.con.cursor()
-            sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+            sql = "SELECT bank_id, bank_name  FROM public.tb_bank where bank_loca='thai' order by roworder "
             curs.execute(sql)
             bank_from = curs.fetchall()
             bank_code = ''
@@ -253,7 +253,7 @@ def bank_thai_sch():
             cur.execute(sql, data)
             kip = cur.fetchall()
             curs = gobal.con.cursor()
-            sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+            sql = "SELECT bank_id, bank_name  FROM public.tb_bank  where bank_loca='thai' order by roworder "
             curs.execute(sql)
             bank_from = curs.fetchall()
             return render_template('/report/transfer/bankthai.html', kip=kip, from_date=from_date, to_date=to_date, bank_from=bank_from, bank_code=bank_code)

@@ -125,217 +125,227 @@
                       <div class="modal-body" style="background-color: #8DCBCB;">
                         <div class="container">
                           <div style="background-color: #008B8B; border-radius: 8px;">
-                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
-                            <h6>
-                              <b>
-                                ຂໍ້ມູນລູກຄ້າ
-                              </b>
-                            </h6>
-                          </div>
-                          <!-- <hr> -->
-                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
-                            <div class="col-sm-1">
-                              <div class="form-group text-white" style="text-align: right;">
-                                <label for="exampleFormControlSelect1">ຊື່</label>
-                              </div>
+                            <div
+                              style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
+                              <h6>
+                                <b>
+                                  ຂໍ້ມູນລູກຄ້າ
+                                </b>
+                              </h6>
                             </div>
-                            <div class="col-sm-5">
-                              <div class="form-group">
-                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
-                                <input class="form-control form-control-sm " type="text" placeholder="ຊື່"
-                                  name="customername" style="text-align: left;" id="" required>
+                            <!-- <hr> -->
+                            <div class="row"
+                              style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
+                              <div class="col-sm-1">
+                                <div class="form-group text-white" style="text-align: right;">
+                                  <label for="exampleFormControlSelect1">ຊື່</label>
+                                </div>
                               </div>
-                            </div>
+                              <div class="col-sm-5">
+                                <div class="form-group">
+                                  <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
+                                  <input class="form-control form-control-sm " type="text" placeholder="ຊື່"
+                                    name="customername" style="text-align: left;" id="" required>
+                                </div>
+                              </div>
 
-                            <div class="col-sm-1">
-                              <div class="form-group text-white" style="text-align: right;">
-                                <label for="exampleFormControlSelect1">ເບີໂທ</label>
+                              <div class="col-sm-1">
+                                <div class="form-group text-white" style="text-align: right;">
+                                  <label for="exampleFormControlSelect1">ເບີໂທ</label>
+                                </div>
+                              </div>
+                              <div class="col-sm-5">
+                                <div class="form-group">
+                                  <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
+                                  <input class="form-control form-control-sm " type="text" placeholder="ເບີໂທ"
+                                    name="tel" style="text-align: left;" id="" required>
+                                </div>
                               </div>
                             </div>
-                            <div class="col-sm-5">
-                              <div class="form-group">
-                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
-                                <input class="form-control form-control-sm " type="text" placeholder="ເບີໂທ"
-                                  name="tel" style="text-align: left;" id="" required>
-                              </div>
-                            </div>
-                          </div>
                           </div>
                           <br>
 
                           <div style="background-color: #008B8B; border-radius: 8px;">
-                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
-                            <h6>
-                              <b>
-                                ທະນາຄານປາຍທາງ
-                              </b>
-                            </h6>
-                          </div>
-                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ເລືອກທະນາຄານປາຍທາງ</label>
-                                <select class="form-control form-control-sm" id="to_bank" name="bank_to" required
-                                  onchange="bank_tt()">
-                                  <option selected value=""> ເລືອກ....</option>
-                                  <option value='SCB'>SCB ໄທພານິດ </option>
-                                  <option value='KB'>KB ກະສີກອນໄທ</option>
-                                  <option value='KTB'> KTB ກຸງເທບ</option>
-                                  <option value='BBL'>BBL ກຸງເທບ</option>
-                                  <option value='BAY'>BAY ກຸງສີ</option>
-                                  <option value='TMB'>TMB ທະຫານໄທ</option>
-                                </select>
+                            <div
+                              style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
+                              <h6>
+                                <b>
+                                  ທະນາຄານປາຍທາງ
+                                </b>
+                              </h6>
+                            </div>
+                            <div class="row"
+                              style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ເລືອກທະນາຄານປາຍທາງ</label>
+                                  <select class="form-control form-control-sm" id="to_bank" name="bank_to" required
+                                    onchange="bank_tt()">
+                                    <option selected value=""> ເລືອກ....</option>
+                                    <option value='SCB'>SCB ໄທພານິດ </option>
+                                    <option value='KB'>KB ກະສີກອນໄທ</option>
+                                    <option value='KTB'> KTB ກຸງເທບ</option>
+                                    <option value='BBL'>BBL ກຸງເທບ</option>
+                                    <option value='BAY'>BAY ກຸງສີ</option>
+                                    <option value='TMB'>TMB ທະຫານໄທ</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
+                                  <input class="form-control form-control-sm " type="text" placeholder="ຊື່ບັນຊີ"
+                                    name="bankaccountname" style="text-align: left;" id="">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ເລກບັນຊີ</label>
+                                  <input class="form-control form-control-sm " type="text" placeholder="ເລກບັນຊີ"
+                                    name="bank_account_code" style="text-align: left;" id="">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ປາຍທາງໃດ້ຮັບ</label>
+                                  <input class="form-control form-control-sm " type="number" placeholder="0"
+                                    name="total_pays" style="text-align: right;" value="0" id="total_pays"
+                                    onchange="value_trans()">
+                                </div>
                               </div>
                             </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
-                                <input class="form-control form-control-sm " type="text" placeholder="ຊື່ບັນຊີ"
-                                  name="bankaccountname" style="text-align: left;" id="">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ເລກບັນຊີ</label>
-                                <input class="form-control form-control-sm " type="text" placeholder="ເລກບັນຊີ"
-                                  name="bank_account_code" style="text-align: left;" id="">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ປາຍທາງໃດ້ຮັບ</label>
-                                <input class="form-control form-control-sm " type="number" placeholder="0"
-                                  name="total_pays" style="text-align: right;" value="0" id="total_pays"
-                                  onchange="value_trans()">
-                              </div>
-                            </div>
-                          </div>
                           </div>
                           <br>
                           <div style="background-color: #008B8B; border-radius: 8px;">
-                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
-                            <h6>
-                              <b>
-                                ເງື່ອນໃຂການຮັບເງິນ
-                              </b>
-                            </h6>
-                          </div>
-                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
-                            <!-- <div class="col-sm-3">
+                            <div
+                              style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
+                              <h6>
+                                <b>
+                                  ເງື່ອນໃຂການຮັບເງິນ
+                                </b>
+                              </h6>
+                            </div>
+                            <div class="row"
+                              style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
+                              <!-- <div class="col-sm-3">
                             </div> -->
-                            <div class="col-sm-3">
-                              <div class="form-group text-white" style="text-align: right;">
-                                <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white" style="text-align: right;">
+                                  <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
-                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
-                                <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
-                                  name="service_charge" required style="text-align: right;" id="service_charge"
-                                  onchange="add_charge();">
+                              <div class="col-sm-3">
+                                <div class="form-group">
+                                  <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
+                                  <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
+                                    name="service_charge" required style="text-align: right;" id="service_charge"
+                                    onchange="add_charge();">
+                                </div>
                               </div>
-                            </div>
-                            
-                            <div class="col-sm-3">
-                              <div class="form-group text-white" style="text-align: right;">
-                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group">
-                                <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
-                                <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
-                                  name="total_befor_pay" required style="text-align: right;" id="total_befor_pay"
-                                  readonly>
-                              </div>
-                            </div>
 
-                          </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white" style="text-align: right;">
+                                  <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group">
+                                  <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
+                                  <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
+                                    name="total_befor_pay" required style="text-align: right;" id="total_befor_pay"
+                                    readonly>
+                                </div>
+                              </div>
+
+                            </div>
                           </div>
                           <br>
-                          <div style="background-color: #008B8B; padding: 20px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
-                                <select class="form-control form-control-sm" id="currency_code"
-                                  name="cash_currency_code" onchange="show_rate()">
-                                  <option selected value="">ເລືອກ...</option>
-                                  <option value="01">ກີບ</option>
-                                  <option value="00">ບາດ</option>
-                                  <option value="02">ໂດລາ</option>
-                                </select>
+                          <div
+                            style="background-color: #008B8B; padding: 20px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
+                                  <select class="form-control form-control-sm" id="currency_code"
+                                    name="cash_currency_code" onchange="show_rate()">
+                                    <option selected value="">ເລືອກ...</option>
+                                    <option value="01">ກີບ</option>
+                                    <option value="00">ບາດ</option>
+                                    <option value="02">ໂດລາ</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
+                                  <input class="form-control form-control-sm" type="number" name="total_baht"
+                                    style="text-align: right;" id="total_baht" value="0" onchange="sum_back()">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">Rate</label>
+                                  <input class="form-control form-control-sm" type="number" name="rate_con"
+                                    style="text-align: right;" id="rate_con" readonly value="0">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ເງິນສົດຕາມສະກູນເງິນ</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0" required
+                                    name="cash_value" style="text-align: right;" onchange="sum_paybycash();"
+                                    id="cash_value">
+                                </div>
                               </div>
                             </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
-                                <input class="form-control form-control-sm" type="number" name="total_baht"
-                                  style="text-align: right;" id="total_baht" value="0" onchange="sum_back()">
+                            <hr style="background-color: #2F4F4F;">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຮັບເຂົ້າບັນຊີ</label>
+                                  <select class="form-control form-control-sm" id="bank_from" name="bank_from"
+                                    onchange="bank_ft()">
+                                    <option value="" selected> ເລືອກ....</option>
+                                    {% for item in bank_from %}
+                                    <option value="{{item[0]}}">{{item[1]}}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">Rate</label>
-                                <input class="form-control form-control-sm" type="number" name="rate_con"
-                                  style="text-align: right;" id="rate_con" readonly value="0">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
+                                  <input class="form-control form-control-sm" type="number" value="0"
+                                    name="total_bank_amount" required style="text-align: right;" id="total_bank_amount"
+                                    onchange="sum_paybybank()">
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ເງິນສົດຕາມສະກູນເງິນ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0" required
-                                  name="cash_value" style="text-align: right;" onchange="sum_paybycash();"
-                                  id="cash_value">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">Rate</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0"
+                                    name="rate_bank" required style="text-align: right;" id="rate_bank">
+                                </div>
                               </div>
-                            </div>
-                          </div><hr style="background-color: #2F4F4F;">
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຮັບເຂົ້າບັນຊີ</label>
-                                <select class="form-control form-control-sm" id="bank_from" name="bank_from"
-                                  onchange="bank_ft()">
-                                  <option value="" selected> ເລືອກ....</option>
-                                  {% for item in bank_from %}
-                                  <option value="{{item[0]}}">{{item[1]}}</option>
-                                  {% endfor %}
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
-                                <input class="form-control form-control-sm" type="number" value="0"
-                                  name="total_bank_amount" required style="text-align: right;" id="total_bank_amount"
-                                  onchange="sum_paybybank()">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">Rate</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0"
-                                  name="rate_bank" required style="text-align: right;" id="rate_bank">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ມູນຄ່າທີ່ລູກຄ້າຕ້ອງໂອນ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0"
-                                  name="bank_amount" required style="text-align: right;" id="bank_amount" value="0"
-                                  onchange="">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ມູນຄ່າທີ່ລູກຄ້າຕ້ອງໂອນ</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0"
+                                    name="bank_amount" required style="text-align: right;" id="bank_amount" value="0"
+                                    onchange="">
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <br>
+                          <br>
                           <div class="row" style="background-color: #008B8B; border-radius: 8px;padding-top: 8px;margin-left: 5px;margin-right: 5px;margin-top: -20px;margin-bottom: -10px;
                           align-items: center;border: 2px solid #2F4F4F;">
                             <div class="col-sm-1">
                             </div>
                             <div class="col-sm-3 text-white" style="text-align: right;">
-                              <label for="exampleFormControlSelect1"><h5><b>ລວມມູນຄ່າ</b></h5></label>
+                              <label for="exampleFormControlSelect1">
+                                <h5><b>ລວມມູນຄ່າ</b></h5>
+                              </label>
                             </div>
                             <div class="col-sm-5">
                               <div class="form-group">
@@ -376,223 +386,234 @@
                       <div class="modal-body" style="background-color: #8DCBCB;">
                         <div class="container">
                           <div style="background-color: #008B8B; border-radius: 8px;">
-                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
-                            <h6>
-                              <b>
-                                ຂໍ້ມູນລູກຄ້າ
-                              </b>
-                            </h6>
-                          </div>
-                          <!-- <hr> -->
-                          <div class="row" style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
-                            <div class="col-sm-1">
-                              <div class="form-group text-white" style="text-align: right;">
-                                <label for="exampleFormControlSelect1">ຊື່</label>
-                              </div>
+                            <div
+                              style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
+                              <h6>
+                                <b>
+                                  ຂໍ້ມູນລູກຄ້າ
+                                </b>
+                              </h6>
                             </div>
-                            <div class="col-sm-5">
-                              <div class="form-group">
-                                <input class="form-control form-control-sm " type="text" placeholder="ຊື"
-                                  name="customername_tl" style="text-align: left;" id="" required>
+                            <!-- <hr> -->
+                            <div class="row"
+                              style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
+                              <div class="col-sm-1">
+                                <div class="form-group text-white" style="text-align: right;">
+                                  <label for="exampleFormControlSelect1">ຊື່</label>
+                                </div>
                               </div>
-                            </div>
+                              <div class="col-sm-5">
+                                <div class="form-group">
+                                  <input class="form-control form-control-sm " type="text" placeholder="ຊື"
+                                    name="customername_tl" style="text-align: left;" id="" required>
+                                </div>
+                              </div>
 
-                            <div class="col-sm-1">
-                              <div class="form-group text-white" style="text-align: right;">
-                                <label for="exampleFormControlSelect1">ເບີໂທ</label>
+                              <div class="col-sm-1">
+                                <div class="form-group text-white" style="text-align: right;">
+                                  <label for="exampleFormControlSelect1">ເບີໂທ</label>
+                                </div>
+                              </div>
+                              <div class="col-sm-5">
+                                <div class="form-group">
+                                  <input class="form-control form-control-sm " type="text" placeholder="ເບີໂທ"
+                                    name="tel_tl" style="text-align: left;" id="">
+                                </div>
                               </div>
                             </div>
-                            <div class="col-sm-5">
-                              <div class="form-group">
-                                <input class="form-control form-control-sm " type="text" placeholder="ເບີໂທ"
-                                  name="tel_tl" style="text-align: left;" id="">
-                              </div>
-                            </div>
-                          </div>
                           </div>
                           <br>
 
                           <div style="background-color: #008B8B; border-radius: 8px;">
-                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
-                            <h6>
-                              <b>
-                                ທະນາຄານທີ່ໂອນເຂົ້າ
-                              </b>
-                            </h6>
-                          </div>
-                          <div class="row" style="margin-bottom: -15px; padding-top: 5px;border-radius: 8px;margin-left: 130px;margin-right: 130px;">
-                            <div class="col-sm-4">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ເລືອກທະນາຄານ</label>
-                                <select class="form-control form-control-sm" id="to_bank" name="from_bank_tl" required
-                                  onchange="bank_tt()">
-                                  <option selected value=""> ເລືອກ....</option>
-                                  <option value='SCB'>SCB ໄທພານິດ </option>
-                                  <option value='KB'>KB ກະສີກອນໄທ</option>
-                                  <option value='KTB'> KTB ກຸງເທບ</option>
-                                  <option value='BBL'>BBL ກຸງເທບ</option>
-                                  <option value='BAY'>BAY ກຸງສີ</option>
-                                  <option value='TMB'>TMB ທະຫານໄທ</option>
-                                </select>
-                              </div>
+                            <div
+                              style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
+                              <h6>
+                                <b>
+                                  ທະນາຄານທີ່ໂອນເຂົ້າ
+                                </b>
+                              </h6>
                             </div>
+                            <div class="row"
+                              style="margin-bottom: -15px; padding-top: 5px;border-radius: 8px;margin-left: 130px;margin-right: 130px;">
+                              <div class="col-sm-4">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ເລືອກທະນາຄານ</label>
+                                  <select class="form-control form-control-sm" id="to_bank" name="from_bank_tl" required
+                                    onchange="bank_tt()">
+                                    <option selected value=""> ເລືອກ....</option>
+                                    <option value='SCB'>SCB ໄທພານິດ </option>
+                                    <option value='KB'>KB ກະສີກອນໄທ</option>
+                                    <option value='KTB'> KTB ກຸງເທບ</option>
+                                    <option value='BBL'>BBL ກຸງເທບ</option>
+                                    <option value='BAY'>BAY ກຸງສີ</option>
+                                    <option value='TMB'>TMB ທະຫານໄທ</option>
+                                  </select>
+                                </div>
+                              </div>
 
-                            <div class="col-sm-3">
-                            </div>
-                        
-                            <div class="col-sm-4" style="margin-left: 15px;">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຍອດທີ່ໂອນມາ</label>
-                                <input class="form-control form-control-sm " type="number" placeholder="0"
-                                  name="trans_incom" style="text-align: right;" value="0" id="trans_incom"
-                                  onchange="trans_in_total()">
+                              <div class="col-sm-3">
+                              </div>
+
+                              <div class="col-sm-4" style="margin-left: 15px;">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຍອດທີ່ໂອນມາ</label>
+                                  <input class="form-control form-control-sm " type="number" placeholder="0"
+                                    name="trans_incom" style="text-align: right;" value="0" id="trans_incom"
+                                    onchange="trans_in_total()">
+                                </div>
                               </div>
                             </div>
-                          </div>
                           </div>
                           <br>
                           <div style="background-color: #008B8B; border-radius: 8px;">
-                          <div style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
-                            <h6>
-                              <b>
-                                ເງື່ອນໄຂການຈ່າຍເງິນ
-                              </b>
-                            </h6>
-                          </div>
-                          
-                          <div class="row" style="margin-bottom: -15px; padding-top: 5px;border-radius: 8px;margin-left: 130px;margin-right: 130px;">
-                            <div class="col-sm-4">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
-                                  name="service_charge_tl" required style="text-align: right;" id="service_charge_tl"
-                                  onchange="trans_pass_service_tl();">
-                              </div>
+                            <div
+                              style="text-align: center;background-color: #2F4F4F; color: white;height: 25px;padding-left: 5px;padding-right: 5px;padding-top: 2px;">
+                              <h6>
+                                <b>
+                                  ເງື່ອນໄຂການຈ່າຍເງິນ
+                                </b>
+                              </h6>
                             </div>
 
-                            <div class="col-sm-3">
-                            </div>
-                        
-                            <div class="col-sm-4" style="margin-left: 15px;">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
-                                  name="total_befor_pay_tl" required style="text-align: right;" id="total_befor_pay_tl"
-                                  readonly>
+                            <div class="row"
+                              style="margin-bottom: -15px; padding-top: 5px;border-radius: 8px;margin-left: 130px;margin-right: 130px;">
+                              <div class="col-sm-4">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
+                                    name="service_charge_tl" required style="text-align: right;" id="service_charge_tl"
+                                    onchange="trans_pass_service_tl();">
+                                </div>
+                              </div>
+
+                              <div class="col-sm-3">
+                              </div>
+
+                              <div class="col-sm-4" style="margin-left: 15px;">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
+                                    name="total_befor_pay_tl" required style="text-align: right;"
+                                    id="total_befor_pay_tl" readonly>
+                                </div>
                               </div>
                             </div>
-                          </div>
 
                           </div>
                           <br>
-                          <div style="background-color: #008B8B; padding: 20px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
-                                <select class="form-control form-control-sm" id="currency_code_tl"
-                                  name="currency_code_tl" onchange="show_rate_tl()">
-                                  <option selected value="">ເລືອກ...</option>
-                                  <option value="01">ກີບ</option>
-                                  <option value="00">ບາດ</option>
-                                  <option value="02">ໂດລາ</option>
-                                </select>
+                          <div
+                            style="background-color: #008B8B; padding: 20px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
+                                  <select class="form-control form-control-sm" id="currency_code_tl"
+                                    name="currency_code_tl" onchange="show_rate_tl()">
+                                    <option selected value="">ເລືອກ...</option>
+                                    <option value="01">ກີບ</option>
+                                    <option value="00">ບາດ</option>
+                                    <option value="02">ໂດລາ</option>
+                                  </select>
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
-                                <input class="form-control form-control-sm" type="number" name="total_baht_tl"
-                                  style="text-align: right;" id="total_baht_tl" value="0" onchange="sum_cash_tl()">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
+                                  <input class="form-control form-control-sm" type="number" name="total_baht_tl"
+                                    style="text-align: right;" id="total_baht_tl" value="0" onchange="sum_cash_tl()">
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">Rate</label>
-                                <input class="form-control form-control-sm" type="number" name="rate_c_tl"
-                                  style="text-align: right;" id="rate_c_tl" readonly value="0">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">Rate</label>
+                                  <input class="form-control form-control-sm" type="number" name="rate_c_tl"
+                                    style="text-align: right;" id="rate_c_tl" readonly value="0">
+                                </div>
                               </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ເງິນສົດຕາມສະກຸນເງິນ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0" required
-                                  name="cash_value_tl" style="text-align: right;" id="cash_value_tl">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div style="background-color: #008B8B; padding: 20px;margin-top: 5px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຈາກບັນຊີ</label>
-                                <select class="form-control form-control-sm" id="from_bank_pay" name="from_bank_pay"
-                                  onchange="bank_TL()">
-                                  <option value="" selected> ເລືອກ....</option>
-                                  {% for item in bank_from %}
-                                  <option value="{{item[0]}}">{{item[1]}}</option>
-                                  {% endfor %}
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຫາເລກບັນຊີ</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="ເລກບັນຊີ"
-                                  name="bank_account_code" style="text-align:left;" id="bank_account_code">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
-                                <input class="form-control form-control-sm" type="text" placeholder="ຊື່ບັນຊີ"
-                                  name="bank_account_name" style="text-align: left;" id="bank_account_name">
-                              </div>
-                            </div>
-                          </div><hr style="background-color: #2F4F4F;">
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
-                                <input class="form-control form-control-sm" type="number" value="0"
-                                  name="total_bank_amount_tl" required style="text-align: right;"
-                                  id="total_bank_amount_tl" onchange="sum_paybybank_tl()">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ຄ່າທຳນຽນ</label>
-                                <input class="form-control form-control-sm" type="number" value="0" name="fee_tl"
-                                  required style="text-align: right;" id="fee_tl" onchange="sum_paybybank_tl()">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">Rate</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0"
-                                  name="rate_bank_tl" required style="text-align: right;" id="rate_bank_tl">
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="form-group text-white">
-                                <label for="exampleFormControlSelect1">ມູນຄ່າທີ່ຕ້ອງໂອນ</label>
-                                <input class="form-control form-control-sm" type="number" placeholder="0"
-                                  name="bank_amount_tl" required style="text-align: right;" id="bank_amount_tl"
-                                  value="0" onchange="">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ເງິນສົດຕາມສະກຸນເງິນ</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0" required
+                                    name="cash_value_tl" style="text-align: right;" id="cash_value_tl">
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        <br>
+                          <div
+                            style="background-color: #008B8B; padding: 20px;margin-top: 5px; border-radius: 8px;border: 2px solid #2F4F4F; padding-bottom: 0px;padding-top: 0px;">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຈາກບັນຊີ</label>
+                                  <select class="form-control form-control-sm" id="from_bank_pay" name="from_bank_pay"
+                                    onchange="bank_TL()">
+                                    <option value="" selected> ເລືອກ....</option>
+                                    {% for item in bank_from %}
+                                    <option value="{{item[0]}}">{{item[1]}}</option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຫາເລກບັນຊີ</label>
+                                  <input class="form-control form-control-sm" type="text" placeholder="ເລກບັນຊີ"
+                                    name="bank_account_code" style="text-align:left;" id="bank_account_code">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຊື່ບັນຊີ</label>
+                                  <input class="form-control form-control-sm" type="text" placeholder="ຊື່ບັນຊີ"
+                                    name="bank_account_name" style="text-align: left;" id="bank_account_name">
+                                </div>
+                              </div>
+                            </div>
+                            <hr style="background-color: #2F4F4F;">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ມູນຄ່າບາດ</label>
+                                  <input class="form-control form-control-sm" type="number" value="0"
+                                    name="total_bank_amount_tl" required style="text-align: right;"
+                                    id="total_bank_amount_tl" onchange="sum_paybybank_tl()">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ຄ່າທຳນຽນ</label>
+                                  <input class="form-control form-control-sm" type="number" value="0" name="fee_tl"
+                                    required style="text-align: right;" id="fee_tl" onchange="sum_paybybank_tl()">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">Rate</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0"
+                                    name="rate_bank_tl" required style="text-align: right;" id="rate_bank_tl">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group text-white">
+                                  <label for="exampleFormControlSelect1">ມູນຄ່າທີ່ຕ້ອງໂອນ</label>
+                                  <input class="form-control form-control-sm" type="number" placeholder="0"
+                                    name="bank_amount_tl" required style="text-align: right;" id="bank_amount_tl"
+                                    value="0" onchange="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <br>
                           <div class="row" style="background-color: #008B8B; border-radius: 8px;padding-top: 8px;margin-left: 5px;margin-right: 5px;margin-top: -20px;margin-bottom: -10px;
                           align-items: center;border: 2px solid #2F4F4F;">
                             <div class="col-sm-1">
                             </div>
                             <div class="col-sm-3 text-white" style="text-align: right;">
-                              <label for="exampleFormControlSelect1"><h5><b>ລວມມູນຄ່າ</b></h5></label>
+                              <label for="exampleFormControlSelect1">
+                                <h5><b>ລວມມູນຄ່າ</b></h5>
+                              </label>
                             </div>
                             <div class="col-sm-5">
                               <div class="form-group">
@@ -655,8 +676,11 @@
                       <td style="text-align: right;">{{item[6]}}</td>
                       <td style="text-align: right;">{{item[7]}}</td>
                       <td style="text-align: right;">{{item[8]}}</td>
-                      <td><a href="#" onclick="deleteitem({{item[1]}})"><i class="bi bi-trash-fill"
+                      <td>
+                        {% if user == 'admin' %}
+                        <a href="#" onclick="deleteitem('{{item[1]}}')"><i class="bi bi-trash-fill"
                             id="bitrash"></i></a>
+                        {% endif %}
                       </td>
                     </tr>
                     {% endfor %}
@@ -797,6 +821,16 @@
       document.getElementById("total_baht").value = 0
       document.getElementById("cash_value").readOnly = false;
       document.getElementById("total_baht").readOnly = false;
+    } else if (x == '02') {
+      fetch('/exchangerate/03').then(function (response) {
+        response.json().then(function (data) {
+          document.getElementById("rate_con").value = data.rate[0]
+          document.getElementById("cash_value").value = 0
+          document.getElementById("total_baht").value = 0
+          document.getElementById("cash_value").readOnly = false;
+          document.getElementById("total_baht").readOnly = false;
+        });
+      });
     } else {
       fetch('/exchangerate/' + x).then(function (response) {
         response.json().then(function (data) {
@@ -855,6 +889,16 @@
       document.getElementById("total_baht_tl").value = 0
       document.getElementById("cash_value_tl").readOnly = false;
       document.getElementById("total_baht_tl").readOnly = false;
+    } else if (x == '02') {
+      fetch('/exchangeratesale/03').then(function (response) {
+        response.json().then(function (data) {
+          document.getElementById("rate_c_tl").value = data.rate[0]
+          document.getElementById("cash_value_tl").value = 0
+          document.getElementById("total_baht_tl").value = 0
+          document.getElementById("cash_value_tl").readOnly = false;
+          document.getElementById("total_baht_tl").readOnly = false;
+        });
+      });
     } else {
       fetch('/exchangeratesale/' + x).then(function (response) {
         response.json().then(function (data) {
@@ -896,7 +940,6 @@
   // BANK
   function bank_TL() {
     var x = document.getElementById("from_bank_pay").value;
-    console.log(x)
     if (x == 'BCEL_BAHT') {
       document.getElementById("rate_bank_tl").value = 1
       document.getElementById("bank_amount_tl").readOnly = false;
@@ -943,7 +986,6 @@
   }
   function sum_paybybank_tl() {
     kk = document.getElementById("from_bank_pay").value
-    console.log(kk)
     if (kk == 'BCEL_BAHT') {
       k1 = parseFloat(document.getElementById("total_bank_amount_tl").value)
       k2 = parseFloat(document.getElementById("rate_bank_tl").value)

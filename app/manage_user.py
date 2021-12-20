@@ -15,7 +15,7 @@ def manageadduser():
             cur.execute(sql)
             rate_ = cur.fetchall()
 
-            return render_template('manage/adduser.html', rate_=rate_)
+            return render_template('manage/adduser.html', rate_=rate_,user=session.get("roles"))
 
 @app.route('/save_user', methods=['POST'])
 def save_user():

@@ -78,9 +78,13 @@
                         <td style="text-align: center;">{{item[2]}}</td>
                         <td style="text-align: left;">{{item[3]}}</td>
                         <td style="text-align: right;">{{item[4]}}</td>
-                        <td style="text-align: center;"><a href="#"><i class="bi bi-pencil-square"></i></a><a href="#"
+                        <td style="text-align: center;">
+                            {% if user == 'admin' %}
+                            <a href="#"><i class="bi bi-pencil-square"></i></a><a href="#"
                                 onclick="deleteitem('{{item[1]}}')">
-                                <i class="bi bi-trash-fill"></i></a></td>
+                                <i class="bi bi-trash-fill"></i></a>
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

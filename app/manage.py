@@ -11,36 +11,12 @@ def manageexrate():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, buy, sale,roworder FROM public.exchange_rate order by date_start::date DESC "
+            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, to_char(buy,'999G999G999G999D99'),to_char(sale,'999G999G999G999D99'),roworder FROM public.exchange_rate order by date_start::date DESC "
             cur.execute(sql)
             rate_ = cur.fetchall()
-            return render_template('manage/addrate.html', rate_=rate_)
+            return render_template('manage/addrate.html', rate_=rate_,user=session.get("roles"))
 
-@app.route('/ap')
-def ap():
-    with gobal.con:
-        if not session.get("name"):
-            return redirect("/login")
-        else:
-            cur = gobal.con.cursor()
-            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, buy, sale,roworder FROM public.exchange_rate order by roworder "
-            cur.execute(sql)
-            rate_ = cur.fetchall()
 
-            return render_template('ap & ar/ap.html')
-
-@app.route('/ar')
-def ar():
-    with gobal.con:
-        if not session.get("name"):
-            return redirect("/login")
-        else:
-            cur = gobal.con.cursor()
-            sql = "SELECT to_char(date_start,'DD-MM-YYYY'),curency_code, curency_name, buy, sale,roworder FROM public.exchange_rate order by roworder "
-            cur.execute(sql)
-            rate_ = cur.fetchall()
-
-            return render_template('ap & ar/ar.html')
 
 
 @app.route('/saverate', methods=['POST'])

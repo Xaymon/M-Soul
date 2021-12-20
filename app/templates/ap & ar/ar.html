@@ -13,7 +13,7 @@
           <div class="card" style="background-color: darkslategrey;color: white;">
             <div class="card-header">
               <center>
-                ​ໜີ້ຕ້ອງຮັບ
+                ​ກຳນົດລູກໜີ້
               </center>
               {% with messages = get_flashed_messages() %}
               {% if messages %}
@@ -35,19 +35,83 @@
             </div>
             <div class="card-body">
 
-              <form class="" action="/save_income" method="post">
-                <input type="hidden" name="" value="">
-                <div class="form-group">
-                  <label for="usr">​ປະ​ເພດ​ໜີ້:</label>
-                  <input type="text" class="form-control" name="type">
+              <form class="" action="/save_ar" method="post">
+                
+                <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="usr">​ປະ​ເພດ​ໜີ້:</label>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="usr">​ລາຍ​ການ:</label>
-                  <input type="text" class="form-control" name="item_name">
+                <div class="col-sm-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="codee">
+                  </div>
                 </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="usr">​ລາຍ​ການ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="name_1">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="usr">ເບີ​ໂທ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <input type="number" class="form-control" name="tel">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-2" style="text-align: left;">
+                    <div class="form-group">
+                      <label for="usr">​ແຂວງ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="province">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label for="usr">​​ເມືອງ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="city">
+                    </div>
+                  </div>
+                  </div>
+
                 <div class="form-group">
+                  <label for="usr">​ທີ່​ຢູ່:</label>
+                  <input type="text" class="form-control" name="address">
+                </div>
+
+                <!-- <div class="form-group">
                   <label for="pwd">​ມູນ​ຄ່າ:</label>
                   <input type="number" class="form-control" name="amount"/>
+                </div> -->
+                <div class="form-group">
+                  <label for="usr">​ໝາຍ​ເຫດ:</label>
+                  <input type="text" class="form-control" name="remark"/>
+                  <!-- <textarea class="form-control" name="remark" rows="2" cols="49"></textarea> -->
                 </div>
                 <br>
                 <center>
@@ -63,65 +127,77 @@
           <table class="table table-sm table-hover table-striped table-success" id="Ratetable">
             <thead>
               <tr>
-                <th scope="col">ລຳ​ດັບ</th>
-                <th scope="col">ລະ​ຫັດ​ໃບ​ບິນ</th>
+                <th scope="col">ປະ​ເພດ​ໜີ້</th>
                 <th scope="col">​ລາຍ​ການ</th>
-                <th scope="col">ວັນ/ເວ​ລາ</th>
-                <th scope="col">​ຈຳ​ນວນ​ເງີນ ກີບ</th>
-                <th scope="col">ຈຳ​ນວນ​ເງີນ ບາດ</th>
-                <th scope="col">ຈຳ​ນວນ​ເງີນ ​ໂດ​ລາ</th>
+                <th scope="col">​ເບີ​ໂທ</th>
+                <th scope="col">ແຂວງ</th>
+                <th scope="col">ເມືອງ</th>
+                <th scope="col">ທີ່​ຢູ່</th>
+                <th scope="col">​ໝາຍ​ເຫດ</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-                {% for item in rate_trans %}
+                {% for item in rate_tran %}
                 <tr>
                   <td>{{item[0]}}</td>
                   <td style="text-align: left;">{{item[1]}}</td>
                   <td style="text-align: left;">{{item[2]}}</td>
                   <td style="text-align: left;">{{item[3]}}</td>
-                  <td style="text-align: left;">₭ {{item[4]}}</td>
-                  <td style="text-align: left;">฿ {{item[5]}}</td>
-                  <td style="text-align: left;">$ {{item[6]}}</td>
-                  <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal" data-target="#update_income/{{item[0]}}"></i></a>
-                    <a href="#" onclick="deleteitem({{item[0]}})"><i class="bi bi-trash-fill" id="bitrash"></i></a></td>
+                  <td style="text-align: left;">{{item[4]}}</td>
+                  <td style="text-align: left;">{{item[5]}}</td>
+                  <td style="text-align: left;">{{item[6]}}</td>
+                  <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal" data-target="#update_ar/{{item[0]}}"></i></a>
+                    <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a></td>
                 </tr>
 
                 <!-- Modal -->
-              <div class="modal fade" id="update_income/{{item[0]}}" tabindex="-1"
+              <div class="modal fade" id="update_ar/{{item[0]}}" tabindex="-1"
               aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍຮັບ</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດ​ລູກ​ໜີ້</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body" style="background-color: #EFEFEF;">
-                    <form class="" action="/update_income/{{item[0]}}" method="post">
+                    <form class="" action="/update_ar/{{item[0]}}" method="post">
                       <input type="hidden" name="" value="">
                       <div class="form-group">
-                        <label for="usr">ລາຍການ:</label>
-                        <input type="text" class="form-control" name="item_name" value="{{item[2]}}">
+                        <label for="usr">ປະ​ເພດ​ຂອງ​ໜີ້:</label>
+                        <input type="text" class="form-control" name="codee" value="{{item[0]}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="usr">ລາຍ​ການ:</label>
+                        <input type="text" class="form-control" name="name_1" value="{{item[1]}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="usr">​​ເບີ​ໂທ:</label>
+                        <input type="number" class="form-control" name="tel" value="{{item[2]}}"/>
                       </div>
                       <div class="row">
-                        <div class="form-group col-md-4 col-sm-12">
-                          <label for="pwd">ຈຳນວນເງິນກີບ:</label>
-                          <input type="number" class="form-control" name="cash_kip" value="{{item[4]}}">
+                        <div class="form-group col-md-1 col-sm-12">
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
-                          <label for="pwd">ຈຳນວນເງິນບາດ:</label>
-                          <input type="number" class="form-control" name="cash_baht" value="{{item[5]}}">
+                          <label for="usr">​ແຂວງ:</label>
+                          <input type="text" class="form-control" name="province" value="{{item[3]}}">
+                        </div>
+                        <div class="form-group col-md-2 col-sm-12">
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
-                          <label for="pwd">ຈຳນວນເງິນໂດລາ:</label>
-                          <input type="number" class="form-control" name="cash_dollar" value="{{item[6]}}">
+                          <label for="usr">​​ເມືອງ:</label>
+                          <input type="text" class="form-control" name="city" value="{{item[4]}}"/>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="pwd">ວັນທີຊຳລະ:</label>
-                        <input type="text" id="" class="form-control" name="up_bill_date" value="{{item[3]}}" disabled/>
+                        <label for="usr">​ທີ່​ຢູ່:</label>
+                        <input type="text" class="form-control" name="address" value="{{item[5]}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="usr">​ໝາຍ​ເຫດ:</label>
+                        <input type="text" class="form-control" name="remark" value="{{item[6]}}"/>
                       </div>
                       
                       <div class="modal-footer">
@@ -135,7 +211,7 @@
               </div>
             </div>
                 {% endfor %}
-            </tbody>
+          </tbody>
           </table>
         </div>
       </div>
@@ -154,12 +230,8 @@
       confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
       cancelButtonText: 'ບໍ່,ກັບຄືນ!',
     }).then(function () {
-      location.href = "/income_delete/" + id;
+      location.href = "/ar_delete/" + id;
     })
   }
-</script>
-<script>
-  document.getElementById('dt').max = new Date(
-    new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
 </script>
 {% endblock %}

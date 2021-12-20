@@ -5,7 +5,6 @@ from app import app
 from kk_con import *
 from flask.helpers import flash
 
-
 @app.route('/income')
 def income():
     with gobal.con:
@@ -20,7 +19,7 @@ def income():
             rate_trans = cur.fetchall()
             dateTimeObj = datetime.now()
             doc_date = dateTimeObj.strftime("%Y-%m-%d")
-            return render_template('In-Outcome/income.html', rate_trans=rate_trans, doc_date=doc_date)
+            return render_template('In-Outcome/income.html', rate_trans=rate_trans,doc_date=doc_date,user=session.get("roles"))
 
 
 @app.route('/save_income', methods=['POST'])
@@ -60,12 +59,11 @@ def save_income():
                 sql_dt = """INSERT INTO cb_trans_detail(doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2,trans_type,calc_flag)
                             VALUES (%s, %s, %s, %s,%s,%s,%s,%s);
                 """
-                val1 = (bill_date, doc_no, cur_code, amount, 1, amount, 5,1)
+                val1 = (bill_date, doc_no, cur_code, amount, 1, amount, 5, 1)
                 curdt = gobal.con.cursor()
                 curdt.execute(sql_dt, val1,)
                 gobal.con.commit()
-
-            flash('ບັນທຶກສຳເລັດ')
+                flash('ບັນທຶກສຳເລັດ')
             return redirect(url_for('income'))
 
 

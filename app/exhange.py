@@ -19,10 +19,10 @@ def homeex():
             cur.execute(sql)
             rate_trans = cur.fetchall()
             currate = gobal.con.cursor()
-            sql="SELECT curency_code, curency_name, buy, sale FROM public.exchange_rate where date_end isnull order by curency_code "
+            sql = "SELECT curency_code, curency_name, buy, sale FROM public.exchange_rate where date_end isnull order by curency_code "
             currate.execute(sql)
             rate_ = currate.fetchall()
-            return render_template('exchange/index.html', rate_trans=rate_trans,rate_=rate_)
+            return render_template('exchange/index.html', rate_trans=rate_trans, rate_=rate_,user=session.get("roles"))
 
 
 @app.route("/product/<id>/<v>")
@@ -46,7 +46,6 @@ def product(id, v):
     return jsonify({'product': product})
 
 
-
 @app.route('/ex_delete/<string:id>')
 def ex_delete(id):
     with gobal.con:
@@ -54,10 +53,14 @@ def ex_delete(id):
         if not session.get("name"):
             return redirect("/login")
         else:
-            sql = """delete from ic_trans where roworder=%s"""
+            cur = gobal.con.cursor()
+            sql = "delete from cb_trans where doc_no=%s"
             cur.execute(sql, (id,))
             gobal.con.commit()
-            flash('ລົບສຳເລັດ ແລ້ວ')
+            sql = "delete from cb_trans_detail where doc_no=%s"
+            cur.execute(sql, (id,))
+            gobal.con.commit()
+            flash('ລົບສຳເລັດ')
             return redirect(url_for('homeex'))
 
 
@@ -69,7 +72,7 @@ def sale():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+            sql = "SELECT bank_id, bank_name  FROM public.tb_bank where bank_loca='lao' order by roworder "
             cur.execute(sql)
             bank_from = cur.fetchall()
             return render_template('exchange/sale.html', bank_from=bank_from)
@@ -217,3 +220,14 @@ def xchange_trans():
                     # print('all in pay cash')
                     # return redirect(url_for('hometf'))
         return redirect(url_for('homeex'))
+
+
+@app.route('/showex_detail/<string:id>')
+def showex_detail(id):
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+
+            return render_template('exchange/showdetail.html')

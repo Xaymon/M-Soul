@@ -15,7 +15,7 @@ def manage_rate():
             cur.execute(sql)
             rate_ = cur.fetchall()
 
-            return render_template('manage/addcurrency.html', rate_=rate_)
+            return render_template('manage/addcurrency.html', rate_=rate_,user=session.get("roles"))
 
 @app.route('/save_ratee', methods=['POST'])
 def save_ratee():

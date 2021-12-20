@@ -13,7 +13,7 @@ def dm():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+            sql = "SELECT bank_id, bank_name  FROM public.tb_bank where bank_loca='lao' order by roworder "
             cur.execute(sql)
             bank_from = cur.fetchall()
             # list Transfer
@@ -21,7 +21,7 @@ def dm():
             sqlist = "select to_char(doc_date, 'DD-MM-YYY HH24:MI:SS'),doc_no,(select curency_name from tb_addcurrency where curency_code=a.item_code) as item_code,item_code_2,to_char(amount,'999G999G999G999D99') from cb_trans a where trans_type='11'"
             curlist.execute(sqlist)
             dm = curlist.fetchall()
-            return render_template('bank/dm.html', bank_from=bank_from, dm=dm)
+            return render_template('bank/dm.html', bank_from=bank_from, dm=dm,user=session.get("roles"))
 
 
 @app.route('/dm_save', methods=['POST'])
@@ -88,7 +88,7 @@ def wm():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT bank_id, bank_name  FROM public.tb_bank order by roworder "
+            sql = "SELECT bank_id, bank_name  FROM public.tb_bank where bank_loca='lao' order by roworder "
             cur.execute(sql)
             bank_from = cur.fetchall()
             # list Transfer
@@ -96,7 +96,7 @@ def wm():
             sqlist = "select to_char(doc_date, 'DD-MM-YYY HH24:MI:SS'),doc_no,item_code, (select curency_name from tb_addcurrency where curency_code=a.item_code_2) as item_code_2,to_char(amount,'999G999G999G999D99') from cb_trans a where trans_type='12'"
             curlist.execute(sqlist)
             wm = curlist.fetchall()
-            return render_template('bank/wm.html', bank_from=bank_from, list=wm)
+            return render_template('bank/wm.html', bank_from=bank_from, list=wm,user=session.get("roles"))
 
 
 @app.route('/wm_save', methods=['POST'])
