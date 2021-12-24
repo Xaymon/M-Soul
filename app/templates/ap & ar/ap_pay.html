@@ -1,0 +1,217 @@
+{% extends "layout/layout.html" %}
+{% block title %}ການຈັດການອັດຕາແລກປ່ຽນ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container col-sm-12">
+  <div class="card">
+    <div class="card-body" style="background-color:darkcyan;padding-right: 2.4%;">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card" style="background-color: darkslategrey;color: white;">
+            <div class="card-header">
+              <center>
+                ຈ່າຍ​ຊຳ​ລະເຈົ້າໜີ້
+              </center>
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <script>
+                $(".alert-dismissible").fadeTo(2000, 500).fadeOut(500, function () {
+                  $(".alert-dismissible").alert('close');
+                });
+              </script>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
+            </div>
+
+              <div class="card-body">
+
+                <form class="" action="/save_ap_pay" method="post">
+                  <div class="form-group">
+                    <label for="usr">ລະ​ຫັດ​ເຈົ້າ​ໜີ້:</label>
+                    <input type="text" class="form-control" name="item_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="usr">ລະ​ຫັດ​ໃບ​ຊຳ​ລະ:</label>
+                    <input type="text" class="form-control" name="item_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="usr">ຈຳ​ນວນ​ເງິນ​ທີ່​ຕ້ອງ​ຈ່າຍ:</label>
+                    <input type="number" class="form-control" name="item_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="usr">​ມູນ​ຄ່າ:</label>
+                    <input type="number" class="form-control" name="item_name">
+                  </div>
+
+                  <br>
+                  <center>
+                  <button type="submit" class="btn btn-primary form-control" style="width: 130px;">ບັນທຶກ</button>
+                  </center>
+                </form>
+              </div>
+
+          </div>
+        </div>
+        <div class="col-sm-8" style="background-color: whitesmoke; padding-top: 10px;padding-right: 15px;border-radius: 5px;">
+          <table class="table table-sm table-hover table-striped table-success" id="Ratetable">
+            <thead>
+              <tr>
+                <th scope="col">ລະຫັດ</th>
+                <th scope="col">​ຊື່</th>
+                <th scope="col">​ເບີ​ໂທ</th>
+                <th scope="col">ລາຍ​ການ</th>
+                <th scope="col">​ມູນ​ຄ່າ</th>
+                <th scope="col">​ສະ​ກຸນ​ເງິນ</th>
+                <th scope="col">​ລວມ​ທັງ​ໝົດ</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in rate_trans %}
+                <tr>
+                  <td style="text-align: left;">{{item[0]}}</td>
+                  <td style="text-align: left;">{{item[1]}}</td>
+                  <td style="text-align: left;">{{item[2]}}</td>
+                  <td style="text-align: left;">{{item[3]}}</td>
+                  <td style="text-align: left;">{{item[4]}}</td>
+                  <td style="text-align: left;">{{item[5]}}</td>
+                  <td style="text-align: left;">{{item[6]}}</td>
+                  <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal" data-target="#update_ap/{{item[0]}}"></i></a>
+                    <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                  </td>
+                </tr>
+
+                <!-- Modal -->
+              <div class="modal fade" id="update_ap/{{item[0]}}" tabindex="-1"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດ​ເຈົ້າ​ໜີ້</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="background-color: #EFEFEF;">
+                    <form class="" action="/update_ap/{{item[0]}}" method="post">
+                      <input type="hidden" name="" value="">
+                      <div class="form-group">
+                        <label for="usr">ລະຫັດ:</label>
+                        <input type="text" class="form-control" name="codee" value="{{item[0]}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="usr">ລາຍ​ການ:</label>
+                        <input type="text" class="form-control" name="name_1" value="{{item[1]}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="usr">​​ເບີ​ໂທ:</label>
+                        <input type="number" class="form-control" name="tel" value="{{item[2]}}"/>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-1 col-sm-12">
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                          <label for="usr">​ແຂວງ:</label>
+                          <select class="form-control form-control-sm" id="up_province"
+                          name="up_province" onchange="up_show_citylist()">
+                            <option selected value="" hidden>{{item[3]}}</option>
+                            {% for item in prov_list %}
+	                          <option value={{item[0]}}>{{item[1]}}</option>
+                            {% endfor %}    
+                          </select>
+                        </div>
+                        <div class="form-group col-md-2 col-sm-12">
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                          <label for="usr">​​ເມືອງ:</label>
+                          <select class="form-control form-control-sm" id="up_city"
+                          name="up_city">
+                            <option selected value="" hidden>{{item[4]}}</option>
+                            <!-- <select class="form-control form-control-sm" id="up_city"
+                            name="up_city">
+                              <option selected value="" hidden>ເລືອກເມືອງ...</option>     
+                            </select> -->
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="usr">​ທີ່​ຢູ່:</label>
+                        <input type="text" class="form-control" name="address" value="{{item[5]}}" />
+                      </div>
+                      <div class="form-group">
+                        <label for="usr">​ໝາຍ​ເຫດ:</label>
+                        <input type="text" class="form-control" name="remark" value="{{item[6]}}"/>
+                      </div>
+                      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
+                          ບັນທຶກ</button>
+                      </div>
+                    </form>
+
+                </div>
+              </div>
+            </div>
+                {% endfor %}
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function deleteitem(id) {
+    swal({
+      title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
+      text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
+      cancelButtonText: 'ບໍ່,ກັບຄືນ!',
+    }).then(function () {
+      location.href = "/ap_delete/" + id;
+    })
+  }
+
+  function show_citylist() {
+        var x = document.getElementById("province").value;
+        fetch('predict/' + x).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (city_rs of data.citylist) {
+                    optionHTML += "<option value='" + city_rs[0] + "'>" + city_rs[1] + "</option>"
+                }
+                city.innerHTML = "<option value='' selected hidden>ເລືອກເມືອງ...</option>" + optionHTML;
+            });
+        });
+    }
+
+    function up_show_citylist() {
+        var x = document.getElementById("up_province").value;
+        fetch('predict/' + x).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (city_rs of data.citylist) {
+                    optionHTML += "<option value='" + city_rs[0] + "'>" + city_rs[1] + "</option>"
+                }
+                up_city.innerHTML = "<option value='' selected hidden>ເລືອກເມືອງ...</option>" + optionHTML;
+            });
+        });
+    }
+</script>
+{% endblock %}

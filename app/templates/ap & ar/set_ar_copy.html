@@ -45,7 +45,7 @@
                   </div>
                   <div class="col-sm-9">
                     <div class="form-group">
-                      <input type="text" class="form-control" value="{{selectarid[0]}}" disabled>
+                      <input type="text" class="form-control" value="{{selectarid[0]}}" disabled/>
                     </div>
                   </div>
                 </div>
@@ -82,7 +82,7 @@
               <form class="" action="/saveset_ar" method="post">
                 <div class="row">
                   <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
-                      <input type="text" class="form-control" value="{{selectarid[0]}}"  name="codee" readonly hidden>
+                  <input type="text" class="form-control" value="{{selectarid[0]}}" name="codee" readonly hidden>
                 </div>
                 <div class="row">
                   <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
@@ -121,7 +121,12 @@
                   </div>
                   <div class="col-sm-9">
                     <div class="form-group">
-                      <input type="number" class="form-control" name="currency_name">
+                      <!-- <input type="number" class="form-control" name="currency_name"> -->
+                      <select class="form-control form-control-sm " id="currency_name" name="currency_name" onchange="nextVal()">
+                        {% for item in curent %}
+                        <option value="{{item[1]}}">{{item[1]}}</option>
+                        {% endfor %}
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -179,77 +184,66 @@
                 <td style="text-align: left;">{{item[5]}}</td>
                 <td style="text-align: left;">{{item[6]}}</td>
                 <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
-                    data-target="#update_set_ar/{{item[0]}}"></i></a>
-                <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                      data-target="#update_set_ar/{{item[0]}}"></i></a>
+                  <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
                 </td>
               </tr>
-                            <!-- Modal -->
+              <!-- Modal -->
               <div class="modal fade" id="update_set_ar/{{item[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດການ​ຕັ້ງ​ໜີ້</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body" style="background-color: #EFEFEF;">
-                    <form class="" action="/update_set_ar/{{item[0]}}" method="post">
-                      <input type="hidden" name="" value="">
-                      <div class="form-group">
-                        <label for="usr">ປະ​ເພດ​ຂອງ​ໜີ້:</label>
-                        <input type="text" class="form-control" name="codee" value="{{item[0]}}">
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">ລາຍ​ການ:</label>
-                        <input type="text" class="form-control" name="name_1" value="{{item[1]}}">
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">​​ເບີ​ໂທ:</label>
-                        <input type="number" class="form-control" name="tel" value="{{item[2]}}" />
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-md-1 col-sm-12">
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດການ​ຕັ້ງ​ໜີ້</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #EFEFEF;">
+                      <form class="" action="/update_set_ar/{{item[0]}}" method="post">
+                        <input type="hidden" name="" value="">
+                        <div class="form-group">
+                          <label for="usr">ລາຍ​ການ:</label>
+                          <input type="text" class="form-control" name="item_name" value="{{item[3]}}">
                         </div>
-                        <div class="form-group col-md-4 col-sm-12">
-                          <label for="usr">​ແຂວງ:</label>
-                          <input type="text" class="form-control" name="province" value="{{item[3]}}">
+                        <div class="form-group">
+                          <label for="usr">ມູນ​ຄ່າ:</label>
+                          <input type="text" class="form-control" name="amount" value="{{item[4]}}">
                         </div>
-                        <div class="form-group col-md-2 col-sm-12">
+                        <div class="form-group">
+                          <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
+                          <!-- <input type="number" class="form-control" name="currency_name" value="{{item[5]}}" /> -->
+                          <select class="form-control form-control-sm " id="currency_name" name="currency_name" onchange="nextVal()">
+                            <option selected hidden>{{item[5]}}</option>
+                            {% for item in curent %}
+                            <option value="{{item[1]}}">{{item[1]}}</option>
+                            {% endfor %}
+                          </select>
                         </div>
-                        <div class="form-group col-md-4 col-sm-12">
-                          <label for="usr">​​ເມືອງ:</label>
-                          <input type="text" class="form-control" name="city" value="{{item[4]}}" />
+                        <div class="form-group">
+                          <label for="usr">ລວມ​ທັງ​ໝົດ:</label>
+                          <input type="text" class="form-control" name="total" value="{{item[6]}}" />
                         </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">​ທີ່​ຢູ່:</label>
-                        <input type="text" class="form-control" name="address" value="{{item[5]}}" />
-                      </div>
-                      <div class="form-group">
-                        <label for="usr">​ໝາຍ​ເຫດ:</label>
-                        <input type="text" class="form-control" name="remark" value="{{item[6]}}" />
-                      </div>
 
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                        <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
-                          ບັນທຶກ</button>
-                      </div>
-                    </form>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                          <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
+                            ບັນທຶກ</button>
+                        </div>
+                      </form>
 
+                    </div>
                   </div>
                 </div>
-              </div>
-              {% endfor %}
-          </tbody>
-        </table>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+
 <script>
   function deleteitem(id) {
     swal({
@@ -262,8 +256,21 @@
       confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
       cancelButtonText: 'ບໍ່,ກັບຄືນ!',
     }).then(function () {
-      location.href = "/ar_delete/" + id;
+      location.href = "/set_ar_delete/" + id;
     })
+  }
+
+  function nextVal(){
+    x = document.getElementById("currency_name").value;
+    fetch('neVal/' + x).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (curs of data.curency) {
+                    optionHTML += "<option value='" + curs[1] + "'>" + curs[1] + "</option>"
+                }
+                curency_name2.innerHTML = optionHTML;
+            });
+        });
   }
 </script>
 {% endblock %}
