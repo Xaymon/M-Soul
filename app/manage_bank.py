@@ -20,7 +20,7 @@ def managebank():
             curs.execute(sql_cur)
             curent = curs.fetchall()
 
-            return render_template('manage/bank.html', rate_=rate_, curent = curent)
+            return render_template('manage/bank.html', rate_=rate_, curent = curent,user=session.get("roles"))
 
 @app.route('/save_bank', methods=['POST'])
 def save_bank():

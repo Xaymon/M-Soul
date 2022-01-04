@@ -10,10 +10,23 @@ from kk_con import *
 #             return redirect("/login")
 #         else:
 #             cur = gobal.con.cursor()
-#             sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ap_supplier"
+#             sql = """SELECT code, name_1, tel, b.prov_name, c.city_name, address, remark FROM public.ap_supplier a 
+#             left join province b on a.province=b.prov_code 
+#             left join city c on b.prov_code =c.prov_code and c.city_code = a.city"""
 #             cur.execute(sql)
 #             rate_trans = cur.fetchall()
-#             return render_template('ap & ar/ap.html', rate_trans = rate_trans)
+
+#             curb = gobal.con.cursor()
+#             sql_p = "select prov_code, prov_name from province order by prov_code"
+#             curb.execute(sql_p)
+#             prov_list = curb.fetchall()
+
+#             curc = gobal.con.cursor()
+#             sql_c = "select city_code, city_name from city order by city_code"
+#             curc.execute(sql_c)
+#             city_list = curc.fetchall()
+#             return render_template('ap & ar/ap.html', rate_trans = rate_trans, prov_list = prov_list, city_list = city_list)
+
 @app.route('/ap')
 def ap():
     with gobal.con:
@@ -31,12 +44,15 @@ def ap():
             sql_p = "select prov_code, prov_name from province order by prov_code"
             curb.execute(sql_p)
             prov_list = curb.fetchall()
+            return render_template('ap & ar/ap.html', rate_trans = rate_trans, prov_list = prov_list,user=session.get("roles"))
 
-            curc = gobal.con.cursor()
-            sql_c = "select city_code, city_name from city order by city_code"
-            curc.execute(sql_c)
-            city_list = curc.fetchall()
-            return render_template('ap & ar/ap.html', rate_trans = rate_trans, prov_list = prov_list, city_list = city_list)
+@app.route("/predict/<id>")
+def predict(id):
+    sql_city = "SELECT city_code, city_name FROM city WHERE prov_code=%s"
+    curc = gobal.con.cursor()
+    curc.execute(sql_city, (id,))
+    cityss = curc.fetchall()
+    return jsonify({'citylist': cityss})
 
 @app.route('/save_ap', methods=['POST'])
 def save_ap():
@@ -73,10 +89,12 @@ def update_ap(id):
             codee = request.form['codee']
             name_1 = request.form['name_1']
             tel = request.form['tel']
-            province = request.form['province']
-            city = request.form['city']
+            province = request.form['up_province']
+            city = request.form['up_city']
             address = request.form['address']
             remark = request.form['remark']
+
+            print(province, "city = ",city)
 
             # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
             cur.execute('update public.ap_supplier set code=%s, name_1=%s, tel=%s, province=%s, city=%s, address=%s, remark=%s where code=%s',
@@ -95,6 +113,19 @@ def ap_delete(id):
         cur.execute(sql, (id,))
         gobal.con.commit()
         return redirect(url_for('ap'))
+
+@app.route('/ap_pay')
+def ap_pay():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            cur = gobal.con.cursor()
+            sql = """SELECT public.ap_supplier.code, name_1, tel, item_name, amount, currency_name, total FROM public.ap_supplier LEFT JOIN public.set_ap ON public.set_ap.code = public.ap_supplier.code"""
+            cur.execute(sql)
+            rate_trans = cur.fetchall()
+
+            return render_template('ap & ar/ap_pay.html', rate_trans = rate_trans,user=session.get("roles"))
 
 
 # @app.route('/ar')
@@ -130,7 +161,7 @@ def ar():
             sql_c = "select city_code, city_name from city order by city_code"
             curc.execute(sql_c)
             city_list = curc.fetchall()
-            return render_template('ap & ar/ar.html', rate_trans = rate_trans, prov_list = prov_list, city_list = city_list)
+            return render_template('ap & ar/ar.html', rate_trans = rate_trans, prov_list = prov_list, city_list = city_list,user=session.get("roles"))
 
 @app.route('/save_ar', methods=['POST'])
 def save_ar():
@@ -201,7 +232,7 @@ def setap():
             sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ap_supplier"
             cur.execute(sql)
             rate_trans = cur.fetchall()
-            return render_template('ap & ar/set_ap.html', rate_trans = rate_trans)
+            return render_template('ap & ar/set_ap.html', rate_trans = rate_trans,user=session.get("roles"))
 @app.route('/setapcopy')
 def setapcopy():
     with gobal.con:
@@ -212,7 +243,7 @@ def setapcopy():
             sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ap_supplier"
             cur.execute(sql)
             rate_trans = cur.fetchall()
-            return render_template('ap & ar/set_ap_copy.html', rate_trans = rate_trans)
+            return render_template('ap & ar/set_ap_copy.html', rate_trans = rate_trans,user=session.get("roles"))
 
 @app.route('/send_apid/<string:id>',methods=['GET'])
 def send_apid(id):
@@ -234,10 +265,15 @@ def send_apid(id):
             cura.execute(sql)
             # select = cura.fetchone()
             rate_trans = cura.fetchall()
+
+            curs = gobal.con.cursor()
+            sql_cur = "SELECT curency_code,curency_name FROM public.tb_addcurrency"
+            curs.execute(sql_cur)
+            curent = curs.fetchall()
             
 
             gobal.con.commit()
-            return render_template('ap & ar/set_ap_copy.html',selectapid=selectapid,rate_trans = rate_trans)
+            return render_template('ap & ar/set_ap_copy.html',selectapid=selectapid,rate_trans = rate_trans, curent=curent,user=session.get("roles"))
 
 @app.route('/saveset_ap', methods=['POST'])
 def saveset_ap():
@@ -290,11 +326,11 @@ def update_set_ap(id):
             cur.execute('update public.set_ap set item_name=%s, amount=%s, currency_name=%s,total=%s where code=%s',
                         (item_name, amount, currency_name, total, (id,)))
             gobal.con.commit()
-            return redirect(url_for('setapcopy'))
+            return redirect(url_for('send_apid', id = id))
             # return render_template('ap & ar/set_ap_copy.html')
 
 @app.route('/set_ap_delete/<string:id>')
-def set_ap_delet(id):
+def set_ap_delete(id):
     if not session.get("name"):
         return redirect("/login")
     else:
@@ -303,7 +339,7 @@ def set_ap_delet(id):
         sql = "delete from public.set_ap where code=%s"
         cur.execute(sql, (id,))
         gobal.con.commit()
-        return redirect(url_for('send_apid'))
+        return redirect(url_for('send_apid', id = id))
         # return render_template('ap & ar/set_ap_copy.html')
 
 @app.route('/setar')
@@ -316,7 +352,7 @@ def setar():
             sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ar_customer"
             cur.execute(sql)
             rate_trans = cur.fetchall()
-            return render_template('ap & ar/set_ar.html', rate_trans = rate_trans)
+            return render_template('ap & ar/set_ar.html', rate_trans = rate_trans,user=session.get("roles"))
 
 @app.route('/send_arid/<string:id>',methods=['GET'])
 def send_arid(id):
@@ -338,10 +374,15 @@ def send_arid(id):
             cura.execute(sql)
             # select = cura.fetchone()
             rate_trans = cura.fetchall()
+
+            curs = gobal.con.cursor()
+            sql_cur = "SELECT curency_code,curency_name FROM public.tb_addcurrency"
+            curs.execute(sql_cur)
+            curent = curs.fetchall()
             
 
             gobal.con.commit()
-        return render_template('ap & ar/set_ar_copy.html',selectarid=selectarid,rate_trans = rate_trans)
+        return render_template('ap & ar/set_ar_copy.html',selectarid=selectarid,rate_trans = rate_trans, curent=curent,user=session.get("roles"))
 
 
 
@@ -378,4 +419,35 @@ def saveset_ar():
             # gobal.con.commit()
             print(codee)
             return redirect(url_for('send_arid', id = codee))
+@app.route('/update_set_ar/<string:id>', methods=['POST'])
+def update_set_ar(id):
+    with gobal.con:
+        cur = gobal.con.cursor()
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            item_name = request.form['item_name']
+            amount = request.form['amount']
+            currency_name = request.form['currency_name']
+            total = request.form['total']
+
+            # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
+            cur.execute('update public.set_ar set item_name=%s, amount=%s, currency_name=%s,total=%s where code=%s',
+                        (item_name, amount, currency_name, total, (id,)))
+            gobal.con.commit()
+            return redirect(url_for('send_arid', id = id))
+            # return render_template('ap & ar/set_ap_copy.html')
+
+@app.route('/set_ar_delete/<string:id>')
+def set_ar_delete(id):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        print(id)
+        cur = gobal.con.cursor()
+        sql = "delete from public.set_ar where code=%s"
+        cur.execute(sql, (id,))
+        gobal.con.commit()
+        return redirect(url_for('send_arid', id = id))
+        # return render_template('ap & ar/set_ap_copy.html')
 

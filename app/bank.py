@@ -173,4 +173,4 @@ def tm():
             sql_cur = "SELECT curency_code,curency_name FROM public.tb_addcurrency"
             curs.execute(sql_cur)
             curent = curs.fetchall()
-            return render_template('manage/currency_type.html', rate_=rate_, curent=curent)
+            return render_template('manage/currency_type.html', rate_=rate_, curent=curent,user=session.get("roles"))

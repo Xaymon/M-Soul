@@ -29,19 +29,19 @@
                     <div class="card">
                         <div class="card-header"
                             style="text-align: center;font-weight: bold;background-color: darkslategrey; color: white;">
-                            ລາຍການເຄື່ອນໃຫວ
+                            ລາຍການໜີ້ຄົງເຫຼືອ
                         </div>
                         <div class="card-body">
                             <table class="table table-hover" id="myTable">
                                 <thead>
                                     <tr>
-                                      <th scope="col">ລະ​ຫັດປະ​ເພດ</th>
+                                      <th scope="col">ວັນທີ</th>
+                                      <th scope="col">​ເລກທີ</th>   
+                                      <th scope="col">ລະຫັດເຈົ້າໜີ້</th>
                                       <th scope="col">​ຊື່</th>
-                                      <th scope="col">​ເບີ​ໂທ</th>
-                                      <th scope="col">ແຂວງ</th>
-                                      <th scope="col">ເມືອງ</th>
-                                      <th scope="col">ທີ່​ຢູ່</th>
-                                      <th scope="col">​ໝາຍ​ເຫດ</th>
+                                      <th scope="col">ລາຍການ</th>
+                                      <th scope="col">ມູນຄ່າຄົງເຫຼືອ</th>
+                                      <th scope="col"></th>
                                     </tr>
                                 </thead>
 
@@ -53,8 +53,8 @@
                                       <td style="text-align: left;">{{item[2]}}</td>
                                       <td style="text-align: left;">{{item[3]}}</td>
                                       <td style="text-align: left;">{{item[4]}}</td>
-                                      <td style="text-align: left;">{{item[5]}}</td>
-                                      <td style="text-align: left;">{{item[6]}}</td>
+                                      <td style="text-align: right;font-weight: bold;">{{item[5]}}</td>
+                                      <td style="text-align: center; width: 5%;"><a href=""><i class="bi bi-pencil-square"></i></a>||<a href=""><i class="bi bi-trash"></i></a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

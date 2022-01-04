@@ -1,0 +1,14 @@
+{% extends "layout/layout.html" %}
+{% block title %}Home Stock{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <center>
+        <a href="/stock_cash" class="btn btn-success">ເງິນສົດ</a>
+        <a href="/stock_bank" class="btn btn-success">ເງິນຝາກ</a>
+    </center>
+</div>
+{% endblock %}

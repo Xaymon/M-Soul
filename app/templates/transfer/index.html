@@ -74,38 +74,6 @@
               <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#thailao">
                 ໂອນເງິນ ໄທ-ລາວ
               </button>
-              <hr>
-              <!-- Table Rate -->
-              <table style="width:100%; background-color: white;border-radius: 12px;">
-                <tr>
-                  <th>
-                    <center>
-                      <h5>ອັດຕາແລກປ່ຽນປະຈຳວັນ</h5>
-                    </center>
-                    <table class="table table-sm table-hover">
-                      <thead>
-                        <tr>
-                          <th scope="col">ລະຫັດ</th>
-                          <th scope="col">ສະກຸນເງິນ</th>
-                          <th scope="col">ຊື້</th>
-                          <th scope="col">ຂາຍ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for item in rate_ %}
-                        <tr>
-                          <td style="text-align: right;">{{item[0]}}</td>
-                          <td style="text-align: left;">{{item[1]}}</td>
-                          <td style="text-align: right;">{{item[2]}}</td>
-                          <td style="text-align: right;">{{item[2]}}</td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </th>
-                </tr>
-              </table>
-
               <!-- Modal Lao Thai-->
               <div class="modal fade" id="laothai" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                 aria-hidden="true" style="margin-top: 5px; margin-bottom: 5px;">
@@ -634,9 +602,52 @@
                   </div>
                 </div>
               </div>
-
-
-
+            </div>
+          </div>
+          <hr>
+          <div class="card"
+            style="background-color: #0694CD; border-radius: 12px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="card-body">
+              <table style="width:100%; border-radius: 12px;overflow: hidden;">
+                <tr>
+                  <th>
+                    <center>
+                      <h5>
+                        <b>
+                          ອັດຕາແລກປ່ຽນປະຈຳວັນ
+                        </b>
+                      </h5>
+                    </center>
+                    <table class="table table-sm table-hover table-bordered"
+                      style="background-color: antiquewhite;border-radius: 12px; border: 1px solid black;overflow: hidden;">
+                      <tr>
+                        <th scope="col"
+                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
+                          ລະຫັດ</th>
+                        <th scope="col"
+                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
+                          ສະກຸນເງິນ</th>
+                        <th scope="col"
+                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
+                          ຊື້</th>
+                        <th scope="col"
+                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
+                          ຂາຍ</th>
+                      </tr>
+                      <tbody>
+                        {% for item in rate_ %}
+                        <tr>
+                          <td style="text-align: center;font-size: 10pt;">{{item[0]}}</td>
+                          <td style="text-align: left;font-size: 10pt;">{{item[1]}}</td>
+                          <td style="text-align: right;font-size: 10pt;">{{item[2]}}</td>
+                          <td style="text-align: right;font-size: 10pt;">{{item[3]}}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </th>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -649,7 +660,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-hover table-sm table-hover" id="myTable">
+                <table class="table table-hover table-sm table-hover table-bordered" id="myTable" style="">
                   <thead>
                     <tr>
                       <th scope="col">ວັນທີ</th>

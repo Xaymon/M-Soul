@@ -230,4 +230,4 @@ def showex_detail(id):
             return redirect("/login")
         else:
 
-            return render_template('exchange/showdetail.html')
+            return render_template('exchange/showdetail.html',user=session.get("roles"))

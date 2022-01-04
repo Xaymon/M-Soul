@@ -43,6 +43,7 @@
             padding: 5px;
             height: 2%;
             font-size: 12px;
+            /* font-weight: bold; */
         }
 
         .card-header {
@@ -131,7 +132,7 @@
                         <a class="dropdown-item" href="/setap">ຕັ້ງໜີ້</a>
                         <a class="dropdown-item" href="/outcome">ລາຍງານໜີ້ຄົງເຫຼືອ</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/outcome">ຈ່າຍຊຳລະເຈົ້າໜີ້</a>
+                        <a class="dropdown-item" href="/pvhome">ຈ່າຍຊຳລະເຈົ້າໜີ້</a>
                         <a class="dropdown-item" href="/outcome">ລາຍງານຈ່າຍຊຳລະເຈົ້າໜີ້</a>
                     </div>
                 </li>
@@ -143,13 +144,14 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/ar">ກຳນົດລູກໜີ້</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/outcome">ຕັ້ງໜີ້</a>
+                        <a class="dropdown-item" href="/setar">ຕັ້ງໜີ້</a>
                         <a class="dropdown-item" href="/outcome">ລາຍງານໜີ້ຄົງເຫຼືອ</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/outcome">ຈ່າຍຊຳລະເຈົ້າໜີ້</a>
                         <a class="dropdown-item" href="/outcome">ລາຍງານຈ່າຍຊຳລະເຈົ້າໜີ້</a>
                     </div>
                 </li>
+                {% if user == 'admin' %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -188,6 +190,7 @@
                         <a class="dropdown-item" href="/bank_thai">ການເຄື່ອນໃຫວບັນຊີເງິນຝາກຢູ່ຕ່າງປະເທດ</a>
                     </div>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">ອອກ​ຈາກ​ລະ​ບົບ</a>
                 </li>
