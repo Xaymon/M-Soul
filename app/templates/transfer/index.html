@@ -610,49 +610,45 @@
           </div>
           <hr>
           <div class="card"
-            style="background-color: #0694CD; border-radius: 12px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-            <div class="card-body">
-              <table style="width:100%; border-radius: 12px;overflow: hidden;">
-                <tr>
-                  <th>
-                    <center>
-                      <h5>
-                        <b>
-                          ອັດຕາແລກປ່ຽນປະຈຳວັນ
-                        </b>
-                      </h5>
-                    </center>
-                    <table class="table table-sm table-hover table-bordered"
-                      style="background-color: antiquewhite;border-radius: 12px; border: 1px solid black;overflow: hidden;">
-                      <tr>
-                        <th scope="col"
-                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
-                          ລະຫັດ</th>
-                        <th scope="col"
-                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
-                          ສະກຸນເງິນ</th>
-                        <th scope="col"
-                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
-                          ຊື້</th>
-                        <th scope="col"
-                          style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #755D03;">
-                          ຂາຍ</th>
-                      </tr>
-                      <tbody>
-                        {% for item in rate_ %}
-                        <tr>
-                          <td style="text-align: center;font-size: 10pt;">{{item[0]}}</td>
-                          <td style="text-align: left;font-size: 10pt;">{{item[1]}}</td>
-                          <td style="text-align: right;font-size: 10pt;">{{item[2]}}</td>
-                          <td style="text-align: right;font-size: 10pt;">{{item[3]}}</td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </th>
-                </tr>
-              </table>
-            </div>
+                            style="background-color: #DDDDDD; border-radius: 12px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                            <div class="card-body">
+                                <table style="width:100%; border-radius: 12px;overflow: hidden;" id="dd">
+                                    <tr>
+                                        <th>
+                                            <center>
+                                                <h5>
+                                                    <b>
+                                                        ອັດຕາແລກປ່ຽນປະຈຳວັນ
+                                                    </b>
+                                                </h5>
+                                            </center>
+                                            <table class="table table-sm table-hover table-bordered"
+                                                style="background-color: #FFF;border-radius: 12px; border: 1px solid black;overflow: hidden;">
+                                                <tr>
+                                                    <th scope="col"
+                                                        style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #2F4F4F; color: white;">ລະຫັດ</th>
+                                                    <th scope="col"
+                                                        style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #2F4F4F; color: white;">ສະກຸນເງິນ</th>
+                                                    <th scope="col"
+                                                        style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #2F4F4F; color: white;">ຊື້</th>
+                                                    <th scope="col"
+                                                        style="text-align: center;font-size: 10pt;font-weight: bold;background-color: #2F4F4F; color: white;">ຂາຍ</th>
+                                                </tr>
+                                                <tbody>
+                                                    {% for item in rate_ %}
+                                                    <tr>
+                                                        <td style="text-align: center;font-size: 10pt;">{{item[0]}}</td>
+                                                        <td style="text-align: left;font-size: 10pt;">{{item[1]}}</td>
+                                                        <td style="text-align: right;font-size: 10pt;background-color: #ff9eae;">{{item[2]}}</td>
+                                                        <td style="text-align: right;font-size: 10pt;background-color: #91ff6f;">{{item[3]}}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
           </div>
         </div>
         <div class="col-sm-10">
