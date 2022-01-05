@@ -34,9 +34,9 @@ def ap():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = """SELECT code, name_1, tel, b.prov_name, c.city_name, address, remark FROM public.ap_supplier a 
-            left join province b on a.province=b.prov_code 
-            left join city c on b.prov_code =c.prov_code and c.city_code = a.city"""
+            sql = """SELECT code, name_1, tel, b.prov_name, c.city_name, address, remark,a.city,a.province FROM public.ap_supplier a 
+                    left join province b on a.province=b.prov_code 
+                    left join city c on b.prov_code =c.prov_code and c.city_code = a.city"""
             cur.execute(sql)
             rate_trans = cur.fetchall()
 

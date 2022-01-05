@@ -100,9 +100,8 @@
                   </div>
                   <div class="col-sm-9">
                     <div class="form-group">
-                      <select class="form-control form-control-sm" id="province" name="province"
-                        onchange="show_citylist()">
-                        <option selected value="" hidden>ເລືອກເເຂວງ...</option>
+                      <select class="form-control form-control-sm" id="province" name="province" onchange="show_citylist()">
+                        <option selected value="">ເລືອກເເຂວງ...</option>
                         {% for item in prov_list %}
                         <option value={{item[0]}}>{{item[1]}}</option>
                         {% endfor %}
@@ -220,7 +219,7 @@
                         <input type="hidden" name="" value="">
                         <div class="form-group">
                           <label for="usr">ລະຫັດ:</label>
-                          <input type="text" class="form-control" name="codee" value="{{item[0]}}">
+                          <input type="text" class="form-control" name="codee" value="{{item[0]}}" readonly>
                         </div>
                         <div class="form-group">
                           <label for="usr">ລາຍ​ການ:</label>
@@ -235,11 +234,10 @@
                           </div>
                           <div class="form-group col-md-4 col-sm-12">
                             <label for="usr">​ແຂວງ:</label>
-                            <select class="form-control form-control-sm" id="up_province" name="up_province"
-                              onchange="up_show_citylist()">
-                              <option selected value="" hidden>{{item[3]}}</option>
-                              {% for item in prov_list %}
-                              <option value={{item[0]}}>{{item[1]}}</option>
+                            <select class="form-control form-control-sm" id="pro_id" name="up_province" onchange="provi()">
+                              <option value="{{item[8]}}">{{item[3]}}</option>
+                              {% for items in prov_list %}
+                              <option value={{items[0]}}>{{items[1]}}</option>
                               {% endfor %}
                             </select>
                           </div>
@@ -248,7 +246,7 @@
                           <div class="form-group col-md-4 col-sm-12">
                             <label for="usr">​​ເມືອງ:</label>
                             <select class="form-control form-control-sm" id="up_city" name="up_city">
-                              <option selected value="" hidden>{{item[4]}}</option>
+                              <option selected value="{{item[7]}}">{{item[4]}}</option>
                               <!-- <select class="form-control form-control-sm" id="up_city"
                             name="up_city">
                               <option selected value="" hidden>ເລືອກເມືອງ...</option>     
@@ -311,18 +309,31 @@
       });
     });
   }
-
-  function up_show_citylist() {
-    var x = document.getElementById("up_province").value;
-    fetch('predict/' + x).then(function (response) {
-      response.json().then(function (data) {
-        optionHTML = '';
-        for (city_rs of data.citylist) {
-          optionHTML += "<option value='" + city_rs[0] + "'>" + city_rs[1] + "</option>"
-        }
-        up_city.innerHTML = "<option value='' selected hidden>ເລືອກເມືອງ...</option>" + optionHTML;
-      });
-    });
+  function provi() {
+    var y = document.getElementById("pro_id").value;
+    console.log(y)
+    // fetch('predict/' + x).then(function (response) {
+    //   response.json().then(function (data) {
+    //     optionHTML = '';
+    //     for (city_rs of data.citylist) {
+    //       optionHTML += "<option value='" + city_rs[0] + "'>" + city_rs[1] + "</option>"
+    //     }
+    //     up_city.innerHTML = "<option value='' selected hidden>ເລືອກເມືອງ...</option>" + optionHTML;
+    //   });
+    // });
   }
+
+  // function up_show_citylist() {
+  //   var x = document.getElementById("up_province").value;
+  //   fetch('predict/' + x).then(function (response) {
+  //     response.json().then(function (data) {
+  //       optionHTML = '';
+  //       for (city_rs of data.citylist) {
+  //         optionHTML += "<option value='" + city_rs[0] + "'>" + city_rs[1] + "</option>"
+  //       }
+  //       up_city.innerHTML = "<option value='' selected hidden>ເລືອກເມືອງ...</option>" + optionHTML;
+  //     });
+  //   });
+  // }
 </script>
 {% endblock %}
