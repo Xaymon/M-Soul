@@ -229,7 +229,7 @@ def setap():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ap_supplier"
+            sql = "SELECT public.ap_ar_trans.doc_date, public.ap_ar_trans.doc_no, public.ap_supplier.code, name_1, tel, item_name, total_value FROM public.ap_supplier LEFT JOIN public.ap_ar_trans ON public.ap_ar_trans.cust_code = public.ap_supplier.code"
             cur.execute(sql)
             rate_trans = cur.fetchall()
             return render_template('ap & ar/set_ap.html', rate_trans = rate_trans,user=session.get("roles"))
@@ -251,20 +251,20 @@ def send_apid(id):
         if not session.get("name"):
             return redirect("/login")
         else:
-            sql_a = "SELECT public.ap_supplier.code, name_1, tel, item_name, amount, currency_name, total FROM public.ap_supplier LEFT JOIN public.set_ap ON public.set_ap.code = public.ap_supplier.code where public.ap_supplier.code=%s"
+            sql_a = "SELECT public.ap_ar_trans.doc_date, public.ap_ar_trans.doc_no, public.ap_supplier.code, name_1, tel, item_name, total_value FROM public.ap_supplier LEFT JOIN public.ap_ar_trans ON public.ap_ar_trans.cust_code = public.ap_supplier.code where public.ap_supplier.code=%s"
             cur = gobal.con.cursor()
             cur.execute(sql_a,(id,))
             selectapid = cur.fetchone()
-            # sql_b = "SELECT z_ap.code, name_1, tel, item_name, amount, currency_name, total FROM z_ap LEFT JOIN z_set_ap ON z_set_ap.code = z_ap.code"
-            # sql_b = "SELECT code, name_1, tel FROM public.z_ap"
-            # curs = gobal.con.cursor()
-            # curs.execute(sql_b))
+            # # sql_b = "SELECT z_ap.code, name_1, tel, item_name, amount, currency_name, total FROM z_ap LEFT JOIN z_set_ap ON z_set_ap.code = z_ap.code"
+            # # sql_b = "SELECT code, name_1, tel FROM public.z_ap"
+            # # curs = gobal.con.cursor()
+            # # curs.execute(sql_b))
 
-            cura= gobal.con.cursor()
-            sql = "SELECT public.ap_supplier.code, name_1, tel, item_name, amount, currency_name, total FROM public.ap_supplier LEFT JOIN public.set_ap ON public.set_ap.code = public.ap_supplier.code"
-            cura.execute(sql)
-            # select = cura.fetchone()
-            rate_trans = cura.fetchall()
+            # cura= gobal.con.cursor()
+            # sql = "SELECT public.ap_supplier.code, name_1, tel, item_name, amount, currency_name, total FROM public.ap_supplier LEFT JOIN public.set_ap ON public.set_ap.code = public.ap_supplier.code"
+            # cura.execute(sql)
+            # # select = cura.fetchone()
+            rate_trans = cur.fetchall()
 
             curs = gobal.con.cursor()
             sql_cur = "SELECT curency_code,curency_name FROM public.tb_addcurrency"
@@ -289,25 +289,23 @@ def saveset_ap():
             # gobal.con.commit()
 
             cur = gobal.con.cursor()
-            sql = """INSERT INTO public.set_ap (item_name, amount, currency_name, total, code)
-                     VALUES(%s,%s,%s,%s,%s);
+            sql = """INSERT INTO public.ap_ar_trans (doc_date, doc_no, item_name, currency_code, total_value, total_value_2, cust_code)
+                     VALUES(%s,%s,%s,%s,%s,%s,%s);
                   """
-                #   INSERT INTO z_set_ap (code)
-                #   SELECT code
-                #   FROM z_ap
+            doc_date = request.form['doc_date']
+            doc_no = request.form['doc_no']
             item_name = request.form['item_name']
-            amount = request.form['amount']
-            currency_name = request.form['currency_name']
-            total = request.form['total']
-            codee = request.form['codee']
-            data = (item_name, amount, currency_name, total, codee)
+            currency_code = request.form['currency_code']
+            total_value = request.form['total_value']
+            total_value_2 = request.form['total_value_2']
+            cust_code = request.form['cust_code']
+            data = (doc_date, doc_no, item_name, currency_code, total_value, total_value_2, cust_code)
             cur.execute(sql, data)
             # curb = gobal.con.cursor()
             # codee = request.form['codee']
             # curb.execute('insert into z_set_ap (code) values(%s)')
             # gobal.con.commit()
-            print(codee)
-            return redirect(url_for('send_apid', id = codee))
+            return redirect(url_for('send_apid', id = cust_code))
             # return render_template('ap & ar/set_ap_copy.html')
 
 @app.route('/update_set_ap/<string:id>', methods=['POST'])
@@ -349,7 +347,8 @@ def setar():
             return redirect("/login")
         else:
             cur = gobal.con.cursor()
-            sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ar_customer"
+            # sql = "SELECT code, name_1, tel, province, city, address, remark FROM public.ar_customer"
+            sql = "SELECT public.ar_customer.code, public.ar_customer.code, public.ar_customer.code, name_1, tel, item_name, amount FROM public.ar_customer LEFT JOIN public.set_ar ON public.set_ar.code = public.ar_customer.code"
             cur.execute(sql)
             rate_trans = cur.fetchall()
             return render_template('ap & ar/set_ar.html', rate_trans = rate_trans,user=session.get("roles"))
@@ -360,19 +359,21 @@ def send_arid(id):
         if not session.get("name"):
             return redirect("/login")
         else:
-            sql_a = "SELECT public.ar_customer.code, name_1, tel, item_name, amount, currency_name, total FROM public.ar_customer LEFT JOIN public.set_ar ON public.set_ar.code = public.ar_customer.code where public.ar_customer.code=%s"
+            # sql_a = "SELECT public.ar_customer.code, name_1, tel FROM public.ar_customer where public.ar_customer.code=%s"
+            sql_a = "SELECT public.ap_ar_trans.doc_date, public.ap_ar_trans.doc_no, public.ar_customer.code, name_1, tel, item_name, total_value FROM public.ar_customer LEFT JOIN public.ap_ar_trans ON public.ap_ar_trans.cust_code = public.ar_customer.code where public.ar_customer.code=%s"
             cur = gobal.con.cursor()
             cur.execute(sql_a,(id,))
             selectarid = cur.fetchone()
-            # sql_b = "SELECT z_ap.code, name_1, tel, item_name, amount, currency_name, total FROM z_ap LEFT JOIN z_set_ap ON z_set_ap.code = z_ap.code"
-            # sql_b = "SELECT code, name_1, tel FROM public.z_ap"
-            # curs = gobal.con.cursor()
-            # curs.execute(sql_b))
+            # # sql_b = "SELECT z_ap.code, name_1, tel, item_name, amount, currency_name, total FROM z_ap LEFT JOIN z_set_ap ON z_set_ap.code = z_ap.code"
+            # # sql_b = "SELECT code, name_1, tel FROM public.z_ap"
+            # # curs = gobal.con.cursor()
+            # # curs.execute(sql_b))
 
             cura= gobal.con.cursor()
-            sql = "SELECT public.ar_customer.code, name_1, tel, item_name, amount, currency_name, total FROM public.ar_customer LEFT JOIN public.set_ar ON public.set_ar.code = public.ar_customer.code"
+            sql = "SELECT public.ap_ar_trans.doc_date, public.ap_ar_trans.doc_no, public.ar_customer.code, name_1, tel, item_name, total_value FROM public.ar_customer LEFT JOIN public.ap_ar_trans ON public.ap_ar_trans.cust_code = public.ar_customer.code"
             cura.execute(sql)
             # select = cura.fetchone()
+
             rate_trans = cura.fetchall()
 
             curs = gobal.con.cursor()
@@ -400,25 +401,27 @@ def saveset_ar():
             # gobal.con.commit()
 
             cur = gobal.con.cursor()
-            sql = """INSERT INTO public.set_ar (item_name, amount, currency_name, total, code)
-                     VALUES(%s,%s,%s,%s,%s);
+            sql = """INSERT INTO public.ap_ar_trans (doc_date, doc_no, item_name, currency_code, total_value, total_value_2, cust_code)
+                     VALUES(%s,%s,%s,%s,%s,%s,%s);
                   """
                 #   INSERT INTO z_set_ap (code)
                 #   SELECT code
                 #   FROM z_ap
+            doc_date = request.form['doc_date']
+            doc_no = request.form['doc_no']
             item_name = request.form['item_name']
-            amount = request.form['amount']
-            currency_name = request.form['currency_name']
-            total = request.form['total']
-            codee = request.form['codee']
-            data = (item_name, amount, currency_name, total, codee)
+            currency_code = request.form['currency_code']
+            total_value = request.form['total_value']
+            total_value_2 = request.form['total_value_2']
+            cust_code = request.form['cust_code']
+            data = (doc_date, doc_no, item_name, currency_code, total_value, total_value_2, cust_code)
             cur.execute(sql, data)
             # curb = gobal.con.cursor()
             # codee = request.form['codee']
             # curb.execute('insert into z_set_ap (code) values(%s)')
             # gobal.con.commit()
-            print(codee)
-            return redirect(url_for('send_arid', id = codee))
+            print(data)
+            return redirect(url_for('send_arid', id = cust_code))
 @app.route('/update_set_ar/<string:id>', methods=['POST'])
 def update_set_ar(id):
     with gobal.con:

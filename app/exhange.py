@@ -62,8 +62,6 @@ def ex_delete(id):
             gobal.con.commit()
             flash('ລົບສຳເລັດ')
             return redirect(url_for('homeex'))
-
-
 @app.route('/sale')
 def sale():
     with gobal.con:
@@ -121,7 +119,6 @@ def xchange_trans():
                     total_amount1, total_amount2, rate, 2)
             curh.execute(sql, val1)
             gobal.con.commit()
-            print(type(cash_recipt))
             if curh.rowcount > 0:
                 sql_dt = """INSERT INTO cb_trans_detail(doc_date, doc_no, trans_number, amount_1, exchange_rate, amount_2,calc_flag, account_code, account_name,fee,trans_type)
                             VALUES (LOCALTIMESTAMP(0), %s, %s, %s, %s,%s,%s, %s, %s, %s,2);

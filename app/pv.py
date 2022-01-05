@@ -5,7 +5,6 @@ from kk_con import *
 from datetime import datetime
 from flask.helpers import flash
 
-
 @app.route('/pvhome')
 def pvhome():
     with gobal.con:

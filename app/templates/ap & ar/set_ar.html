@@ -9,23 +9,21 @@
 </style>
 <br>
 
-<div class="container-md">
+<div class="container-fluid col-sm-10">
     <div class="card"
         style="border-top-left-radius: 12px;border-top-right-radius: 12px; border: 2px solid black;background-color: #0069D9;">
         <div class="card-body" style="background-color:darkcyan;border-top: 2px solid black;">
             <div class="row">
-                <div class="col-sm-2">
+                <div class="col-sm">
+                  <div class="col-sm-2 mb-2" style="width: 180px;">
                     <div class="card-body"
-                        style="background-color: darkslategrey;border-radius: 12px;color: white; width: auto;text-align: center;">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: 180px;">
-                          ຕັ້ງ​ໜີ້
+                        style="border-radius: 12px;color: white;text-align: center;padding: 3px;margin: 8px;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: 120px;border-bottom: 5px solid #0069D9;background-color: #007BFF; border-radius: 50px;">
+                          <i class="bi bi-file-diff-fill" style="padding: 3px;"></i>ຕັ້ງ​ໜີ້
                         </button>
                     </div>
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-sm-10">
+                  </div>
+
                     <div class="card">
                         <div class="card-header"
                             style="text-align: center;font-weight: bold;background-color: darkslategrey; color: white;">
@@ -35,13 +33,14 @@
                             <table class="table table-hover" id="myTable">
                                 <thead>
                                     <tr>
-                                      <th scope="col">ລະ​ຫັດປະ​ເພດ</th>
+                                      <th scope="col">ວັນ​ທີ</th>
+                                      <th scope="col">​ເລກ​ທີ</th>
+                                      <th scope="col">ລະ​ຫັດ</th>
                                       <th scope="col">​ຊື່</th>
                                       <th scope="col">​ເບີ​ໂທ</th>
-                                      <th scope="col">ແຂວງ</th>
-                                      <th scope="col">ເມືອງ</th>
-                                      <th scope="col">ທີ່​ຢູ່</th>
-                                      <th scope="col">​ໝາຍ​ເຫດ</th>
+                                      <th scope="col">ລາຍ​ການ</th>
+                                      <th scope="col">ມູນ​ຄ່າ</th>
+                                      <th scope="col">Action</th>
                                     </tr>
                                 </thead>
 
@@ -55,7 +54,77 @@
                                       <td style="text-align: left;">{{item[4]}}</td>
                                       <td style="text-align: left;">{{item[5]}}</td>
                                       <td style="text-align: left;">{{item[6]}}</td>
+                                      <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
+                                        data-target="#update_set_ar/{{item[0]}}"></i></a>
+                                          <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                                      </td>
                                     </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="update_set_ar/{{item[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດການ​ຕັ້ງ​ໜີ້</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body" style="background-color: #EFEFEF;">
+                                          <form class="" action="/update_set_ar/{{item[0]}}" method="post">
+                                            <input type="hidden" name="" value="">
+                                            <div class="form-group">
+                                              <label for="usr">ວັນທີ:</label>
+                                              <input type="text" class="form-control" name="" value="{{item[0]}}"/>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="usr">ເລກ​ທີ:</label>
+                                              <input type="text" class="form-control" name="" value="{{item[1]}}">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="usr">ລະ​ຫັດ:</label>
+                                              <input type="text" class="form-control" name="item_name" value="{{item[2]}}">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="usr">ຊື່:</label>
+                                              <input type="text" class="form-control" name="name_1" value="{{item[3]}}">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="usr">ເບີ​ໂທ:</label>
+                                              <input type="text" class="form-control" name="tel" value="{{item[4]}}">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="usr">ລາຍ​ການ:</label>
+                                              <input type="text" class="form-control" name="item_name" value="{{item[5]}}">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="usr">ມູນ​ຄ່າ:</label>
+                                              <input type="text" class="form-control" name="amount" value="{{item[6]}}">
+                                            </div>
+                                            <!-- <div class="form-group">
+                                              <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
+                                              <select class="form-control form-control-sm " id="currency_name" name="currency_name" onchange="nextVal()">
+                                                <option selected hidden>{{item[5]}}</option>
+                                                {% for item in curent %}
+                                                <option value="{{item[1]}}">{{item[1]}}</option>
+                                                {% endfor %}
+                                              </select>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="usr">ລວມ​ທັງ​ໝົດ:</label>
+                                              <input type="text" class="form-control" name="total" value="{{item[6]}}" />
+                                            </div> -->
+
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                                              <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
+                                                ບັນທຶກ</button>
+                                            </div>
+                                          </form>
+
+                                        </div>
+                                      </div>
+                                    </div>
                                     {% endfor %}
                                 </tbody>
                             </table>
@@ -81,13 +150,13 @@
         <table class="table table-hover" id="myTable">
           <thead>
               <tr>
-                <th scope="col">ລະ​ຫັດປະ​ເພດ</th>
+                <th scope="col">ວັນ​ທີ</th>
+                <th scope="col">​ເລກ​ທີ</th>
+                <th scope="col">ລະ​ຫັດ</th>
                 <th scope="col">​ຊື່</th>
                 <th scope="col">​ເບີ​ໂທ</th>
-                <th scope="col">ແຂວງ</th>
-                <th scope="col">ເມືອງ</th>
-                <th scope="col">ທີ່​ຢູ່</th>
-                <th scope="col">​ໝາຍ​ເຫດ</th>
+                <th scope="col">ລາຍ​ການ</th>
+                <th scope="col">ມູນ​ຄ່າ</th>
                 <th scope="col">Action</th>
               </tr>
           </thead>

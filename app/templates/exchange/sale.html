@@ -67,7 +67,7 @@
                                     <label for="exampleFormControlSelect1">ເບີໂທ</label>
                                 </div>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
                                     <input class="form-control form-control-sm" type="text" name="tel"
@@ -102,7 +102,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="col-sm">
                             </div>
 
@@ -125,7 +124,6 @@
                                     <label for="exampleFormControlSelect1">ເງິນສົດ</label>
                                 </div>
                             </div>
-
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <input class="form-control form-control-sm" type="number" name="cash_recipt"
@@ -207,7 +205,6 @@
                                     <label for="exampleFormControlSelect1">ສະກຸນເງິນ</label>
                                 </div>
                             </div>
-
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <select class="form-control form-control-sm" id="second_cur" name="second_cur"
@@ -221,17 +218,9 @@
                             </div>
 
                             <div class="col-xs-2">
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">ລວມທັງໝົດ</label>
-                                </div>
                             </div>
-
                             <div class="col-sm-3">
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="number" placeholder="0"
-                                        name="total_amount3" required style="text-align: right;" id="total_amount3"
-                                        value="0" onchange="total_pay()">
-                                </div>
+
                             </div>
                         </div>
                         <hr>
@@ -257,7 +246,6 @@
                             <div class="col-sm-3">
                             </div> -->
                         </div>
-
                         <div class="row"
                             style="margin-bottom: 0px; padding-top: 0px;margin-left: 50px;margin-right: 50px;justify-content: flex-end;">
                             <div class="col-xs">
@@ -318,9 +306,7 @@
                                         onchange="total_pay()">
                                 </div>
                             </div>
-
                             <div class="col-xs" style="width: 10px;"></div>
-
                             <div class="col-xs-2">
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">ຄ່າທຳນຽມ</label>
@@ -332,7 +318,28 @@
                                         required style="text-align: right;" id="fee" onchange="total_pay()">
                                 </div>
                             </div>
-
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">ລວມ</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input class="form-control form-control-sm" type="number" placeholder="0"
+                                        name="total_amount2" required style="text-align: right;" id="total_amount2"
+                                        value="0" onchange="total_back()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"
+                            style="margin-bottom: 15px; padding-top: 0px;border-radius: 8px;margin-left: 50px;margin-right: 50px;justify-content: flex-end;">
+                            <div class="col-xs">
+                            </div>
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="col-xs" style="width: 10px;"></div>
+                            <div class="col-xs-2">
+                            </div>
                             <div class="col-xs-2">
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">ລວມທັງໝົດ</label>
@@ -341,8 +348,8 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <input class="form-control form-control-sm" type="number" placeholder="0"
-                                        name="total_amount2" required style="text-align: right;" id="total_amount2"
-                                        value="0" onchange="total_back()">
+                                        name="total_amount3" required style="text-align: right;" id="total_amount3"
+                                        value="0" onchange="total_pay()">
                                 </div>
                             </div>
                         </div>
