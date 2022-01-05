@@ -195,14 +195,14 @@
                             </div>
                             <div class="row"
                               style="margin-bottom: -15px; padding-top: 20px;border-radius: 8px;margin-left: 50px;margin-right: 50px;">
-                              <!-- <div class="col-sm-3">
-                            </div> -->
                               <div class="col-sm-3">
+                              </div>
+                              <div class="col-sm-2">
                                 <div class="form-group text-white" style="text-align: right;">
                                   <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
                                 </div>
                               </div>
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <div class="form-group">
                                   <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
                                   <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
@@ -210,13 +210,12 @@
                                     onchange="add_charge();">
                                 </div>
                               </div>
-
                               <div class="col-sm-3">
                                 <div class="form-group text-white" style="text-align: right;">
                                   <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
                                 </div>
                               </div>
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <div class="form-group">
                                   <!-- <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label> -->
                                   <input class="form-control form-control-sm" type="number" placeholder="0" value="0"
@@ -406,8 +405,8 @@
                               <div class="col-sm-4">
                                 <div class="form-group text-white">
                                   <label for="exampleFormControlSelect1">ເລືອກທະນາຄານ</label>
-                                  <select class="form-control form-control-sm" id="to_bank" name="from_bank_tl" required
-                                    onchange="bank_tt()">
+                                  <select class="form-control form-control-sm" id="from_bank_tl" name="from_bank_tl" required
+                                    onchange="bank_tts()">
                                     <option selected value=""> ເລືອກ....</option>
                                     <option value='SCB'>SCB ໄທພານິດ </option>
                                     <option value='KB'>KB ກະສີກອນໄທ</option>
@@ -442,9 +441,18 @@
                                 </b>
                               </h6>
                             </div>
-
                             <div class="row"
                               style="margin-bottom: -15px; padding-top: 5px;border-radius: 8px;margin-left: 130px;margin-right: 130px;">
+                              <div class="col-sm-3">
+                                <label for="exampleFormControlSelect1">ປະເພດການຈ່າຍບລກ</label>
+                                <select class="form-control form-control-sm" id="fee_charge" name="fee_charge" required
+                                  onchange="fee_pay_type()">
+                                  <option selected value=""> ປະເພດການຈ່າຍ....</option>
+                                  <option value='01'>ຫັກຈາກຍອດໂອນ </option>
+                                  <option value='02'>ຈ່າຍເພີ່ມ</option>
+                                </select>
+
+                              </div>
                               <div class="col-sm-4">
                                 <div class="form-group text-white">
                                   <label for="exampleFormControlSelect1">ຄ່າບໍລິການ</label>
@@ -453,10 +461,6 @@
                                     onchange="trans_pass_service_tl();">
                                 </div>
                               </div>
-
-                              <div class="col-sm-3">
-                              </div>
-
                               <div class="col-sm-4" style="margin-left: 15px;">
                                 <div class="form-group text-white">
                                   <label for="exampleFormControlSelect1">ລວມມູນຄ່າທີ່ຕ້ອງຈ່າຍ</label>
@@ -714,6 +718,8 @@
   document.getElementById("total_baht").readOnly = true;
   document.getElementById("bank_amount").readOnly = true;
   document.getElementById("total_amount").readOnly = true;
+  document.getElementById("service_charge_tl").readOnly = true;
+  document.getElementById("trans_incom").readOnly = true
   function bank_ft() {
     var x = document.getElementById("bank_from").value;
     if (x == 'BCEL_BAHT') {
@@ -725,7 +731,7 @@
 
     } else if (x == 'BCEL_LAK') {
 
-      fetch('/exchangerate/01').then(function (response) {
+      fetch('/exchangeratesale/01').then(function (response) {
         response.json().then(function (data) {
           document.getElementById("rate_bank").value = data.rate[0]
           document.getElementById("bank_amount").readOnly = false;
@@ -736,7 +742,7 @@
         });
       });
     } else if (x == 'BCEL_DOLLAR') {
-      fetch('/exchangerate/03').then(function (response) {
+      fetch('/exchangeratesale/03').then(function (response) {
         response.json().then(function (data) {
           document.getElementById("rate_bank").value = data.rate[0]
           document.getElementById("bank_amount").readOnly = false;
@@ -750,9 +756,15 @@
       document.getElementById("total_bank_amount").readOnly = true;
     }
   }
-  function bank_tt() {
-    var x = document.getElementById("total_amount").value;
-    document.getElementById("total_pays").value = x
+  function bank_tts() {
+    var x = document.getElementById("from_bank_tl").value;
+    console.log(x)
+    if (x == "") {
+      document.getElementById("trans_incom").readOnly = true
+    } else {
+      document.getElementById("trans_incom").readOnly = false
+    }
+    // document.getElementById("trans_incom").value = x
   }
   // sweet 
   function deleteitem(id) {
@@ -833,7 +845,7 @@
       document.getElementById("cash_value").readOnly = false;
       document.getElementById("total_baht").readOnly = false;
     } else if (x == '02') {
-      fetch('/exchangerate/03').then(function (response) {
+      fetch('/exchangeratesale/03').then(function (response) {
         response.json().then(function (data) {
           document.getElementById("rate_con").value = data.rate[0]
           document.getElementById("cash_value").value = 0
@@ -843,7 +855,7 @@
         });
       });
     } else {
-      fetch('/exchangerate/' + x).then(function (response) {
+      fetch('/exchangeratesale/' + x).then(function (response) {
         response.json().then(function (data) {
           document.getElementById("rate_con").value = data.rate[0]
           document.getElementById("cash_value").value = 0
@@ -880,9 +892,16 @@
     document.getElementById("total_befor_pay_tl").value = parseFloat(v1) - parseFloat(k1)
   }
   function trans_pass_service_tl() {
-    v1 = document.getElementById("trans_incom").value
-    k1 = document.getElementById("service_charge_tl").value
-    document.getElementById("total_befor_pay_tl").value = parseFloat(v1) - parseFloat(k1)
+    x = document.getElementById("fee_charge").value;
+    console.log(x)
+    if (x == '01') {
+      v1 = document.getElementById("trans_incom").value
+      k1 = document.getElementById("service_charge_tl").value
+      document.getElementById("total_befor_pay_tl").value = parseFloat(v1) - parseFloat(k1)
+    } else {
+      document.getElementById("total_befor_pay_tl").value = document.getElementById("trans_incom").value
+    }
+
   }
   document.getElementById("cash_value_tl").readOnly = true;
   document.getElementById("total_baht_tl").readOnly = true;
@@ -901,7 +920,7 @@
       document.getElementById("cash_value_tl").readOnly = false;
       document.getElementById("total_baht_tl").readOnly = false;
     } else if (x == '02') {
-      fetch('/exchangeratesale/03').then(function (response) {
+      fetch('/exchangerate/03').then(function (response) {
         response.json().then(function (data) {
           document.getElementById("rate_c_tl").value = data.rate[0]
           document.getElementById("cash_value_tl").value = 0
@@ -911,7 +930,7 @@
         });
       });
     } else {
-      fetch('/exchangeratesale/' + x).then(function (response) {
+      fetch('/exchangerate/' + x).then(function (response) {
         response.json().then(function (data) {
           document.getElementById("rate_c_tl").value = data.rate[0]
           document.getElementById("cash_value_tl").value = 0
@@ -1040,6 +1059,16 @@
     document.getElementById("total_amount_tt_tl").value = vx
   }
 
+  function fee_pay_type() {
+    x = document.getElementById("fee_charge").value;
+    console.log(x)
+    if (x == '') {
+      document.getElementById("service_charge_tl").readOnly = true;
+    } else {
+      document.getElementById("service_charge_tl").readOnly = false;
+    }
 
+
+  }
 </script>
 {% endblock %}
