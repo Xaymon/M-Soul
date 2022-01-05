@@ -34,87 +34,73 @@
               {% endwith %}
             </div>
             <div class="card-body col-sm">
-              <form class="" action="/send_apid" method="get">
-              <div class="row ml-3" style="justify-content: flex-start;">
-                <div class="col-xs">
-                  <div class="form-group" style="text-align: right;">
-                    <label for="usr">ລະຫັດ:</label>
+              <form class="" action="/saveset_ap" method="post">
+                <div class="row ml-3" style="justify-content: flex-start;">
+                  <div class="col-xs">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="usr">ວັນທີ:</label>
+                    </div>
+                  </div>
+                  <div class="col-xs" style="width: 20px;margin-left: -1px;"></div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <input type="date" class="form-control" value="{{doc_date}}" name="doc_date" />
+                    </div>
                   </div>
                 </div>
-                <div class="col-xs" style="width: 20px;margin-left: -6px;"></div>
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <input type="text" class="form-control" value="{{selectapid[2]}}" disabled/>
+                <div class="row ml-3" style="justify-content: flex-start;">
+                  <div class="col-xs">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="usr">ເລກທີ:</label>
+                    </div>
+                  </div>
+                  <div class="col-xs" style="width: 20px;margin-left: -6px;"></div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="{{doc_no}}" name="doc_no" readonly />
+                    </div>
                   </div>
                 </div>
+                <div class="row ml-3" style="justify-content: flex-start;">
+                  <div class="col-xs">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="usr">ລະຫັດ:</label>
+                    </div>
+                  </div>
+                  <div class="col-xs" style="width: 20px;margin-left: -6px;"></div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="{{selectapid[2]}}" readonly name="cust_code"/>
+                    </div>
+                  </div>
 
-                <div class="col-xs" style="width: 20px;margin-left: -7px;"></div>
-                <div class="col-xs">
-                  <div class="form-group" style="text-align: right;">
-                    <label for="usr">ຊື່:</label>
+                  <div class="col-xs" style="width: 20px;margin-left: -7px;"></div>
+                  <div class="col-xs">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="usr">ຊື່:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="name_1" value="{{selectapid[3]}}" readonly>
+                    </div>
+                  </div>
+
+                  <div class="col-xs" style="width: 20px;margin-left: 0px;"></div>
+                  <div class="col-xs">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="usr">ເບີ​ໂທ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group" style="margin-left: 5px;margin-right: -10px;">
+                      <input type="number" class="form-control" name="tel" value="{{selectapid[4]}}" readonly>
+                    </div>
                   </div>
                 </div>
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="name_1" value="{{selectapid[3]}}" disabled>
-                  </div>
-                </div>
-
-                <div class="col-xs" style="width: 20px;margin-left: 0px;"></div>
-                <div class="col-xs">
-                  <div class="form-group" style="text-align: right;">
-                    <label for="usr">ເບີ​ໂທ:</label>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group" style="margin-left: 5px;margin-right: -10px;">
-                    <input type="number" class="form-control" name="tel" value="{{selectapid[4]}}" disabled>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            <form class="" action="/saveset_ap" method="post">
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <input type="text" class="form-control" name="cust_code" value="{{selectapid[2]}}" hidden/>
-                </div>
-              </div>
-
-              <div class="row ml-3" style="justify-content: flex-start;">
-                <div class="col-xs">
-                  <div class="form-group" style="text-align: right;">
-                    <label for="usr">ວັນທີ:</label>
-                  </div>
-                </div>
-                <div class="col-xs" style="width: 20px;margin-left: -1px;"></div>
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <input type="date" class="form-control" value="" name="doc_date"/>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row ml-3" style="justify-content: flex-start;">
-              <div class="col-xs">
-                <div class="form-group" style="text-align: right;">
-                  <label for="usr">ເລກທີ:</label>
-                </div>
-              </div>
-              <div class="col-xs" style="width: 20px;margin-left: -6px;"></div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input type="text" class="form-control" value="" name="doc_no" required/>
-                </div>
-              </div>
-              </div>
-              <hr style="border: 1px solid #E9ECEF;width: 90%;">
-
-
-
-
-              <div class="row ml-3" style="justify-content: flex-start">
-                <div class="col-xs" style="width: 20px;margin-left: -20px;"></div>
+                <hr style="border: 1px solid #E9ECEF;width: 90%;">
+                <div class="row ml-3" style="justify-content: flex-start">
+                  <div class="col-xs" style="width: 20px;margin-left: -20px;"></div>
                   <div class="col-xs" style="text-align: right;">
                     <div class="form-group">
                       <label for="usr">ລາຍ​ການ:</label>
@@ -125,104 +111,90 @@
                       <input type="text" class="form-control" name="item_name">
                     </div>
                   </div>
+                </div>
+                <div class="row ml-3" style="justify-content: flex-start;">
+                  <div class="col-xs" style="width: 30px;margin-left: 15px"></div>
+                  <div class="col-xs" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
+                    </div>
+                  </div>
+                  <div class="col-xs" style="width: 20px;margin-left: 25x;"></div>
+                  <div class="col-sm-2">
+                    <div class="form-group" style="margin-left: 0px;margin-right: -50px;">
+                      <select class="form-control form-control-sm " id="currency_name" name="currency_code">
+                        {% for item in curent %}
+                        <option value="{{item[0]}}">{{item[1]}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="col-xs" style="width: 20px;margin-left: -20px;"></div> -->
+                  <div class="col-xs" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">ມູນ​ຄ່າ:</label>
+                    </div>
+                  </div>
+                  <div class="col-xs" style="width: 20px;margin-left: -5px;"></div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <input type="number" class="form-control form-control-sm" name="total_value" onchange="keyval()"
+                        id="total_value" value="0" style="text-align: right;">
+                    </div>
+                  </div>
 
-                <div class="col-xs" style="width: 30px;margin-left: 15px"></div>
-                <div class="col-xs" style="text-align: right;">
-                  <div class="form-group">
-                    <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
+                  <div class="col-xs" style="width: 20px;margin-left: -9px;"></div>
+                  <div class="col-xs" style="text-align: right;">
+                    <div class="form-group">
+                      <label for="usr">ລວມ​ທັງ​ໝົດ:</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <input type="number" class="form-control form-control-sm" name="total_value_2" readonly
+                        id="total_value_2" value="0" style="text-align: right;">
+                    </div>
                   </div>
                 </div>
-                <div class="col-xs" style="width: 20px;margin-left: 25x;"></div>
-                <div class="col-sm-2">
-                  <div class="form-group" style="margin-left: 0px;margin-right: -50px;">
-                    <select class="form-control form-control-sm " id="currency_name" name="currency_code" onchange="nextVal()">
-                      {% for item in curent %}
-                      <option value="{{item[1]}}">{{item[1]}}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
+                <!-- <hr style="border: 1px solid #E9ECEF;width: 100%;"> -->
+                <br><br>
+                <div class="row pr-2" style="justify-content: flex-end;">
+                  <button type="submit" class="btn btn-primary form-control"
+                    style="width: 120px; height: 40px;">ບັນທຶກ</button>
+                  <button type="submit" class="btn btn-link form-control" style="width: 130px;margin-top: -5px;">
+                    <a href="/setap" class="btn btn-warning form-control form-control-sm">ຍົກ​ເລີກ</a>
+                  </button>
                 </div>
-              </div>
-
-              
-              <div class="row ml-3" style="justify-content: flex-start;">
-                <div class="col-xs" style="width: 20px;margin-left: -20px;"></div>
-                <div class="col-xs" style="text-align: right;">
-                  <div class="form-group">
-                    <label for="usr">ມູນ​ຄ່າ:</label>
-                  </div>
-                </div>
-                <div class="col-xs" style="width: 20px;margin-left: -5px;"></div>
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="total_value">
-                  </div>
-                </div>
-
-              <div class="col-xs" style="width: 20px;margin-left: -9px;"></div>
-                <div class="col-xs" style="text-align: right;">
-                  <div class="form-group">
-                    <label for="usr">ລວມ​ທັງ​ໝົດ:</label>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="total_value_2">
-                  </div>
-                </div>
-              </div>
-
-              <div class="row ml-3">
-                <div class="col-xs" style="width: 20px;margin-left: -40px;"></div>
-                <input type="text" class="form-control" value="{{selectapid[0]}}" name="codee" readonly hidden>
-              </div>
-
-              <!-- <hr style="border: 1px solid #E9ECEF;width: 100%;"> -->
-              <br><br>
-              <div class="row pr-2" style="justify-content: flex-end;">
-                <button type="submit" class="btn btn-primary form-control" style="width: 120px; height: 40px;">ບັນທຶກ</button>
-                <button type="submit" class="btn btn-link form-control" style="width: 130px;margin-top: -5px;">
-                  <a href="/setap" class="btn btn-warning form-control form-control-sm">ຍົກ​ເລີກ</a>
-                </button>
-              </div>
-            </form>
-          </div>
-
+              </form>
             </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
 
 <script>
-  function deleteitem(id) {
-    swal({
-      title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
-      text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonColor: '#3085d6',
-      confirmButtonColor: '#d33',
-      confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
-      cancelButtonText: 'ບໍ່,ກັບຄືນ!',
-    }).then(function () {
-      location.href = "/set_ap_delete/" + id;
-    })
-  }
-
-  function nextVal(){
-    x = document.getElementById("currency_name").value;
-    fetch('neVal/' + x).then(function (response) {
-            response.json().then(function (data) {
-                optionHTML = '';
-                for (curs of data.curency) {
-                    optionHTML += "<option value='" + curs[1] + "'>" + curs[1] + "</option>"
-                }
-                curency_name2.innerHTML = optionHTML;
-            });
-        });
+  // function deleteitem(id) {
+  //   swal({
+  //     title: 'ທ່ານຕ້ອງການລົບຂໍ້ມູນແທ້ບໍ໋?',
+  //     text: "ທ່ານຈະບໍ່ສາມາດຮ້ອງຄືນຂໍ້ມູນນີ້ໃດ້!",
+  //     type: 'question',
+  //     showCancelButton: true,
+  //     cancelButtonColor: '#3085d6',
+  //     confirmButtonColor: '#d33',
+  //     confirmButtonText: 'ເຈົ້າ, ແມ່ນແລ້ວ!',
+  //     cancelButtonText: 'ບໍ່,ກັບຄືນ!',
+  //   }).then(function () {
+  //     location.href = "/set_ap_delete/" + id;
+  //   })
+  // }
+  function keyval() {
+    x = document.getElementById("total_value").value
+    console.log(x)
+    document.getElementById("total_value_2").value = x
   }
 </script>
 {% endblock %}

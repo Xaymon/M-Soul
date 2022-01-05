@@ -1,0 +1,105 @@
+{% extends "layout/layout.html" %}
+{% block title %}ຈ່າຍຊຳລະໜີ້{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="">ເລກທີເອກະສານ</label>
+                        <input type="text" name="" class="form-control form-control-sm" id="" value="{{showcob[0]}}"
+                            readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="">ວັນທີ</label>
+                        <input type="text" name="" id="" class="form-control form-control-sm" value="{{showcob[1]}}"
+                            readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="">ລະຫັດລູກຄ້າ</label>
+                        <input type="text" name="" id="" class="form-control form-control-sm" value="{{showcob[2]}}"
+                            readonly>
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="">ຊື່</label>
+                        <input type="text" name="" id="" class="form-control form-control-sm" value="{{showcob[3]}}"
+                            readonly>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <label for="">ລາຍລະອຽດໜີ້</label>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label for="">ລາຍກາານ</label>
+                        <input type="text" name="" class="form-control form-control-sm" id="" value="{{showcob[4]}}"
+                            readonly>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="">ມູນຄ່າ</label>
+                        <input type="text" name="" class="form-control form-control-sm" id="amount" value="" readonly
+                            style="text-align: right;">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="hidden" name="" class="form-control form-control-sm" id="" value="{{showcob[6]}}">
+                        <label for="">ສະ​ກຸນ​ເ​ງິນ</label>
+                        <input type="text" name="" class="form-control form-control-sm" id="" value="{{showcob[7]}}"
+                            style="text-align: center;" readonly>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="">ມູນຄ່າທີ່ຊຳລະ</label>
+                        <input type="text" name="" class="form-control form-control-sm" id="pay" value=""
+                            style="text-align: right;" onchange="calcval()">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="">ຍອດຄົງເຫຼືອ</label>
+                        <input type="text" name="" class="form-control form-control-sm" id="still" value="0" readonly
+                            style="text-align: right;">
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="">ສະ​ກຸນ​ເ​ງິນ</label>
+                        <input type="text" name="" class="form-control form-control-sm" id="" value="{{showcob[7]}}"
+                            style="text-align: center;" readonly>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-success btn-block btn-sm">ບັນທຶກ</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="reset" class="btn btn-warning btn-block btn-sm">reset</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/pvlistap" class="btn btn-danger btn-block btn-sm">ອອກ</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("amount").value = new Intl.NumberFormat().format({{ showcob[5]}})
+    function calcval() {
+        k = {{showcob[5]}};
+    console.log(k)
+    v = document.getElementById("pay").value;
+    document.getElementById("still").value = new Intl.NumberFormat().format(k - v);
+    document.getElementById("pay").value = new Intl.NumberFormat().format(v);
+    }
+</script>
+
+{% endblock %}

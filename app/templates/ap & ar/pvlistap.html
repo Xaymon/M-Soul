@@ -36,7 +36,7 @@
                 </thead>
 
                 <tbody>
-                  {% for item in rate_trans %}
+                  {% for item in list_cob %}
                   <tr>
                     <td>{{item[0]}}</td>
                     <td style="text-align: left;">{{item[1]}}</td>
@@ -44,8 +44,7 @@
                     <td style="text-align: left;">{{item[3]}}</td>
                     <td style="text-align: left;">{{item[4]}}</td>
                     <td style="text-align: right;font-weight: bold;">{{item[5]}}</td>
-                    <td style="text-align: center; width: 5%;"><a href=""><i class="bi bi-pencil-square"></i></a>||<a
-                        href=""><i class="bi bi-trash"></i></a></td>
+                    <td style="text-align: center; width: 5%;"><a href="/showap_detail/{{item[0]}}">ຈ່າຍ</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
