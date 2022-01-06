@@ -44,7 +44,7 @@
                   <div class="col-xs" style="width: 20px;margin-left: -1px;"></div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <input type="date" class="form-control" value="{{doc_date}}" name="doc_date" />
+                      <input type="date" class="form-control form-control-sm" value="{{doc_date}}" name="doc_date" />
                     </div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                   <div class="col-xs" style="width: 20px;margin-left: -6px;"></div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <input type="text" class="form-control" value="{{doc_no}}" name="doc_no" readonly />
+                      <input type="text" class="form-control form-control-sm" value="{{doc_no}}" name="doc_no" readonly />
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="col-xs" style="width: 20px;margin-left: -6px;"></div>
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <input type="text" class="form-control" value="{{selectapid[0]}}" readonly name="cust_code" />
+                      <input type="text" class="form-control form-control-sm" value="{{selectapid[0]}}" readonly name="cust_code"/>
                     </div>
                   </div>
 
@@ -82,7 +82,7 @@
                   </div>
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="name_1" value="{{selectapid[1]}}" readonly>
+                      <input type="text" class="form-control form-control-sm" name="name_1" value="{{selectapid[1]}}" readonly>
                     </div>
                   </div>
 
@@ -94,7 +94,7 @@
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group" style="margin-left: 5px;margin-right: -10px;">
-                      <input type="number" class="form-control" name="tel" value="{{selectapid[2]}}" readonly>
+                      <input type="number" class="form-control form-control-sm" name="tel" value="{{selectapid[2]}}" readonly>
                     </div>
                   </div>
                 </div>
@@ -113,15 +113,15 @@
                   </div>
                 </div>
                 <div class="row ml-3" style="justify-content: flex-start;">
-                  <div class="col-xs" style="width: 30px;margin-left: 15px"></div>
+                  <div class="col-xs" style="width: 30px;margin-left: 38px"></div>
                   <div class="col-xs" style="text-align: right;">
                     <div class="form-group">
                       <label for="usr">ສະ​ກຸນ​ເ​ງິນ:</label>
                     </div>
                   </div>
-                  <div class="col-xs" style="width: 20px;margin-left: 25x;"></div>
+                  <div class="col-xs" style="width: 20px;margin-left: -15px;"></div>
                   <div class="col-sm-2">
-                    <div class="form-group" style="margin-left: 0px;margin-right: -50px;">
+                    <div class="form-group" style="margin-left: 0px;margin-right: -20px;">
                       <select class="form-control form-control-sm " id="currency_name" name="currency_code">
                         {% for item in curent %}
                         <option value="{{item[0]}}">{{item[1]}}</option>
@@ -129,7 +129,7 @@
                       </select>
                     </div>
                   </div>
-                  <!-- <div class="col-xs" style="width: 20px;margin-left: -20px;"></div> -->
+                  <div class="col-xs" style="width: 20px;margin-left: 15px;"></div>
                   <div class="col-xs" style="text-align: right;">
                     <div class="form-group">
                       <label for="usr">ມູນ​ຄ່າ:</label>

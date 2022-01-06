@@ -53,9 +53,13 @@
                     <td style="text-align: left;">{{item[3]}}</td>
                     <td style="text-align: left;">{{item[4]}}</td>
                     <td style="text-align: right;font-weight: bold;">{{item[5]}}</td>
-                    <td><a href="#"><i class="bi bi-pencil-square" data-toggle="modal"
-                          data-target="#update_set_ar/{{item[0]}}"></i></a>
-                      <a href="#" onclick="deleteitem('{{item[0]}}')"><i class="bi bi-trash-fill" id="bitrash"></i></a>
+                    <td style="text-align: center; width: 10%;">
+                      <a href="" class="btn btn-warning rounded" style="margin: -10px;padding: 3px;margin-right: 5px;" data-toggle="modal" data-target="#update_set_ar/{{item[0]}}">
+                      <span style="color: black;"><i class="bi bi-pencil-square"></i></span>
+                      </a>
+                        <a href="" onclick="deleteitem('{{item[0]}}')">
+                          <i class="bi bi-trash-fill" id="bitrash"></i>
+                        </a>
                     </td>
                   </tr>
                   <!-- Modal -->
@@ -63,7 +67,7 @@
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header" style="background-color: darkslategray; color: #FFF;">
                           <h5 class="modal-title" id="exampleModalLabel">ເເກ້ໄຂລາຍ​ລະ​ອຽດການ​ຕັ້ງ​ໜີ້</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -74,34 +78,34 @@
                             <input type="hidden" name="" value="">
                             <div class="form-group">
                               <label for="usr">ວັນທີ:</label>
-                              <input type="text" class="form-control" name="" value="{{item[0]}}" />
+                              <input type="text" class="form-control form-control-sm" name="" value="{{item[0]}}" />
                             </div>
                             <div class="form-group">
                               <label for="usr">ເລກ​ທີ:</label>
-                              <input type="text" class="form-control" name="" value="{{item[1]}}">
+                              <input type="text" class="form-control form-control-sm" name="" value="{{item[1]}}">
                             </div>
                             <div class="form-group">
                               <label for="usr">ລະ​ຫັດ:</label>
-                              <input type="text" class="form-control" name="item_name" value="{{item[2]}}">
+                              <input type="text" class="form-control form-control-sm" name="item_name" value="{{item[2]}}" readonly>
                             </div>
                             <div class="form-group">
                               <label for="usr">ຊື່:</label>
-                              <input type="text" class="form-control" name="name_1" value="{{item[3]}}">
+                              <input type="text" class="form-control form-control-sm" name="name_1" value="{{item[3]}}" readonly>
                             </div>
                             <div class="form-group">
                               <label for="usr">ເບີ​ໂທ:</label>
-                              <input type="text" class="form-control" name="tel" value="{{item[4]}}">
+                              <input type="text" class="form-control form-control-sm" name="tel" value="{{item[4]}}" readonly>
                             </div>
                             <div class="form-group">
                               <label for="usr">ລາຍ​ການ:</label>
-                              <input type="text" class="form-control" name="item_name" value="{{item[5]}}">
+                              <input type="text" class="form-control form-control-sm" name="item_name" value="{{item[5]}}">
                             </div>
                             <div class="form-group">
                               <label for="usr">ມູນ​ຄ່າ:</label>
-                              <input type="text" class="form-control" name="amount" value="{{item[6]}}">
+                              <input type="text" class="form-control form-control-sm" name="amount" value="{{item[6]}}">
                             </div>
 
-                            <div class="modal-footer">
+                            <div class="modal-footer" style="margin-bottom: -10px;">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">ຍົກເລີກ</button>
                               <button type="submit" id="" class="btn btn-primary"><i class="bi bi-save"></i>
                                 ບັນທຶກ</button>
@@ -124,17 +128,17 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 70%;">
+  <div class="modal-dialog modal-lg" style="max-width: 60%;">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: darkcyan;color: white;text-align: center;">
         <h5 class="modal-title" id="exampleModalLabel">ລາຍການເຄື່ອນໃຫວລູກໜີ້</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <table class="table table-hover" id="myTable">
-          <thead>
+        <table class="table table-hover table-striped" id="myTable">
+          <thead style="background-color: darkslategrey; color: white;">
             <tr>
               <th scope="col">ລະ​ຫັດ</th>
               <th scope="col">​ຊື່</th>
@@ -151,7 +155,11 @@
               <td style="text-align: left;">{{item[2]}}</td>
               <!-- <td style="text-align: center;"></td> -->
               <td>
-                <a href="/send_arid/{{item[0]}}"><i class="bi bi-pencil-square">ເລືອກ</i></a>
+                <a href="/send_arid/{{item[0]}}" class="btn btn-warning rounded" style="width: 80px;padding: 5px">
+                  <span style="color: black;">
+                  <i class="bi bi-pencil-square"></i>ເລືອກ
+                  </span>
+                </a>
               </td>
             </tr>
             <!-- Modal -->

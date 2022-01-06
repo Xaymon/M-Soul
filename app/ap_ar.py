@@ -412,7 +412,7 @@ def update_set_ar(id):
             total = request.form['total']
 
             # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-            cur.execute('update public.set_ar set item_name=%s, amount=%s, currency_name=%s,total=%s where code=%s',
+            cur.execute('update public.ap_ar_trans set item_name=%s, amount=%s, currency_name=%s,total=%s where code=%s',
                         (item_name, amount, currency_name, total, (id,)))
             gobal.con.commit()
             return redirect(url_for('send_arid', id=id))
