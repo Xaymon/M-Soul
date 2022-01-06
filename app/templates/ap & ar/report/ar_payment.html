@@ -9,10 +9,10 @@
 <div class="container">
   <div class="card">
     <div class="card-header">
-      ການເຄື່ອນໃຫວຈ່າຍຊຳລະເຈົ້າໜີ້
+      ການເຄື່ອນໃຫວໜີ້ຄົງເຫຼືອ
     </div>
     <div class="card-body">
-      <form action="/ap_pm_date" method="post">
+      <form action="/ar_pm_date" method="post">
         <div class="container">
           <div class="row">
             <div class="col-sm-2">
@@ -31,19 +31,20 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">​ວັນທີ</th>
+            <th scope="col">ວັນທີ</th>
             <th scope="col">​ເລກທີ</th>
+            <th scope="col">ເລກທີໃບຕັ້ງໜີ້</th>
             <th scope="col">ລະຫັດເຈົ້າໜີ້</th>
-            <th scope="col" style="width: 12%;">​ຊື່</th>
             <th scope="col">ລາຍການ</th>
-            <th scope="col">ມູນຄ່າຄົງເຫຼືອ</th>
+            <th scope="col">ມູນຄ່າ</th>
+
           </tr>
         </thead>
         <tbody>
-          {% for item in ap_pm %}
+          {% for item in ar_pm %}
           <tr>
-            <td style="text-align: left;">{{item[1]}}</td>
             <td style="text-align: left;">{{item[0]}}</td>
+            <td style="text-align: left;">{{item[1]}}</td>
             <td style="text-align: center;">{{item[2]}}</td>
             <td style="text-align: center;">{{item[3]}}</td>
             <td style="text-align: right;">{{item[4]}}</td>

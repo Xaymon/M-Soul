@@ -470,3 +470,113 @@ def ap_bl_date():
             cur.execute(sql, data)
             ap_bl = cur.fetchall()
             return render_template('/ap & ar/report/ap_balance.html', ap_bl=ap_bl, from_date=from_date, to_date=to_date,user=session.get("roles"))
+
+# report payment
+@app.route('/report_ap_payment')
+def report_ap_payment():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            dateTimeObj = datetime.now()
+            timestampStr = dateTimeObj.strftime("%Y-%m-%d")
+            cur = gobal.con.cursor()
+            sql = """SELECT to_char(doc_date,'DD-MM-YYYY'), doc_no, doc_ref, cust_code, item_name, to_char(pay_value,'999G999G999G999D99') 
+                    FROM payment where trans_flag=129 and doc_date::date=current_date ORDER BY roworder ASC"""
+            cur.execute(sql)
+            ap_pm = cur.fetchall()
+
+            return render_template('/ap & ar/report/ap_payment.html', ap_pm=ap_pm, from_date=timestampStr, to_date=timestampStr,user=session.get("roles"))
+
+@app.route('/ap_pm_date', methods=['POST'])
+def ap_pm_date():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            from_date = request.form['from_date']
+            to_date = request.form['to_date']
+            print(from_date, to_date)
+            cur = gobal.con.cursor()
+            sql = """SELECT to_char(doc_date,'DD-MM-YYYY'), doc_no, doc_ref, cust_code, item_name, to_char(pay_value,'999G999G999G999D99') 
+                    FROM payment where trans_flag=129 and doc_date::date between %s and %s ORDER BY roworder ASC"""
+            data = (from_date, to_date,)
+            cur.execute(sql, data)
+            ap_pm = cur.fetchall()
+            return render_template('/ap & ar/report/ap_payment.html', ap_pm=ap_pm, from_date=from_date, to_date=to_date,user=session.get("roles"))
+
+# report ar balance
+@app.route('/report_ar_balance')
+def report_ar_balance():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            dateTimeObj = datetime.now()
+            timestampStr = dateTimeObj.strftime("%Y-%m-%d")
+            cur = gobal.con.cursor()
+            sql = """SELECT to_char(doc_date,'DD-MM-YYYY'),doc_no,cust_code,b.name_1,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
+                    left join ar_customer b on b.code=a.cust_code
+                    left join tb_addcurrency c on c.curency_code=a.currency_code
+                    where trans_flag='44' and doc_date::date=current_date"""
+            cur.execute(sql)
+            ar_bl = cur.fetchall()
+
+            return render_template('/ap & ar/report/ar_balance.html', ar_bl=ar_bl, from_date=timestampStr, to_date=timestampStr,user=session.get("roles"))
+
+@app.route('/ar_bl_date', methods=['POST'])
+def ar_bl_date():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            from_date = request.form['from_date']
+            to_date = request.form['to_date']
+            print(from_date, to_date)
+            cur = gobal.con.cursor()
+            sql = """ SELECT to_char(doc_date,'DD-MM-YYYY'),doc_no,cust_code,b.name_1,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
+                    left join ar_customer b on b.code=a.cust_code
+                    left join tb_addcurrency c on c.curency_code=a.currency_code
+                    where trans_flag='44'and doc_date between %s and %s order by a.roworder ASC"""
+            data = (from_date, to_date,)
+            cur.execute(sql, data)
+            ar_bl = cur.fetchall()
+            return render_template('ap & ar/report/ar_balance.html', ar_bl=ar_bl, from_date=from_date, to_date=to_date,user=session.get("roles"))
+
+@app.route('/report_ar_payment')
+def report_ar_payment():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            dateTimeObj = datetime.now()
+            timestampStr = dateTimeObj.strftime("%Y-%m-%d")
+            cur = gobal.con.cursor()
+            sql = """SELECT to_char(doc_date,'DD-MM-YYYY'), doc_no, doc_ref, cust_code, item_name, to_char(pay_value,'999G999G999G999D99')||' '||c.curency_name FROM payment a
+                    left join ar_customer b on b.code=a.cust_code
+                    left join tb_addcurrency c on c.curency_code=a.currency_code
+                    where trans_flag=139 and doc_date::date=current_date"""
+                    # SELECT to_char(doc_date,'DD-MM-YYYY'), doc_no, doc_ref, cust_code, item_name, to_char(pay_value,'999G999G999G999D99') FROM payment where trans_flag=139
+            cur.execute(sql)
+            ar_pm = cur.fetchall()
+
+            return render_template('/ap & ar/report/ar_payment.html', ar_pm=ar_pm, from_date=timestampStr, to_date=timestampStr,user=session.get("roles"))
+
+@app.route('/ar_pm_date', methods=['POST'])
+def ar_pm_date():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            from_date = request.form['from_date']
+            to_date = request.form['to_date']
+            print(from_date, to_date)
+            cur = gobal.con.cursor()
+            sql = """ SELECT to_char(doc_date,'DD-MM-YYYY'), doc_no, doc_ref, cust_code, item_name, to_char(pay_value,'999G999G999G999D99')||' '||c.curency_name FROM payment a
+                    left join ar_customer b on b.code=a.cust_code
+                    left join tb_addcurrency c on c.curency_code=a.currency_code
+                   where trans_flag=139 and doc_date between %s and %s order by a.roworder ASC"""
+            data = (from_date, to_date,)
+            cur.execute(sql, data)
+            ar_pm = cur.fetchall()
+            return render_template('ap & ar/report/ar_payment.html', ar_pm=ar_pm, from_date=from_date, to_date=to_date,user=session.get("roles"))
