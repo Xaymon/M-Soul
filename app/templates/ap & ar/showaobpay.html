@@ -1,0 +1,121 @@
+{% extends "layout/layout.html" %}
+{% block title %}ຈ່າຍຊຳລະໜີ້{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <form action="/saveaob" method="post">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="">ເລກທີເອກະສານ</label>
+                            <input type="text" name="doc_no" class="form-control form-control-sm" id=""
+                                value="{{doc_no}}" readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="">ວັນທີ</label>
+                            <input type="date" name="doc_date" id="" class="form-control form-control-sm"
+                                value="{{doc_date}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="">ເລກທີໃບຕັ້ງໜີ້</label>
+                            <input type="text" name="doc_ref" class="form-control form-control-sm" id=""
+                                value="{{showcob[0]}}" readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="">ວັນທີ</label>
+                            <input type="date" name="doc_date" id="" class="form-control form-control-sm"
+                                value="{{showcob[1]}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="">ລະຫັດລູກຄ້າ</label>
+                            <input type="text" name="cust_code" id="" class="form-control form-control-sm" value="{{showcob[2]}}"
+                                readonly>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="">ຊື່</label>
+                            <input type="text" name="" id="" class="form-control form-control-sm" value="{{showcob[3]}}"
+                                readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <label for="">ລາຍລະອຽດໜີ້</label>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <label for="">ລາຍກາານ</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="" value="{{showcob[4]}}"
+                                readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="">ມູນຄ່າ</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="amount" value=""
+                                readonly style="text-align: right;">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="hidden" name="currency_code" class="form-control form-control-sm" id=""
+                                value="{{showcob[6]}}">
+                            <label for="">ສະ​ກຸນ​ເ​ງິນ</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="" value="{{showcob[7]}}"
+                                style="text-align: center;" readonly>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="">ມູນຄ່າທີ່ຊຳລະ</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="pay" value=""
+                                style="text-align: right;" onchange="calcval()" placeholder="ເງິນສົດ" >
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="">ຍອດຄົງເຫຼືອ</label>
+                            <input type="text" name="still" class="form-control form-control-sm" id="still" value="0"
+                                readonly style="text-align: right;">
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="">ສະ​ກຸນ​ເ​ງິນ</label>
+                            <input type="text" name="" class="form-control form-control-sm" id="" value="{{showcob[7]}}"
+                                style="text-align: center;" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="hidden" name="t_amount" value="{{showcob[5]}}">
+                    <input type="hidden" name="_pay" value="" id="_pay">
+                    <input type="hidden" name="_still" value="" id="_still">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-success btn-block btn-sm">ບັນທຶກ</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="reset" class="btn btn-warning btn-block btn-sm">reset</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="/rclistar" class="btn btn-danger btn-block btn-sm">ອອກ</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("amount").value = new Intl.NumberFormat().format({{ showcob[5]}})
+    function calcval() {
+        k = {{ showcob[5]}};
+    v = document.getElementById("pay").value;
+    document.getElementById("still").value = new Intl.NumberFormat().format(k - v);
+    document.getElementById("pay").value = new Intl.NumberFormat().format(v);
+    document.getElementById("_pay").value = v
+    document.getElementById("_still").value = k - v
+    }
+</script>
+
+{% endblock %}

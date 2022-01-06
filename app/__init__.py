@@ -6,4 +6,4 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 app.secret_key = os.urandom(12)
-from app import login,exhange, report_cash,transfer,home,manage,manage_user,manage_bank,manage_currency,currency_type,jsonget,income,outcome,ap_ar,bank,pv
+from app import login,exhange, report_cash,transfer,home,manage,manage_user,manage_bank,manage_currency,currency_type,jsonget,income,outcome,ap_ar,bank,pv,rc
