@@ -396,7 +396,6 @@ def saveset_ar():
             data = (doc_date, doc_no, item_name, currency_code,
                     total_value, total_value_2, cust_code)
             cur.execute(sql, data)
-            print(data)
             return redirect(url_for('setar'))
 
 

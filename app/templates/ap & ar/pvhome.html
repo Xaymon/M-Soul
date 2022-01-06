@@ -40,16 +40,16 @@
                   <tr>
                     <th scope="col">ວັນທີ</th>
                     <th scope="col">​ເລກທີ</th>
+                    <th scope="col">ລກທີໃບຕັ້ງໜີ້</th>
                     <th scope="col">ລະຫັດເຈົ້າໜີ້</th>
-                    <th scope="col">​ຊື່</th>
                     <th scope="col">ລາຍການ</th>
-                    <th scope="col">ມູນຄ່າຄົງເຫຼືອ</th>
+                    <th scope="col">ມູນຄ່າ</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {% for item in rate_trans %}
+                  {% for item in payment_list %}
                   <tr>
                     <td>{{item[0]}}</td>
                     <td style="text-align: left;">{{item[1]}}</td>
