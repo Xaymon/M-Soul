@@ -431,3 +431,42 @@ def set_ar_delete(id):
         gobal.con.commit()
         return redirect(url_for('send_arid', id=id))
         # return render_template('ap & ar/set_ap_copy.html')
+
+
+# report balance
+@app.route('/report_ap_balance')
+def report_ap_balance():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            dateTimeObj = datetime.now()
+            timestampStr = dateTimeObj.strftime("%Y-%m-%d")
+            cur = gobal.con.cursor()
+            sql = """SELECT doc_no,to_char(doc_date,'DD-MM-YYYY'),cust_code,b.name_1,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
+                    left join ap_supplier b on b.code=a.cust_code
+                    left join tb_addcurrency c on c.curency_code=a.currency_code
+                    where trans_flag='55' and doc_date::date=current_date"""
+            cur.execute(sql)
+            ap_bl = cur.fetchall()
+
+            return render_template('/ap & ar/report/ap_balance.html', ap_bl=ap_bl, from_date=timestampStr, to_date=timestampStr,user=session.get("roles"))
+
+@app.route('/ap_bl_date', methods=['POST'])
+def ap_bl_date():
+    with gobal.con:
+        if not session.get("name"):
+            return redirect("/login")
+        else:
+            from_date = request.form['from_date']
+            to_date = request.form['to_date']
+            print(from_date, to_date)
+            cur = gobal.con.cursor()
+            sql = """SELECT doc_no,to_char(doc_date,'DD-MM-YYYY'),cust_code,b.name_1,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
+                    left join ap_supplier b on b.code=a.cust_code
+                    left join tb_addcurrency c on c.curency_code=a.currency_code
+                    where trans_flag='55' and doc_date::date between %s and %s ORDER BY a.roworder ASC"""
+            data = (from_date, to_date,)
+            cur.execute(sql, data)
+            ap_bl = cur.fetchall()
+            return render_template('/ap & ar/report/ap_balance.html', ap_bl=ap_bl, from_date=from_date, to_date=to_date,user=session.get("roles"))
