@@ -53,6 +53,7 @@ def showap_detail(id):
             showcob = cur.fetchone()
             dateTimeObj = datetime.now()
             doc_date = dateTimeObj.strftime("%Y-%m-%d")
+            print(doc_date)
             sql_d = """select max(SPLIT_PART(doc_no,'-', 2))::int from payment where trans_flag='129'"""
             cur_d = gobal.con.cursor()
             cur_d.execute(sql_d)
