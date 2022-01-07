@@ -1,0 +1,62 @@
+{% extends "layout/layout.html" %}
+{% block title %}ລາຍງານການເຄື່ອນໃຫວ-ເງິນສົດກີບ{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      ລາຍ​ງານ​ໜ​ີ້​ຄົງ​ເຫຼືອ
+    </div>
+    <div class="card-body">
+      <form action="/ar_bl_date" method="post">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <input type="date" class="form-control form-control-sm" name="from_date" id="from_date" value="{{from_date}}">
+            </div>
+            <div class="col-sm-3">
+              <input type="date" class="form-control form-control-sm" name="to_date" id="" value="{{to_date}}">
+            </div>
+            <div class="col-sm-2">
+              <button type="submit" class="btn btn-primary btn-sm btn-block noPrint">ຄົ້ນຫາ</button>
+            </div>
+            <div class="col-sm-2">
+              <button onclick="window.print();" class="noPrint btn btn-sm btn-block ">print</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">​ວັນທີ</th>
+            <th scope="col">ເລກທີ</th>
+            <th scope="col">ລະຫັດເຈົ້າໜີ້</th>
+            <th scope="col">​ຊື່</th>
+            <th scope="col">ລາຍການ</th>
+            <th scope="col">ມູນຄ່າຄົງເຫຼືອ</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in ar_bl %}
+          <tr>
+            <td style="text-align: left;">{{item[0]}}</td>
+            <td style="text-align: left;">{{item[1]}}</td>
+            <td style="text-align: center;">{{item[2]}}</td>
+            <td style="text-align: right;">{{item[3]}}</td>
+            <td style="text-align: right;">{{item[4]}}</td>
+            <td style="text-align: right;">{{item[5]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

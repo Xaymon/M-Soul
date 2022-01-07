@@ -64,6 +64,12 @@
         .swal2-cancel {
             font-family: phetsarath ot;
         }
+
+        @media print {
+            .noPrint {
+                display: none;
+            }
+        }
     </style>
     {% endblock %}
 </head>
@@ -130,10 +136,10 @@
                         <a class="dropdown-item" href="/ap">ກຳນົດເຈົ້າໜີ້</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/setap">ຕັ້ງໜີ້</a>
-                        <a class="dropdown-item" href="">ລາຍງານໜີ້ຄົງເຫຼືອ</a>
+                        <a class="dropdown-item" href="/report_ap_balance">ລາຍງານໜີ້ຄົງເຫຼືອ</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/pvhome">ຈ່າຍຊຳລະເຈົ້າໜີ້</a>
-                        <a class="dropdown-item" href="">ລາຍງານຈ່າຍຊຳລະເຈົ້າໜີ້</a>
+                        <a class="dropdown-item" href="/report_ap_payment">ລາຍງານຈ່າຍຊຳລະເຈົ້າໜີ້</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -145,10 +151,10 @@
                         <a class="dropdown-item" href="/ar">ກຳນົດລູກໜີ້</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/setar">ຕັ້ງໜີ້</a>
-                        <a class="dropdown-item" href="">ລາຍງານໜີ້ຄົງເຫຼືອ</a>
+                        <a class="dropdown-item" href="/report_ar_balance">ລາຍງານໜີ້ຄົງເຫຼືອ</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/rchome">ຮັບຊຳລະເຈົ້າໜີ້</a>
-                        <a class="dropdown-item" href="">ລາຍງານຮັບຊຳລະເຈົ້າໜີ້</a>
+                        <a class="dropdown-item" href="report_ar_payment">ລາຍງານຮັບຊຳລະເຈົ້າໜີ້</a>
                     </div>
                 </li>
                 {% if user == 'admin' %}
@@ -287,6 +293,10 @@
                 URL.revokeObjectURL(output.src) // free memory
             }
         };
+        $(window).load(function () {
+            //This execute when entire finished loaded
+            window.print();
+        });
     </script>
     <!-- for datepicker -->
 
