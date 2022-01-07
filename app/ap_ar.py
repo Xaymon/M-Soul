@@ -205,7 +205,7 @@ def setap():
         else:
             cur = gobal.con.cursor()
             sql = """
-                SELECT doc_no,to_char(doc_date,'DD-MM-YYYY'),cust_code,b.name_1,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
+                SELECT doc_no,to_char(doc_date,'DD-MM-YYYY'),cust_code,b.name_1,tel,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
                 left join ap_supplier b on b.code=a.cust_code
                 left join tb_addcurrency c on c.curency_code=a.currency_code
                 where trans_flag='55'"""
@@ -331,7 +331,7 @@ def setar():
         else:
             cur = gobal.con.cursor()
             sql = """
-                SELECT doc_no,to_char(doc_date,'DD-MM-YYYY'),cust_code,b.name_1,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
+                SELECT doc_no,to_char(doc_date,'DD-MM-YYYY'),cust_code,b.name_1,tel,item_name,to_char(total_value_2,'999G999G999G999D99')||' '||c.curency_name FROM public.ap_ar_trans a
                 left join ar_customer b on b.code=a.cust_code
                 left join tb_addcurrency c on c.curency_code=a.currency_code
                 where trans_flag='44'"""
