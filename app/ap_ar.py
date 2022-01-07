@@ -238,7 +238,7 @@ def send_apid(id):
         if not session.get("name"):
             return redirect("/login")
         else:
-            sql_a = "SELECT public.ap_ar_trans.doc_date, public.ap_ar_trans.doc_no, public.ap_supplier.code, name_1, tel, item_name, total_value FROM public.ap_supplier LEFT JOIN public.ap_ar_trans ON public.ap_ar_trans.cust_code = public.ap_supplier.code where public.ap_supplier.code=%s"
+            sql_a = "SELECT public.ap_ar_trans.doc_date, public.ap_ar_trans.doc_no, public.ap_supplier.code, name_1, tel, item_name, total_value_2 FROM public.ap_supplier LEFT JOIN public.ap_ar_trans ON public.ap_ar_trans.cust_code = public.ap_supplier.code where public.ap_supplier.code=%s"
             cur = gobal.con.cursor()
             cur.execute(sql_a, (id,))
             selectapid = cur.fetchone()
@@ -297,15 +297,13 @@ def update_set_ap(id):
             return redirect("/login")
         else:
             item_name = request.form['item_name']
-            amount = request.form['amount']
-            currency_name = request.form['currency_name']
-            total = request.form['total']
+            total_value_2 = request.form['total_value_2']
 
             # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-            cur.execute('update public.set_ap set item_name=%s, amount=%s, currency_name=%s,total=%s where code=%s',
-                        (item_name, amount, currency_name, total, (id,)))
+            cur.execute('update public.ap_ar_trans set item_name=%s, total_value_2=%s where doc_no=%s',
+                        (item_name, total_value_2, (id,)))
             gobal.con.commit()
-            return redirect(url_for('send_apid', id=id))
+            return redirect(url_for('setap'))
             # return render_template('ap & ar/set_ap_copy.html')
 
 
@@ -316,10 +314,10 @@ def set_ap_delete(id):
     else:
         print(id)
         cur = gobal.con.cursor()
-        sql = "delete from public.set_ap where code=%s"
+        sql = "delete from public.ap_ar_trans where doc_no=%s"
         cur.execute(sql, (id,))
         gobal.con.commit()
-        return redirect(url_for('send_apid', id=id))
+        return redirect(url_for('setap'))
         # return render_template('ap & ar/set_ap_copy.html')
 
 
@@ -407,15 +405,13 @@ def update_set_ar(id):
             return redirect("/login")
         else:
             item_name = request.form['item_name']
-            amount = request.form['amount']
-            currency_name = request.form['currency_name']
-            total = request.form['total']
+            total_value_2 = request.form['total_value_2']
 
             # data = (item_name, cash_kip, cash_baht, cash_dollar, bill_date)
-            cur.execute('update public.ap_ar_trans set item_name=%s, amount=%s, currency_name=%s,total=%s where code=%s',
-                        (item_name, amount, currency_name, total, (id,)))
+            cur.execute('update public.ap_ar_trans set item_name=%s, total_value_2=%s where doc_no=%s',
+                        (item_name, total_value_2, (id,)))
             gobal.con.commit()
-            return redirect(url_for('send_arid', id=id))
+            return redirect(url_for('setar'))
             # return render_template('ap & ar/set_ap_copy.html')
 
 
@@ -426,10 +422,10 @@ def set_ar_delete(id):
     else:
         print(id)
         cur = gobal.con.cursor()
-        sql = "delete from public.set_ar where code=%s"
+        sql = "delete from public.ap_ar_trans where doc_no=%s"
         cur.execute(sql, (id,))
         gobal.con.commit()
-        return redirect(url_for('send_arid', id=id))
+        return redirect(url_for('setar'))
         # return render_template('ap & ar/set_ap_copy.html')
 
 
