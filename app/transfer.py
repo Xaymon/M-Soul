@@ -186,12 +186,12 @@ def save_thai_lao():
         total_amount_tt_tl = request.form['total_amount_tt_tl']
         cur = gobal.con.cursor()
         sql = """
-        INSERT INTO cb_trans(doc_date, doc_no, cust_name, tel, item_code,item_code_2, amount, trans_flag, calc_flag,service_charge,trans_type)
-	    VALUES ( LOCALTIMESTAMP(0),%s, %s, %s, %s,%s,%s,%s,%s,%s,1)"""
-        val1 = (doc_no, customername, tel, 'Thai', '',
-                trans_incom, 4, 1, service_charge_tl)
-        val2 = (doc_no, customername, tel, 'Lao', '',
-                trans_incom, 5, -1, service_charge_tl)
+        INSERT INTO cb_trans(doc_date, doc_no, cust_name, tel, account_book, bank_account_name, item_code,item_code_2, amount, trans_flag, calc_flag,service_charge,trans_type)
+	    VALUES ( LOCALTIMESTAMP(0),%s, %s, %s, %s,%s,%s,%s,%s,%s,%s,%s,1)"""
+        val1 = (doc_no, customername, tel,bank_account_name, bank_account_code,
+                'Thai', from_bank_tl, trans_incom, 4, 1, service_charge_tl)
+        val2 = (doc_no, customername, tel,bank_account_name, bank_account_code,
+                'Lao', from_bank_tl, trans_incom, 5, -1, service_charge_tl)
         valn = [(val1), (val2)]
         cur.executemany(sql, valn)
         gobal.con.commit()
