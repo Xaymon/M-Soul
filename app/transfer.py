@@ -161,12 +161,16 @@ def save_thai_lao():
             doc = bil_no[0]
             a = doc+1
             doc_no = "TL-"+str(a)
+        # ຂໍ້ມູນລູຄ້າ
         customername = request.form['customername_tl']
         tel = request.form['tel_tl']
 
+        # ປາຍທາງ
         from_bank_tl = request.form['from_bank_tl']
         trans_incom = request.form['trans_incom']
 
+        # service and fee
+        fee_tl = request.form['fee_tl']
         service_charge_tl = request.form['service_charge_tl']
         total_befor_pay_tl = request.form['total_befor_pay_tl']
 
@@ -179,7 +183,6 @@ def save_thai_lao():
         bank_account_code = request.form['bank_account_code']
         bank_account_name = request.form['bank_account_name']
         total_bank_amount_tl = request.form['total_bank_amount_tl']
-        fee_tl = request.form['fee_tl']
 
         rate_bank_tl = request.form['rate_bank_tl']
         bank_amount_tl = request.form['bank_amount_tl']
